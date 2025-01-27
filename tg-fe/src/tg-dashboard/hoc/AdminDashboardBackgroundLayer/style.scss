@@ -1,0 +1,33 @@
+.admin-dashboard-background-layer-container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(296.93deg, #bb8f32 6.16%, #f6dc94 209.76%);
+
+  .admin-dashboard-background-layer-top-vector {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .admin-dashboard-background-layer-bottom-vector {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .admin-dashboard-background-layer-content {
+    height: auto;
+    width: auto;
+    z-index: 1;
+  }
+
+  .admin-dashboard-background-logo {
+    margin-bottom: 2rem;
+  }
+}

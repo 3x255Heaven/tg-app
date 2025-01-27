@@ -1,0 +1,67 @@
+@import "../../../assets/styles/colors";
+@import "../../../assets/styles/fonts";
+
+.forgot-password-container {
+  width: 488px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 30px 0px #00000026;
+  background-color: $primary-white;
+  padding: 2.5rem;
+
+  .forgot-password-header {
+    font-family: $primary-font;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 43px;
+    letter-spacing: 0.04em;
+  }
+
+  .forgot-password-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.5rem;
+    width: 100%;
+    padding: 1rem 1rem 0rem 1rem;
+
+    .forgot-password-forgot-password-label {
+      color: #bb8f32;
+      font-weight: bold;
+      font-family: $tertiary-font;
+      align-self: flex-end;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    input {
+      width: 100%;
+      border: 1px solid #e1e1e1;
+      border-radius: 2rem;
+      height: 3rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      color: #000;
+      font-family: $tertiary-font;
+      line-height: 22.5px;
+    }
+
+    .forgot-password-btn {
+      background: linear-gradient(274.47deg, #bb8f32 1.53%, #f6dc94 167.81%);
+      height: 45px;
+      width: 100%;
+      border-radius: 50px;
+      border: none;
+      color: $primary-white;
+      font-family: $tertiary-font;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+  }
+}
