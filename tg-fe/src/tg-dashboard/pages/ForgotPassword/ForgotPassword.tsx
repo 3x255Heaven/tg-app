@@ -1,21 +1,28 @@
-import "./styles.scss";
+import {
+  ForgotPasswordProvider,
+  useForgotPassword,
+} from "./ForgotPasswordContext";
 import AdminDashboardBackgroundLayer from "@dashboard/hoc/AdminDashboardBackgroundLayer/AdminDashboardBackgroundLayer";
+import SendMailView from "./SendMailView";
+import CheckMailView from "./CheckMailView";
 
-const ForgotPassword = () => {
+const ForgotPasswordComponent = () => {
+  const { currentView } = useForgotPassword();
+
   return (
     <AdminDashboardBackgroundLayer>
       <div className="forgot-password-container">
-        <span className="forgot-password-header">Login</span>
-        <div className="forgot-password-form">
-          <input type="text" placeholder="Email Address" />
-          <input type="password" placeholder="Password" />
-          <span className="forgot-password-forgot-password-label">
-            Forgot your password?
-          </span>
-          <span className="forgot-password-btn">Log In</span>
-        </div>
+        {currentView === "submit" ? <SendMailView /> : <CheckMailView />}
       </div>
     </AdminDashboardBackgroundLayer>
+  );
+};
+
+const ForgotPassword = () => {
+  return (
+    <ForgotPasswordProvider>
+      <ForgotPasswordComponent />
+    </ForgotPasswordProvider>
   );
 };
 
