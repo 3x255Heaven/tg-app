@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router";
-import "./styles.scss";
 
 import MailIcon from "@assets/svgs/MailIcon";
 import { dashboardRoutes } from "@routes";
@@ -11,32 +10,34 @@ const CheckMailView = () => {
 
   return (
     <>
-      <div className="forgot-password-icon-wrapper">
+      <div className="w-[50px] h-[50px] bg-[#bb8f324d] rounded-full flex justify-center items-center mb-4">
         <MailIcon />
       </div>
-      <span className="forgot-password-header">Check your email</span>
-      <span className="forgot-password-sub-header">
-        We sent a password reset link to
+      <span className="font-montserrat text-[30px] font-bold leading-[43px] tracking-[0.04em]">
+        Check your email
       </span>
-      <span className="forgot-password-email-value">{email}</span>
-      <div className="forgot-password-form">
+      <span className="font-poppins">We sent a password reset link to</span>
+      <span className="font-poppins text-[#bb8f32]">{email}</span>
+      <div className="flex flex-col items-center justify-center mt-2 w-full p-4 pt-0 pb-0">
         <span
-          className="open-mail-btn"
+          className="bg-gradient-to-r from-[#bb8f32] to-[#f6dc94] h-[45px] w-full rounded-full border-0 text-white font-poppins text-[18px] font-bold cursor-pointer flex justify-center items-center text-center"
           onClick={() => window.open("https://mail.google.com", "_blank")}
         >
           Open Email
         </span>
-        <div className="resend">
-          <span className="resend-label">Didn’t receive the email?</span>
-          <span className="resend-button">Resend</span>
+        <div className="mt-6 flex justify-center items-center gap-2">
+          <span className="font-poppins">Didn’t receive the email?</span>
+          <span className="font-poppins text-[#bb8f32] cursor-pointer">
+            Resend
+          </span>
         </div>
         <div
-          className="forgot-password-back-btn"
+          className="text-[#bb8f32] font-bold font-poppins self-center text-[18px] cursor-pointer flex justify-center items-center mt-6"
           onClick={() => {
             navigate(dashboardRoutes.DASHBOARD_LOGIN);
           }}
         >
-          <span className="back-arrow">&#8592;</span>
+          <span className="text-[32px] h-[53px] mr-2">&#8592;</span>
           <span>Back to Log In</span>
         </div>
       </div>
