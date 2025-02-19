@@ -15,11 +15,18 @@ import NotificationIcon from "@assets/svgs/NotificationIcon";
 import TermsAndConditionsIcon from "@assets/svgs/TermsAndConditionsIcon";
 import PrivacyPolicyIcon from "@assets/svgs/PrivacyPolicyIcon";
 
+import MyProfile from "@dashboard/components/modals/MyProfile";
+import UpdateProfile from "@dashboard/components/modals/UpdateProfile";
+import ChangePassword from "@dashboard/components/modals/ChangePassword";
+import Logout from "@dashboard/components/modals/Logout";
+
 import { dashboardRoutes } from "@routes";
 
 interface AdminDashboardLayoutProps {
   children?: ReactNode;
 }
+
+type ModalType = "myprofile" | "updateprofile" | "changepassword" | "logout";
 
 type SidebarNavigationItem = {
   id: string;
@@ -29,7 +36,7 @@ type SidebarNavigationItem = {
 };
 
 type UserProfileNavigationItem = {
-  id: string;
+  id: ModalType;
   label: string;
   icon: ComponentType<any>;
 };
@@ -88,12 +95,13 @@ const sidebarNavigationItems: SidebarNavigationItem[] = [
 const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
   children,
 }) => {
-  const [userNavigation, setUserNavigation] = useState(false);
+  const [userNavigation, setUserNavigation] = useState<boolean>(false);
+  const [activeModal, setActiveModal] = useState<ModalType | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
 
   return (
-    <>
+    <div className="relative w-screen h-screen">
       <nav className="fixed top-0 z-30 w-full bg-[#F5F6FA] border-b border-gray-200">
         <div className="flex relative justify-between items-center px-3 py-3 pl-3">
           <form name="search" className="max-w-md ml-72">
@@ -144,6 +152,10 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
                         <li
                           key={navigationItem.id}
                           className="flex justify-start items-center pl-2.5 hover:bg-gray-100"
+                          onClick={() => {
+                            setActiveModal(navigationItem.id);
+                            setUserNavigation(false);
+                          }}
                         >
                           <Icon customStyle="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" />
                           <span className="block px-4 py-2 cursor-pointer">
@@ -154,7 +166,13 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
                     }
                   )}
                 </ul>
-                <div className="flex justify-start items-center py-2 pl-2.5 hover:bg-gray-100">
+                <div
+                  className="flex justify-start items-center py-2 pl-2.5 hover:bg-gray-100"
+                  onClick={() => {
+                    setActiveModal("logout");
+                    setUserNavigation(false);
+                  }}
+                >
                   <LogoutIcon customStyle="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" />
                   <span className="block px-4 py-2 text-sm text-gray-700 cursor-pointer">
                     Logout
@@ -215,7 +233,36 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
           {children}
         </div>
       </div>
-    </>
+
+      {activeModal === "myprofile" && (
+        <MyProfile
+          closeModal={() => {
+            setActiveModal(null);
+          }}
+        />
+      )}
+      {activeModal === "changepassword" && (
+        <ChangePassword
+          closeModal={() => {
+            setActiveModal(null);
+          }}
+        />
+      )}
+      {activeModal === "updateprofile" && (
+        <UpdateProfile
+          closeModal={() => {
+            setActiveModal(null);
+          }}
+        />
+      )}
+      {activeModal === "logout" && (
+        <Logout
+          closeModal={() => {
+            setActiveModal(null);
+          }}
+        />
+      )}
+    </div>
   );
 };
 
