@@ -136,21 +136,23 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
             {userNavigation && (
               <div className="z-10 absolute right-14 top-20 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
                 <ul className="py-2 text-sm text-gray-700">
-                  {userProfileNavigationItems.map((navigationItem) => {
-                    const Icon = navigationItem.icon;
+                  {userProfileNavigationItems.map(
+                    (navigationItem: UserProfileNavigationItem) => {
+                      const Icon = navigationItem.icon;
 
-                    return (
-                      <li
-                        key={navigationItem.id}
-                        className="flex justify-start items-center pl-2.5 hover:bg-gray-100"
-                      >
-                        <Icon customStyle="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" />
-                        <span className="block px-4 py-2 cursor-pointer">
-                          {navigationItem.label}
-                        </span>
-                      </li>
-                    );
-                  })}
+                      return (
+                        <li
+                          key={navigationItem.id}
+                          className="flex justify-start items-center pl-2.5 hover:bg-gray-100"
+                        >
+                          <Icon customStyle="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" />
+                          <span className="block px-4 py-2 cursor-pointer">
+                            {navigationItem.label}
+                          </span>
+                        </li>
+                      );
+                    }
+                  )}
                 </ul>
                 <div className="flex justify-start items-center py-2 pl-2.5 hover:bg-gray-100">
                   <LogoutIcon customStyle="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" />
@@ -170,33 +172,40 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
             <PrimaryLogo width={76} height={92} />
           </div>
           <ul className="space-y-2 font-medium mt-12">
-            {sidebarNavigationItems.map((navigationItem) => {
-              const Icon = navigationItem.icon;
-              const isActive = location.pathname.includes(navigationItem.route);
+            {sidebarNavigationItems.map(
+              (navigationItem: SidebarNavigationItem) => {
+                const Icon = navigationItem.icon;
+                const isActive = location.pathname.includes(
+                  navigationItem.route
+                );
 
-              return (
-                <li
-                  key={navigationItem.id}
-                  onClick={() => {
-                    navigate(navigationItem.route);
-                  }}
-                >
-                  <span
-                    className={`flex items-center p-2 rounded-lg group cursor-pointer ${
-                      isActive
-                        ? "bg-[#BB8F32] hover:bg-[#BB8F32] text-white"
-                        : "bg-white hover:bg-gray-100 text-gray-900"
+                return (
+                  <li
+                    className={`relative px-4 py-2 before:absolute before:-left-3 before:top-1/2 before:-translate-y-1/2 before:h-10 before:w-1.5 before:bg-[#BB8F32] before:rounded-md ${
+                      isActive ? "before:bg-[#BB8F32]" : "before:bg-white"
                     }`}
+                    key={navigationItem.id}
+                    onClick={() => {
+                      navigate(navigationItem.route);
+                    }}
                   >
-                    <Icon
-                      customStyle="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
-                      isActive={isActive}
-                    />
-                    <span className="ms-3">{navigationItem.label}</span>
-                  </span>
-                </li>
-              );
-            })}
+                    <span
+                      className={`flex items-center p-2 rounded-lg group cursor-pointer ${
+                        isActive
+                          ? "bg-[#BB8F32] hover:bg-[#BB8F32] text-white"
+                          : "bg-white hover:bg-gray-100 text-gray-900"
+                      }`}
+                    >
+                      <Icon
+                        customStyle="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                        isActive={isActive}
+                      />
+                      <span className="ms-3">{navigationItem.label}</span>
+                    </span>
+                  </li>
+                );
+              }
+            )}
           </ul>
         </div>
       </aside>
