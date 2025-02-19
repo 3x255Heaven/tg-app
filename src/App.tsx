@@ -11,6 +11,14 @@ const App = () => {
     <Router>
       <Routes>
         <Route
+          path={dashboardRoutes.DASHBOARD_TERMS_AND_CONDITIONS}
+          element={<AdminDashboardLayout />}
+        />
+        <Route
+          path={dashboardRoutes.DASHBOARD_PRIVACY_POLICY}
+          element={<AdminDashboardLayout />}
+        />
+        <Route
           path={dashboardRoutes.DASHBOARD_OVERVIEW}
           element={<AdminDashboardLayout />}
         />

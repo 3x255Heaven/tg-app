@@ -1,4 +1,6 @@
 import { ReactNode, ComponentType, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import DashboardIcon from "@assets/svgs/DashboardIcon";
 import ManageCoursesIcon from "@assets/svgs/ManageCoursesIcon";
 import WalletIcon from "@assets/svgs/WalletIcon";
@@ -10,7 +12,10 @@ import LockIcon from "@assets/svgs/LockIcon";
 import PenIcon from "@assets/svgs/PenIcon";
 import LogoutIcon from "@assets/svgs/LogoutIcon";
 import NotificationIcon from "@assets/svgs/NotificationIcon";
-import { useLocation, useNavigate } from "react-router-dom";
+import TermsAndConditionsIcon from "@assets/svgs/TermsAndConditionsIcon";
+import PrivacyPolicyIcon from "@assets/svgs/PrivacyPolicyIcon";
+
+import { dashboardRoutes } from "@routes";
 
 interface AdminDashboardLayoutProps {
   children?: ReactNode;
@@ -52,19 +57,31 @@ const sidebarNavigationItems: SidebarNavigationItem[] = [
     id: "dashboard",
     label: "Dashboard",
     icon: DashboardIcon,
-    route: "/dashboard/overview",
+    route: dashboardRoutes.DASHBOARD_OVERVIEW,
   },
   {
     id: "courses",
     label: "Manage Courses",
     icon: ManageCoursesIcon,
-    route: "/dashboard/manage-courses",
+    route: dashboardRoutes.DASHBOARD_MANAGE_COURSES,
   },
   {
     id: "wallet",
     label: "Wallet",
     icon: WalletIcon,
-    route: "/dashboard/wallet",
+    route: dashboardRoutes.DASHBOARD_WALLET,
+  },
+  {
+    id: "terms",
+    label: "Terms & Conditions",
+    icon: TermsAndConditionsIcon,
+    route: dashboardRoutes.DASHBOARD_TERMS_AND_CONDITIONS,
+  },
+  {
+    id: "privacy",
+    label: "Privacy Policy",
+    icon: PrivacyPolicyIcon,
+    route: dashboardRoutes.DASHBOARD_PRIVACY_POLICY,
   },
 ];
 
@@ -79,18 +96,13 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
     <>
       <nav className="fixed top-0 z-30 w-full bg-[#F5F6FA] border-b border-gray-200">
         <div className="flex relative justify-between items-center px-3 py-3 pl-3">
-          <form className="max-w-md ml-72">
-            <label
-              htmlFor="default-search"
-              className="mb-2 text-sm font-medium text-gray-900 sr-only"
-            >
-              Search
-            </label>
+          <form name="search" className="max-w-md ml-72">
             <div className="relative">
               <div className="absolute inset-y-0 start-0 flex items-center ps-6 pointer-events-none">
                 <SearchIcon />
               </div>
               <input
+                name="search-input"
                 type="search"
                 className="block w-lg p-3 m-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-[#BB8F32] focus:border-[#BB8F32]"
                 placeholder="Search"
@@ -122,7 +134,7 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
               </div>
             </button>
             {userNavigation && (
-              <div className="z-10 absolute right-6 top-20 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
+              <div className="z-10 absolute right-14 top-20 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
                 <ul className="py-2 text-sm text-gray-700">
                   {userProfileNavigationItems.map((navigationItem) => {
                     const Icon = navigationItem.icon;
