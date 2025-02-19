@@ -101,7 +101,7 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
   const location = useLocation();
 
   return (
-    <div className="relative w-screen h-screen">
+    <div className="relative w-screen h-screen overflow-x-hidden">
       <nav className="fixed top-0 z-30 w-full bg-[#F5F6FA] border-b border-gray-200">
         <div className="flex relative justify-between items-center px-3 py-3 pl-3">
           <form name="search" className="max-w-md ml-72">
@@ -120,12 +120,22 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
           </form>
 
           <div className="flex justify-center items-center pr-10">
-            <NotificationIcon customStyle="mr-8 cursor-pointer" />
+            <div
+              className="relative"
+              onClick={() => {
+                navigate(dashboardRoutes.DASHBOARD_NOTIFICATIONS);
+              }}
+            >
+              <NotificationIcon customStyle="mr-8 cursor-pointer" />
+              <span className="absolute -top-1 right-6 bg-[#F93C65] text-white text-[10px] font-bold w-4 h-4 rounded-full flex justify-center items-center">
+                2
+              </span>
+            </div>
             <button
               className="flex items-center text-[1rem] pe-1 font-bold text-[#BB8F32] rounded-full me-0 focus:ring-4 focus:ring-gray-100 cursor-pointer"
               type="button"
               onClick={() => {
-                setUserNavigation(userNavigation === true ? false : true);
+                setUserNavigation((prev) => !prev);
               }}
             >
               <img
@@ -228,11 +238,7 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
         </div>
       </aside>
 
-      <div className="p-4 ml-64 bg-[#F5F6FA]">
-        <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg mt-14">
-          {children}
-        </div>
-      </div>
+      <div className="p-4 ml-64 mt-22 bg-[#F5F6FA]">{children}</div>
 
       {activeModal === "myprofile" && (
         <MyProfile

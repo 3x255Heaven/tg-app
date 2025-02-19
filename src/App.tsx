@@ -5,18 +5,27 @@ import { dashboardRoutes } from "./routes";
 import Login from "@dashboard/pages/Login/Login";
 import ForgotPassword from "@dashboard/pages/ForgotPassword/ForgotPassword";
 import AdminDashboardLayout from "@dashboard/hoc/AdminDashboardLayout";
+import Notifications from "@dashboard/pages/Notifications/Notifications";
+import Wallet from "@dashboard/pages/Wallet/Wallet";
+import TermsAndConditions from "@dashboard/pages/TermsAndConditions/TermsAndConditions";
+import PrivacyPolicy from "@dashboard/pages/PrivacyPolicy/PrivacyPolicy";
+import Courses from "@dashboard/pages/Courses/Courses";
 
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route
+          path={dashboardRoutes.DASHBOARD_NOTIFICATIONS}
+          element={<Notifications />}
+        />
+        <Route
           path={dashboardRoutes.DASHBOARD_TERMS_AND_CONDITIONS}
-          element={<AdminDashboardLayout />}
+          element={<TermsAndConditions />}
         />
         <Route
           path={dashboardRoutes.DASHBOARD_PRIVACY_POLICY}
-          element={<AdminDashboardLayout />}
+          element={<PrivacyPolicy />}
         />
         <Route
           path={dashboardRoutes.DASHBOARD_OVERVIEW}
@@ -24,12 +33,9 @@ const App = () => {
         />
         <Route
           path={dashboardRoutes.DASHBOARD_MANAGE_COURSES}
-          element={<AdminDashboardLayout />}
+          element={<Courses />}
         />
-        <Route
-          path={dashboardRoutes.DASHBOARD_WALLET}
-          element={<AdminDashboardLayout />}
-        />
+        <Route path={dashboardRoutes.DASHBOARD_WALLET} element={<Wallet />} />
         <Route path={dashboardRoutes.DASHBOARD_LOGIN} element={<Login />} />
         <Route
           path={dashboardRoutes.DASHBOARD_FORGOT_PASSWORD}

@@ -19,3 +19,20 @@ html {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bb8f32;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a77c2b;
+}
