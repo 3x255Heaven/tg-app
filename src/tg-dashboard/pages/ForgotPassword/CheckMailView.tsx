@@ -16,11 +16,13 @@ const CheckMailView = () => {
       <span className="font-montserrat text-[30px] font-bold leading-[43px] tracking-[0.04em]">
         Check your email
       </span>
-      <span className="font-poppins">We sent a password reset link to</span>
-      <span className="font-poppins text-[#bb8f32]">{email}</span>
+      <span className="font-poppins text-[14px] mt-2">
+        We sent a password reset link to
+      </span>
+      <span className="font-poppins text-[#bb8f32] text-[14px]">{email}</span>
       <div className="flex flex-col items-center justify-center mt-2 w-full p-4 pt-0 pb-0">
         <span
-          className="bg-gradient-to-r from-[#bb8f32] to-[#f6dc94] h-[45px] w-full rounded-full border-0 text-white font-poppins text-[18px] font-bold cursor-pointer flex justify-center items-center text-center"
+          className="bg-gradient-to-r from-[#bb8f32] to-[#f6dc94] h-[45px] w-full rounded-full border-0 text-white font-poppins text-[18px] font-bold cursor-pointer flex justify-center items-center text-center mt-4"
           onClick={() => window.open("https://mail.google.com", "_blank")}
         >
           Open Email
@@ -32,7 +34,7 @@ const CheckMailView = () => {
           </span>
         </div>
         <div
-          className="text-[#bb8f32] font-bold font-poppins self-center text-[18px] cursor-pointer flex justify-center items-center mt-6"
+          className="text-[#bb8f32] font-[600] font-poppins self-center text-[18px] cursor-pointer flex justify-center items-center mt-6"
           onClick={() => {
             navigate(dashboardRoutes.DASHBOARD_LOGIN);
           }}

@@ -6,13 +6,20 @@ import DeleteIcon from "@assets/svgs/DeleteIcon";
 import EyeIcon from "@assets/svgs/EyeIcon";
 
 import { ModalType } from "./Courses";
+import DeleteCourse from "@dashboard/components/modals/DeleteCourse";
+import UpdateCourse from "@dashboard/components/modals/UpdateCourse";
 
 interface CourseProps {
   course: any;
-  toggleActiveModal: (modalType: ModalType) => void;
+  activeModal: ModalType | null;
+  toggleActiveModal: (modalType: ModalType | null) => void;
 }
 
-const Course: React.FC<CourseProps> = ({ course, toggleActiveModal }) => {
+const Course: React.FC<CourseProps> = ({
+  course,
+  toggleActiveModal,
+  activeModal,
+}) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
   return (
@@ -76,6 +83,23 @@ const Course: React.FC<CourseProps> = ({ course, toggleActiveModal }) => {
           {course.price}
         </span>
       </div>
+
+      {activeModal === "delete" && (
+        <DeleteCourse
+          course={course}
+          closeModal={() => {
+            toggleActiveModal(null);
+          }}
+        />
+      )}
+      {activeModal === "update" && (
+        <UpdateCourse
+          course={course}
+          closeModal={() => {
+            toggleActiveModal(null);
+          }}
+        />
+      )}
     </div>
   );
 };

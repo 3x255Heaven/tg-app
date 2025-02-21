@@ -36,3 +36,15 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #a77c2b;
 }
+
+.font-poppins {
+  font-family: "Poppins";
+}
+
+.font-montserrat {
+  font-family: "Montserrat";
+}
+
+.font-malayalam {
+  font-family: "Malayalam MN";
+}

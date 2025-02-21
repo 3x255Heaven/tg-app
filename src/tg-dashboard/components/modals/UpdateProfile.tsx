@@ -32,13 +32,13 @@ const UpdateProfile: React.FC<UpdateProfileProps> = ({ closeModal }) => {
         </div>
 
         <div className="pb-4 pr-4 pl-4 flex flex-col justify-center items-center">
-          <div className="mb-2">
+          <div className="mb-2 flex flex-col justify-center items-center">
             <img
               className="w-28 h-28 rounded-full object-cover"
               src="https://s3-alpha-sig.figma.com/img/590c/5619/14379f2474bbc8a4787f2ade0777c52b?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=cAzHFgeqTo3j~u9sflBpztP7kuAtJgYu1KHjCT8SG5iXwrPJY0nLPfaa3b2Mqhi~D~8QAdcoc0fBVzqpUH3DAfzpsdnbmTvIt4VOlvHGlJGBAzaKUODnqfoy5zwBgCibCdXSQq7XfleoM4URfFE24l9j-wHgq0gEfi87f4W1NTQSv4zlw~FxEicW95CdZEvytnw~3h8IrANHB7-Egzv7ui-wZIeiqwqEcNxXEWULtS4b4AjLBfLw5SUeYe9c~mWOEPUywWPhaX3R3fw9nuE6ypScbsKHNApy3K38SkSY-kd3QtRH9sqFW5r-1UI-xBWdjCaBIXnn7z3v~Hkvlp2ejw__"
               alt="user photo"
             />
-            <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[24px] w-full rounded-full border-0 text-white font-poppins text-[14px] mt-6 cursor-pointer flex justify-center items-center text-center">
+            <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[24px] w-[140px] rounded-full border-0 text-white font-poppins text-[14px] mt-6 cursor-pointer flex justify-center items-center text-center">
               Change Image
             </span>
           </div>

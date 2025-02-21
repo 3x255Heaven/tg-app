@@ -101,7 +101,7 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
   const location = useLocation();
 
   return (
-    <div className="relative w-screen h-screen overflow-x-hidden">
+    <div className="relative w-screen h-screen overflow-x-hidden font-montserrat">
       <nav className="fixed top-0 z-30 w-full bg-[#F5F6FA] border-b border-gray-200">
         <div className="flex relative justify-between items-center px-3 py-3 pl-3">
           <form name="search" className="max-w-md ml-72">

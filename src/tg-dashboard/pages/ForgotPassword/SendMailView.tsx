@@ -25,7 +25,7 @@ const SendMailView = () => {
       <span className="font-poppins">
         No worries, we'll send you reset instructions.
       </span>
-      <div className="flex flex-col items-center justify-center mt-2 w-full p-4 pt-0 pb-0">
+      <div className="flex flex-col items-center justify-center mt-4 w-full p-4 pt-0 pb-0">
         <input
           type="text"
           placeholder="Email Address"

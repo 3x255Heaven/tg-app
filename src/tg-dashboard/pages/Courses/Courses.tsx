@@ -3,14 +3,14 @@ import { coursesItems } from "../../../mock";
 
 import AdminDashboardLayout from "@dashboard/hoc/AdminDashboardLayout";
 import Course from "./Course";
-import DeleteCourse from "@dashboard/components/modals/DeleteCourse";
+import CreateCourse from "@dashboard/components/modals/CreateCourse";
 
 export type ModalType = "create" | "update" | "delete";
 
 const Courses = () => {
   const [activeModal, setActiveModal] = useState<ModalType | null>(null);
 
-  const toggleActiveModal = (modalType: ModalType) => {
+  const toggleActiveModal = (modalType: ModalType | null) => {
     setActiveModal(modalType);
   };
 
@@ -34,15 +34,15 @@ const Courses = () => {
               <Course
                 key={courseItem.id}
                 course={courseItem}
+                activeModal={activeModal}
                 toggleActiveModal={toggleActiveModal}
               />
             );
           })}
         </div>
       </div>
-
-      {activeModal === "delete" && (
-        <DeleteCourse
+      {activeModal === "create" && (
+        <CreateCourse
           closeModal={() => {
             setActiveModal(null);
           }}
