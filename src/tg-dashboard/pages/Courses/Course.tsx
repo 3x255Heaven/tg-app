@@ -11,8 +11,8 @@ import UpdateCourse from "@dashboard/components/modals/UpdateCourse";
 
 interface CourseProps {
   course: any;
-  activeModal: ModalType | null;
-  toggleActiveModal: (modalType: ModalType | null) => void;
+  activeModal?: ModalType | null;
+  toggleActiveModal?: (modalType: ModalType | null) => void;
 }
 
 const Course: React.FC<CourseProps> = ({
@@ -24,16 +24,18 @@ const Course: React.FC<CourseProps> = ({
 
   return (
     <div className="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-      <span
-        className="absolute right-0 inline-flex items-center p-2 text-sm font-medium text-center text-white focus:outline-none cursor-pointer"
-        onClick={() => {
-          setShowDropdown((prev) => !prev);
-        }}
-      >
-        <DotsIcon />
-      </span>
+      {toggleActiveModal && (
+        <span
+          className="absolute right-0 inline-flex items-center p-2 text-sm font-medium text-center text-white focus:outline-none cursor-pointer"
+          onClick={() => {
+            setShowDropdown((prev) => !prev);
+          }}
+        >
+          <DotsIcon />
+        </span>
+      )}
 
-      {showDropdown && (
+      {toggleActiveModal && showDropdown && (
         <div className="absolute right-4 top-8 z-50 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
           <ul className="py-2 text-sm text-gray-700">
             <li>
@@ -84,7 +86,7 @@ const Course: React.FC<CourseProps> = ({
         </span>
       </div>
 
-      {activeModal === "delete" && (
+      {toggleActiveModal && activeModal === "delete" && (
         <DeleteCourse
           course={course}
           closeModal={() => {
@@ -92,7 +94,7 @@ const Course: React.FC<CourseProps> = ({
           }}
         />
       )}
-      {activeModal === "update" && (
+      {toggleActiveModal && activeModal === "update" && (
         <UpdateCourse
           course={course}
           closeModal={() => {

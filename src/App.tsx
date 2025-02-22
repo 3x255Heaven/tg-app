@@ -4,12 +4,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { dashboardRoutes } from "./routes";
 import Login from "@dashboard/pages/Login/Login";
 import ForgotPassword from "@dashboard/pages/ForgotPassword/ForgotPassword";
-import AdminDashboardLayout from "@dashboard/hoc/AdminDashboardLayout";
 import Notifications from "@dashboard/pages/Notifications/Notifications";
 import Wallet from "@dashboard/pages/Wallet/Wallet";
 import TermsAndConditions from "@dashboard/pages/TermsAndConditions/TermsAndConditions";
 import PrivacyPolicy from "@dashboard/pages/PrivacyPolicy/PrivacyPolicy";
 import Courses from "@dashboard/pages/Courses/Courses";
+import Overview from "@dashboard/pages/Overview/Overview";
 
 const App = () => {
   return (
@@ -29,7 +29,7 @@ const App = () => {
         />
         <Route
           path={dashboardRoutes.DASHBOARD_OVERVIEW}
-          element={<AdminDashboardLayout />}
+          element={<Overview />}
         />
         <Route
           path={dashboardRoutes.DASHBOARD_MANAGE_COURSES}

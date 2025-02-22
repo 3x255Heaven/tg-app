@@ -48,3 +48,7 @@ html {
 .font-malayalam {
   font-family: "Malayalam MN";
 }
+
+.apexcharts-legend {
+  margin-top: 1rem;
+}
