@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 
 import MailIcon from "@assets/svgs/MailIcon";
-import { dashboardRoutes } from "@routes";
+import { generalRoutes } from "@routes";
 import { useForgotPassword } from "./ForgotPasswordContext";
 
 const CheckMailView = () => {
@@ -36,7 +36,7 @@ const CheckMailView = () => {
         <div
           className="text-[#bb8f32] font-[600] font-poppins self-center text-[18px] cursor-pointer flex justify-center items-center mt-6"
           onClick={() => {
-            navigate(dashboardRoutes.DASHBOARD_LOGIN);
+            navigate(generalRoutes.LOGIN);
           }}
         >
           <span className="text-[32px] h-[53px] mr-2">&#8592;</span>

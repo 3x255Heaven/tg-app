@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 
 import KeyIcon from "@assets/svgs/KeyIcon";
-import { dashboardRoutes } from "@routes";
+import { generalRoutes } from "@routes";
 import { useForgotPassword } from "./ForgotPasswordContext";
 
 const SendMailView = () => {
@@ -44,7 +44,7 @@ const SendMailView = () => {
         <div
           className="text-[#bb8f32] font-bold font-poppins self-center text-[18px] cursor-pointer flex justify-center items-center mt-6"
           onClick={() => {
-            navigate(dashboardRoutes.DASHBOARD_LOGIN);
+            navigate(generalRoutes.LOGIN);
           }}
         >
           <span className="text-[32px] h-[53px] mr-2">&#8592;</span>

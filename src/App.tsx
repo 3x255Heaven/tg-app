@@ -42,6 +42,7 @@ const App = () => {
         />
         <Route path={dashboardRoutes.DASHBOARD_WALLET} element={<Wallet />} />
         <Route path={generalRoutes.LOGIN} element={<Login />} />
+        <Route path={generalRoutes.HOME} element={<Login />} />
         <Route
           path={generalRoutes.FORGOT_PASSWORD}
           element={<ForgotPassword />}
