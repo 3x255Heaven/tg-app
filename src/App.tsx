@@ -10,6 +10,7 @@ import TermsAndConditions from "@dashboard/pages/TermsAndConditions/TermsAndCond
 import PrivacyPolicy from "@dashboard/pages/PrivacyPolicy/PrivacyPolicy";
 import Courses from "@dashboard/pages/Courses/Courses";
 import Overview from "@dashboard/pages/Overview/Overview";
+import CourseDetails from "@dashboard/pages/Courses/CourseDetails";
 
 const App = () => {
   return (
@@ -34,6 +35,10 @@ const App = () => {
         <Route
           path={dashboardRoutes.DASHBOARD_MANAGE_COURSES}
           element={<Courses />}
+        />
+        <Route
+          path={`${dashboardRoutes.DASHBOARD_COURSE}/:id`}
+          element={<CourseDetails />}
         />
         <Route path={dashboardRoutes.DASHBOARD_WALLET} element={<Wallet />} />
         <Route path={dashboardRoutes.DASHBOARD_LOGIN} element={<Login />} />

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import DotsIcon from "@assets/svgs/DotsIcon";
 import PenIcon from "@assets/svgs/PenIcon";
@@ -8,38 +9,38 @@ import EyeIcon from "@assets/svgs/EyeIcon";
 import { ModalType } from "./Courses";
 import DeleteCourse from "@dashboard/components/modals/DeleteCourse";
 import UpdateCourse from "@dashboard/components/modals/UpdateCourse";
+import { dashboardRoutes } from "@routes";
 
 interface CourseProps {
   course: any;
-  activeModal?: ModalType | null;
-  toggleActiveModal?: (modalType: ModalType | null) => void;
 }
 
-const Course: React.FC<CourseProps> = ({
-  course,
-  toggleActiveModal,
-  activeModal,
-}) => {
+const Course: React.FC<CourseProps> = ({ course }) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
+  const [activeModal, setActiveModal] = useState<ModalType | null>(null);
+  const navigate = useNavigate();
 
   return (
     <div className="relative max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-      {toggleActiveModal && (
-        <span
-          className="absolute right-0 inline-flex items-center p-2 text-sm font-medium text-center text-white focus:outline-none cursor-pointer"
-          onClick={() => {
-            setShowDropdown((prev) => !prev);
-          }}
-        >
-          <DotsIcon />
-        </span>
-      )}
+      <span
+        className="absolute right-0 inline-flex items-center p-2 text-sm font-medium text-center text-white focus:outline-none cursor-pointer"
+        onClick={() => {
+          setShowDropdown((prev) => !prev);
+        }}
+      >
+        <DotsIcon />
+      </span>
 
-      {toggleActiveModal && showDropdown && (
+      {showDropdown && (
         <div className="absolute right-4 top-8 z-50 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44">
           <ul className="py-2 text-sm text-gray-700">
             <li>
-              <div className="px-4 py-2 hover:bg-gray-100 flex items-center cursor-pointer">
+              <div
+                className="px-4 py-2 hover:bg-gray-100 flex items-center cursor-pointer"
+                onClick={() => {
+                  navigate(`${dashboardRoutes.DASHBOARD_COURSE}/${course.id}`);
+                }}
+              >
                 <EyeIcon />
                 <span className="ml-4">View</span>
               </div>
@@ -48,7 +49,7 @@ const Course: React.FC<CourseProps> = ({
               <div
                 className="px-4 py-2 hover:bg-gray-100 flex items-center border-t border-[#0000001C] cursor-pointer"
                 onClick={() => {
-                  toggleActiveModal("update");
+                  setActiveModal("update");
                   setShowDropdown((prev) => !prev);
                 }}
               >
@@ -60,7 +61,7 @@ const Course: React.FC<CourseProps> = ({
               <div
                 className="px-4 py-2 hover:bg-gray-100 flex items-center border-t border-[#0000001C] cursor-pointer"
                 onClick={() => {
-                  toggleActiveModal("delete");
+                  setActiveModal("delete");
                   setShowDropdown((prev) => !prev);
                 }}
               >
@@ -86,19 +87,19 @@ const Course: React.FC<CourseProps> = ({
         </span>
       </div>
 
-      {toggleActiveModal && activeModal === "delete" && (
+      {activeModal === "delete" && (
         <DeleteCourse
           course={course}
           closeModal={() => {
-            toggleActiveModal(null);
+            setActiveModal(null);
           }}
         />
       )}
-      {toggleActiveModal && activeModal === "update" && (
+      {activeModal === "update" && (
         <UpdateCourse
           course={course}
           closeModal={() => {
-            toggleActiveModal(null);
+            setActiveModal(null);
           }}
         />
       )}

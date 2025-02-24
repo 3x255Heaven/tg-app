@@ -10,7 +10,7 @@ const DeleteCourse: React.FC<DeleteCourseProps> = ({ closeModal }) => {
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center">
       <div
-        className="absolute inset-0 bg-black opacity-5"
+        className="absolute inset-0 bg-black opacity-50"
         onClick={closeModal}
       />
 

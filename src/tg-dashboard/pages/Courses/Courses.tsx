@@ -30,14 +30,7 @@ const Courses = () => {
         </div>
         <div className="w-full grid grid-cols-4 grid-rows-4 gap-2 py-4">
           {coursesItems.map((courseItem) => {
-            return (
-              <Course
-                key={courseItem.id}
-                course={courseItem}
-                activeModal={activeModal}
-                toggleActiveModal={toggleActiveModal}
-              />
-            );
+            return <Course key={courseItem.id} course={courseItem} />;
           })}
         </div>
       </div>
