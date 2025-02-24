@@ -1,7 +1,7 @@
 import "@assets/main.css";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { dashboardRoutes } from "./routes";
+import { dashboardRoutes, generalRoutes } from "./routes";
 import Login from "@dashboard/pages/Login/Login";
 import ForgotPassword from "@dashboard/pages/ForgotPassword/ForgotPassword";
 import Notifications from "@dashboard/pages/Notifications/Notifications";
@@ -41,15 +41,12 @@ const App = () => {
           element={<CourseDetails />}
         />
         <Route path={dashboardRoutes.DASHBOARD_WALLET} element={<Wallet />} />
-        <Route path={dashboardRoutes.DASHBOARD_LOGIN} element={<Login />} />
+        <Route path={generalRoutes.LOGIN} element={<Login />} />
         <Route
-          path={dashboardRoutes.DASHBOARD_FORGOT_PASSWORD}
+          path={generalRoutes.FORGOT_PASSWORD}
           element={<ForgotPassword />}
         />
-        <Route
-          path={dashboardRoutes.DASHBOARD_RESET_PASSWORD}
-          element={<Login />}
-        />
+        <Route path={generalRoutes.RESET_PASSWORD} element={<Login />} />
       </Routes>
     </Router>
   );

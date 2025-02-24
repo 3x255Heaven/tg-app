@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 
 import AdminDashboardBackgroundLayer from "@dashboard/hoc/AdminDashboardBackgroundLayer";
-import { dashboardRoutes } from "@routes";
+import { dashboardRoutes, generalRoutes } from "@routes";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -26,12 +26,17 @@ const Login = () => {
           <span
             className="text-[#bb8f32] font-bold font-poppins self-end text-[14px] cursor-pointer"
             onClick={() => {
-              navigate(dashboardRoutes.DASHBOARD_FORGOT_PASSWORD);
+              navigate(generalRoutes.FORGOT_PASSWORD);
             }}
           >
             Forgot your password?
           </span>
-          <span className="bg-gradient-to-r from-[#bb8f32] to-[#f6dc94] via-[#bb8f32] h-[45px] w-full rounded-full border-0 text-white font-poppins text-[18px] font-bold mt-6 cursor-pointer flex justify-center items-center text-center">
+          <span
+            onClick={() => {
+              navigate(dashboardRoutes.DASHBOARD_OVERVIEW);
+            }}
+            className="bg-gradient-to-r from-[#bb8f32] to-[#f6dc94] via-[#bb8f32] h-[45px] w-full rounded-full border-0 text-white font-poppins text-[18px] font-bold mt-6 cursor-pointer flex justify-center items-center text-center"
+          >
             Log In
           </span>
         </div>
