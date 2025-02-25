@@ -11,6 +11,7 @@ import PrivacyPolicy from "@dashboard/pages/PrivacyPolicy/PrivacyPolicy";
 import Courses from "@dashboard/pages/Courses/Courses";
 import Overview from "@dashboard/pages/Overview/Overview";
 import CourseDetails from "@dashboard/pages/Courses/CourseDetails";
+import Home from "@shop/pages/Home/Home";
 
 const App = () => {
   return (
@@ -42,7 +43,7 @@ const App = () => {
         />
         <Route path={dashboardRoutes.DASHBOARD_WALLET} element={<Wallet />} />
         <Route path={generalRoutes.LOGIN} element={<Login />} />
-        <Route path={generalRoutes.HOME} element={<Login />} />
+        <Route path={generalRoutes.HOME} element={<Home />} />
         <Route
           path={generalRoutes.FORGOT_PASSWORD}
           element={<ForgotPassword />}
