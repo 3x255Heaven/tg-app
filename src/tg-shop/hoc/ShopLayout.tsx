@@ -6,6 +6,7 @@ import PrimaryLogo from "@assets/svgs/PrimaryLogo";
 import TikTokIcon from "@assets/svgs/TikTokIcon";
 import YoutubeIcon from "@assets/svgs/YoutubeIcon";
 import brandImage from "@assets/tg.png";
+import LocationIcon from "@assets/svgs/LocationIcon";
 
 interface ShopLayoutProps {
   children?: ReactNode;
@@ -60,6 +61,30 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
         </div>
       </div>
       {children}
+      <div className="flex flex-col justify-between items-center px-20 py-12 w-full bg-[#231F20]">
+        <div className="flex w-full justify-between items-center pb-10 border-b border-white">
+          <div className="flex flex-col gap-6">
+            <div className="flex items-center gap-6">
+              <LocationIcon color="#FFF" />
+              <span className="text-white">Bate Brkica 11, Novi Sad</span>
+            </div>
+            <div className="flex items-center gap-6">
+              <MailIcon color="#FFF" />
+              <span className="text-white">teodora.grubor@gmail.com</span>
+            </div>
+            <div className="flex items-center gap-6">
+              <PhoneIcon color="#FFF" />
+              <span className="text-white">+381649843948</span>
+            </div>
+          </div>
+          <PrimaryLogo width={100} height={120} />
+        </div>
+        <div className="flex justify-center items-center gap-10 mt-10">
+          <TikTokIcon color="#FFF" customStyle="cursor-pointer" />
+          <InstagramIcon color="#FFF" customStyle="cursor-pointer" />
+          <YoutubeIcon color="#FFF" customStyle="cursor-pointer" />
+        </div>
+      </div>
     </div>
   );
 };
