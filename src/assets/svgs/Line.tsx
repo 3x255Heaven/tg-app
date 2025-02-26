@@ -1,8 +1,9 @@
-const Line = () => {
+const Line = ({ customStyle = "" }) => {
   return (
     <svg
       width="495"
       height="1"
+      className={customStyle}
       viewBox="0 0 495 1"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
