@@ -1,12 +1,14 @@
 import { useCallback, useRef } from "react";
-import { reivewItems } from "../../mock";
+import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
+
 import "swiper/css";
-import { Swiper, SwiperSlide } from "swiper/react";
 import ReviewItem from "./ReviewItem";
 import ArrowDownIcon from "@assets/svgs/ArrowDownIcon";
 
+import { reivewItems } from "../../mock";
+
 const ReviewSlider = () => {
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<SwiperRef | null>(null);
 
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
