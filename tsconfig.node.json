@@ -9,9 +9,9 @@
     "paths": {
       "@dashboard/*": ["src/tg-dashboard/*"],
       "@shop/*": ["src/tg-shop/*"],
-      "@shared/*": ["src/tg-shared/*"],
+      "@constants/*": ["src/constants/*"],
       "@assets/*": ["src/assets/*"],
-      "@routes": ["src/routes.ts"]
+      "@routes": ["src/routes.ts"],
     },
 
     /* Bundler mode */

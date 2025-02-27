@@ -1,4 +1,5 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import InstagramIcon from "@assets/svgs/InstagramIcon";
 import MailIcon from "@assets/svgs/MailIcon";
 import PhoneIcon from "@assets/svgs/PhoneIcon";
@@ -8,6 +9,10 @@ import YoutubeIcon from "@assets/svgs/YoutubeIcon";
 import brandImage from "@assets/tg.png";
 import LocationIcon from "@assets/svgs/LocationIcon";
 import MenuIcon from "@assets/svgs/MenuIcon";
+import { languages } from "@constants/languages";
+
+import serbianFlag from "@assets/rs.png";
+import americanFlag from "@assets/en.png";
 
 interface ShopLayoutProps {
   children?: ReactNode;
@@ -15,6 +20,23 @@ interface ShopLayoutProps {
 
 const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isLanguagePickerOpen, setLanguagePickerOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setLanguagePickerOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="flex flex-col items-center font-montserrat">
@@ -51,15 +73,68 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
               </div>
             </div>
             <div className="flex items-center gap-6">
-              <span className="cursor-pointer">Home</span>
-              <span className="cursor-pointer">About Us</span>
-              <span className="cursor-pointer">Our Courses</span>
-              <span className="cursor-pointer">Contact Us</span>
-              <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[2rem] w-[6rem] rounded-full border-0 text-white font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center">
-                Log In
+              <span className="cursor-pointer">{t("home")}</span>
+              <span className="cursor-pointer">{t("courses")}</span>
+              <span className="cursor-pointer">{t("contact")}</span>
+              <div className="relative inline-block" ref={dropdownRef}>
+                <button
+                  onClick={() => {
+                    setLanguagePickerOpen(!isLanguagePickerOpen);
+                  }}
+                  className="bg-white cursor-pointer flex justify-center items-center text-center"
+                >
+                  {i18n.language === "sr" ? (
+                    <img
+                      src={serbianFlag}
+                      alt="Flag"
+                      className="w-8  object-cover"
+                    />
+                  ) : (
+                    <img
+                      src={americanFlag}
+                      alt="Flag"
+                      className="w-8 object-cover"
+                    />
+                  )}
+                </button>
+                {isLanguagePickerOpen && (
+                  <div className="absolute mt-2 w-18 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+                    <ul className="py-2 text-gray-700">
+                      {Object.keys(languages).map((language: any) => {
+                        return (
+                          <li
+                            key={language}
+                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                            onClick={() => {
+                              i18n.changeLanguage(language);
+                              setLanguagePickerOpen(false);
+                            }}
+                          >
+                            {language === "sr" ? (
+                              <img
+                                src={serbianFlag}
+                                alt="Flag"
+                                className="w-8  object-cover"
+                              />
+                            ) : (
+                              <img
+                                src={americanFlag}
+                                alt="Flag"
+                                className="w-8 object-cover"
+                              />
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              </div>
+              <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] px-5 py-1.5 rounded-full border-0 text-white font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center">
+                {t("login")}
               </span>
-              <span className="bg-white h-[2rem] w-[6rem] rounded-full border border-[#BB8F32] text-[#BB8F32] font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center">
-                Register
+              <span className="bg-white px-5 py-1.5 rounded-full border border-[#BB8F32] text-[#BB8F32] font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center">
+                {t("register")}
               </span>
             </div>
           </div>
@@ -86,15 +161,14 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
         {isNavOpen && (
           <div className="xl:hidden bg-white py-4">
             <div className="flex flex-col items-center gap-6">
-              <span className="cursor-pointer">Home</span>
-              <span className="cursor-pointer">About Us</span>
-              <span className="cursor-pointer">Our Courses</span>
-              <span className="cursor-pointer">Contact Us</span>
+              <span className="cursor-pointer">{t("home")}</span>
+              <span className="cursor-pointer">{t("courses")}</span>
+              <span className="cursor-pointer">{t("contact")}</span>
               <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[2rem] w-[6rem] rounded-full border-0 text-white font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center">
-                Log In
+                {t("login")}
               </span>
               <span className="bg-white h-[2rem] w-[6rem] rounded-full border border-[#BB8F32] text-[#BB8F32] font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center">
-                Register
+                {t("register")}
               </span>
             </div>
           </div>

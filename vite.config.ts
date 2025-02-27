@@ -9,7 +9,7 @@ export default defineConfig({
     alias: {
       "@dashboard": path.resolve(__dirname, "src/tg-dashboard"),
       "@shop": path.resolve(__dirname, "src/tg-shop"),
-      "@shared": path.resolve(__dirname, "src/tg-shared"),
+      "@constants": path.resolve(__dirname, "src/constants"),
       "@assets": path.resolve(__dirname, "src/assets"),
       "@routes": path.resolve(__dirname, "src/routes.ts"),
     },
