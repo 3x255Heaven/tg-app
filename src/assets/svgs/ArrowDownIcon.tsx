@@ -1,7 +1,7 @@
-const ArrowDownIcon = () => {
+const ArrowDownIcon = ({ customStyle = "w-2.5 h-2.5" }) => {
   return (
     <svg
-      className="w-2.5 h-2.5"
+      className={customStyle}
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

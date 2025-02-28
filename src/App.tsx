@@ -8,9 +8,10 @@ import Notifications from "@dashboard/pages/Notifications/Notifications";
 import Wallet from "@dashboard/pages/Wallet/Wallet";
 import TermsAndConditions from "@dashboard/pages/TermsAndConditions/TermsAndConditions";
 import PrivacyPolicy from "@dashboard/pages/PrivacyPolicy/PrivacyPolicy";
-import Courses from "@dashboard/pages/Courses/Courses";
+import Courses from "@shop/pages/Courses/Courses";
 import Overview from "@dashboard/pages/Overview/Overview";
 import CourseDetails from "@dashboard/pages/Courses/CourseDetails";
+import Course from "@shop/pages/Course/Course";
 import Home from "@shop/pages/Home/Home";
 
 const App = () => {
@@ -44,6 +45,8 @@ const App = () => {
         <Route path={dashboardRoutes.DASHBOARD_WALLET} element={<Wallet />} />
         <Route path={generalRoutes.LOGIN} element={<Login />} />
         <Route path={generalRoutes.HOME} element={<Home />} />
+        <Route path={generalRoutes.COURSES} element={<Courses />} />
+        <Route path={generalRoutes.COURSE_DETAILS} element={<Course />} />
         <Route
           path={generalRoutes.FORGOT_PASSWORD}
           element={<ForgotPassword />}

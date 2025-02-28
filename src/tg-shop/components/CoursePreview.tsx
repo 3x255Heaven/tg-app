@@ -1,9 +1,12 @@
 import { useTranslation } from "react-i18next";
 import Line from "@assets/svgs/Line";
 import { coursesOverviewItems } from "../../mock";
+import { useNavigate } from "react-router-dom";
+import { generalRoutes } from "@routes";
 
 const CoursePreview = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <div className="w-full flex flex-col justify-center items-center p-6 sm:p-10 mt-5 mb-5">
@@ -15,12 +18,15 @@ const CoursePreview = () => {
           {t("featuredCoursesDesc")}
         </span>
       </div>
-      <div className="w-full flex flex-wrap justify-center gap-6 items-center mt-10">
+      <div className="w-full flex flex-wrap justify-center gap-10 items-center mt-10">
         {coursesOverviewItems.map((courseItem) => {
           return (
             <div
               key={courseItem.id}
-              className="flex flex-col justify-center items-center max-w-xs sm:max-w-sm"
+              className="flex flex-col justify-center items-center max-w-xs sm:max-w-sm cursor-pointer"
+              onClick={() => {
+                navigate(`${generalRoutes.COURSES}/${courseItem.id}`);
+              }}
             >
               <img
                 className="rounded-lg h-[200px] sm:h-[240px] w-full object-cover"
@@ -45,7 +51,12 @@ const CoursePreview = () => {
       <div className="w-full flex justify-center gap-4 items-center mt-10 flex-wrap">
         <Line customStyle="w-1/5 bg-[#BB8F32] lg:bg-none lg:w-auto " />
 
-        <span className="text-[#BB8F32] border border-[#BB8F32] hover:bg-[#BB8F32] hover:text-white transition-all duration-300 rounded-full h-[32px] w-fit px-6 py-2 cursor-pointer flex justify-center items-center text-center font-bold text-sm sm:text-base">
+        <span
+          className="text-[#BB8F32] border border-[#BB8F32] hover:bg-[#BB8F32] hover:text-white transition-all duration-300 rounded-full h-[32px] w-fit px-6 py-2 cursor-pointer flex justify-center items-center text-center font-bold text-sm sm:text-base"
+          onClick={() => {
+            navigate(generalRoutes.COURSES);
+          }}
+        >
           {t("seeAllCourses")}
         </span>
 

@@ -21,6 +21,9 @@ export const ENGLISH_TRANSLATION = {
   reviewTitle: "Words that inspire me",
   reviewSubtitle:
     "Real stories from students who turned their passion into success.",
+  coursesTitle: "Featured Courses",
+  coursesSubtitle: "Explore what’s trending and take your picks",
+  courseOverview: "Course Overview",
 };
 
 export const SERBIAN_TRANSLATION = {
@@ -42,4 +45,7 @@ export const SERBIAN_TRANSLATION = {
   reviewTitle: "Reči koje me pokreću",
   reviewSubtitle:
     "Real stories from students who turned their passion into success.",
+  coursesTitle: "Svi kursevi",
+  coursesSubtitle: "Pronađi svoje favorite i tehniku koju želiš da usavršiš",
+  courseOverview: "Detalji kursa",
 };
