@@ -1,6 +1,6 @@
 import { notificationsItems } from "../../../mock";
 
-import NotificationItemIcon from "@assets/svgs/NotificationItemIcon";
+import NotificationItemIcon from "@assets/svgs/icons/NotificationItemIcon";
 import AdminDashboardLayout from "@dashboard/hoc/AdminDashboardLayout";
 
 const Notifications = () => {

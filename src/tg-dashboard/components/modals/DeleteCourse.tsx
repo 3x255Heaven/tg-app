@@ -1,5 +1,5 @@
 import React from "react";
-import DeleteIcon from "@assets/svgs/DeleteIcon";
+import DeleteIcon from "@assets/svgs/icons/DeleteIcon";
 
 interface DeleteCourseProps {
   closeModal: () => void;

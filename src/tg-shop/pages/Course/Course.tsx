@@ -5,7 +5,7 @@ import ShopLayout from "@shop/hoc/ShopLayout";
 import { coursesItems } from "../../../mock";
 import Spinner from "@assets/svgs/Spinner";
 import { generalRoutes } from "@routes";
-import ArrowDownIcon from "@assets/svgs/ArrowDownIcon";
+import ArrowDownIcon from "@assets/svgs/icons/ArrowDownIcon";
 
 const Course = () => {
   const [course, setCourse] = useState<any>(null);

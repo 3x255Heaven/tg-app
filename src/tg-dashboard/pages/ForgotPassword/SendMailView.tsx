@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-import KeyIcon from "@assets/svgs/KeyIcon";
+import KeyIcon from "@assets/svgs/icons/KeyIcon";
 import { generalRoutes } from "@routes";
 import { useForgotPassword } from "./ForgotPasswordContext";
 

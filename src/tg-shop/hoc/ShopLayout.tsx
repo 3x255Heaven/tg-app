@@ -1,19 +1,21 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import InstagramIcon from "@assets/svgs/InstagramIcon";
-import MailIcon from "@assets/svgs/MailIcon";
-import PhoneIcon from "@assets/svgs/PhoneIcon";
+import InstagramIcon from "@assets/svgs/icons/InstagramIcon";
+import MailIcon from "@assets/svgs/icons/MailIcon";
+import PhoneIcon from "@assets/svgs/icons/PhoneIcon";
 import PrimaryLogo from "@assets/svgs/PrimaryLogo";
-import TikTokIcon from "@assets/svgs/TikTokIcon";
-import YoutubeIcon from "@assets/svgs/YoutubeIcon";
-import brandImage from "@assets/tg.png";
-import LocationIcon from "@assets/svgs/LocationIcon";
-import MenuIcon from "@assets/svgs/MenuIcon";
+import TikTokIcon from "@assets/svgs/icons/TikTokIcon";
+import YoutubeIcon from "@assets/svgs/icons/YoutubeIcon";
+import brandImage from "@assets/brand/tg.png";
+import LocationIcon from "@assets/svgs/icons/LocationIcon";
+import MenuIcon from "@assets/svgs/icons/MenuIcon";
+import Cart from "@shop/components/Cart";
+import CartIcon from "@assets/svgs/icons/CartIcon";
 import { languages } from "@constants/languages";
 
-import serbianFlag from "@assets/rs.png";
-import americanFlag from "@assets/en.png";
+import serbianFlag from "@assets/flags/rs.png";
+import americanFlag from "@assets/flags/en.png";
 import { generalRoutes } from "@routes";
 
 interface ShopLayoutProps {
@@ -23,6 +25,7 @@ interface ShopLayoutProps {
 const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isLanguagePickerOpen, setLanguagePickerOpen] = useState(false);
+  const [isCartActive, setIsCartActive] = useState(false);
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -43,6 +46,12 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
 
   return (
     <div className="flex flex-col items-center font-montserrat">
+      <Cart
+        isActive={isCartActive}
+        closeCart={() => {
+          setIsCartActive(false);
+        }}
+      />
       <div className="w-full">
         <div className="hidden xl:flex flex-col items-center">
           <div className="flex justify-between items-center py-4 px-20 w-full h-14 bg-[#231F20]">
@@ -145,6 +154,16 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                     </ul>
                   </div>
                 )}
+              </div>
+              <div
+                className={`${
+                  isCartActive ? "pointer-events-none" : ""
+                } border border-[#BB8F32] rounded-full p-1.5`}
+                onClick={() => {
+                  setIsCartActive(true);
+                }}
+              >
+                <CartIcon />
               </div>
               <span
                 className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] px-5 py-1.5 rounded-full border-0 text-white font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center"

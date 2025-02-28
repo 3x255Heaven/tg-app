@@ -1,5 +1,5 @@
 import React from "react";
-import CloseIcon from "@assets/svgs/CloseIcon";
+import CloseIcon from "@assets/svgs/icons/CloseIcon";
 
 interface CreateCourseProps {
   closeModal: () => void;

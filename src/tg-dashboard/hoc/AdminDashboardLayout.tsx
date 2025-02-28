@@ -1,19 +1,19 @@
 import { ReactNode, ComponentType, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import DashboardIcon from "@assets/svgs/DashboardIcon";
-import ManageCoursesIcon from "@assets/svgs/ManageCoursesIcon";
-import WalletIcon from "@assets/svgs/WalletIcon";
+import DashboardIcon from "@assets/svgs/icons/DashboardIcon";
+import ManageCoursesIcon from "@assets/svgs/icons/ManageCoursesIcon";
+import WalletIcon from "@assets/svgs/icons/WalletIcon";
 import PrimaryLogo from "@assets/svgs/PrimaryLogo";
-import SearchIcon from "@assets/svgs/SearchIcon";
-import ArrowDownIcon from "@assets/svgs/ArrowDownIcon";
-import MyProfileIcon from "@assets/svgs/MyProfileIcon";
-import LockIcon from "@assets/svgs/LockIcon";
-import PenIcon from "@assets/svgs/PenIcon";
-import LogoutIcon from "@assets/svgs/LogoutIcon";
-import NotificationIcon from "@assets/svgs/NotificationIcon";
-import TermsAndConditionsIcon from "@assets/svgs/TermsAndConditionsIcon";
-import PrivacyPolicyIcon from "@assets/svgs/PrivacyPolicyIcon";
+import SearchIcon from "@assets/svgs/icons/SearchIcon";
+import ArrowDownIcon from "@assets/svgs/icons/ArrowDownIcon";
+import MyProfileIcon from "@assets/svgs/icons/MyProfileIcon";
+import LockIcon from "@assets/svgs/icons/LockIcon";
+import PenIcon from "@assets/svgs/icons/PenIcon";
+import LogoutIcon from "@assets/svgs/icons/LogoutIcon";
+import NotificationIcon from "@assets/svgs/icons/NotificationIcon";
+import TermsAndConditionsIcon from "@assets/svgs/icons/TermsAndConditionsIcon";
+import PrivacyPolicyIcon from "@assets/svgs/icons/PrivacyPolicyIcon";
 
 import MyProfile from "@dashboard/components/modals/MyProfile";
 import UpdateProfile from "@dashboard/components/modals/UpdateProfile";

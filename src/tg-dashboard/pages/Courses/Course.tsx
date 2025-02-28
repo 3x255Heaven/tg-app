@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import DotsIcon from "@assets/svgs/DotsIcon";
-import PenIcon from "@assets/svgs/PenIcon";
-import DeleteIcon from "@assets/svgs/DeleteIcon";
-import EyeIcon from "@assets/svgs/EyeIcon";
+import DotsIcon from "@assets/svgs/icons/DotsIcon";
+import PenIcon from "@assets/svgs/icons/PenIcon";
+import DeleteIcon from "@assets/svgs/icons/DeleteIcon";
+import EyeIcon from "@assets/svgs/icons/EyeIcon";
 
 import { ModalType } from "./Courses";
 import DeleteCourse from "@dashboard/components/modals/DeleteCourse";

@@ -2,7 +2,7 @@ import { useCallback, useRef } from "react";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import "swiper/css";
 import ReviewItem from "./ReviewItem";
-import ArrowDownIcon from "@assets/svgs/ArrowDownIcon";
+import ArrowDownIcon from "@assets/svgs/icons/ArrowDownIcon";
 
 import { reivewItems } from "../../mock";
 

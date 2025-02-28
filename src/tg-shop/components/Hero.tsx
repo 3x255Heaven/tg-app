@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import heroVideo from "@assets/Hero.mp4";
+import heroVideo from "@assets/brand/Hero.mp4";
 
 const Hero = () => {
   const { t } = useTranslation();

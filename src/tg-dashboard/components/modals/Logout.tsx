@@ -1,5 +1,5 @@
 import React from "react";
-import LogoutReverseIcon from "@assets/svgs/LogoutReverseIcon";
+import LogoutReverseIcon from "@assets/svgs/icons/LogoutReverseIcon";
 
 interface LogoutProps {
   closeModal: () => void;

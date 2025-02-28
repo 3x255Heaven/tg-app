@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 
-import MailIcon from "@assets/svgs/MailIcon";
+import MailIcon from "@assets/svgs/icons/MailIcon";
 import { generalRoutes } from "@routes";
 import { useForgotPassword } from "./ForgotPasswordContext";
 
