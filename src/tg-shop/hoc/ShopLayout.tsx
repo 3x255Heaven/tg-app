@@ -96,22 +96,6 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
               <span
                 className="cursor-pointer"
                 onClick={() => {
-                  navigate(generalRoutes.MY_COURSES);
-                }}
-              >
-                {t("mycourses")}
-              </span>
-              <span
-                className="cursor-pointer"
-                onClick={() => {
-                  navigate(generalRoutes.MY_PROFILE);
-                }}
-              >
-                {t("myprofile")}
-              </span>
-              <span
-                className="cursor-pointer"
-                onClick={() => {
                   navigate(generalRoutes.COURSES);
                 }}
               >
