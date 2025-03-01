@@ -1,5 +1,5 @@
 import CloseIcon from "@assets/svgs/icons/CloseIcon";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { coursesOverviewItems } from "../../mock";
 import DeleteIcon from "@assets/svgs/icons/DeleteIcon";
