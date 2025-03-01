@@ -15,6 +15,7 @@ import Course from "@shop/pages/Course/Course";
 import Home from "@shop/pages/Home/Home";
 import MyCourses from "@shop/pages/MyCourses/MyCourses";
 import MyProfile from "@shop/pages/MyProfile/MyProfile";
+import CourseContent from "@shop/pages/CourseContent/CourseContent";
 
 const App = () => {
   return (
@@ -49,6 +50,10 @@ const App = () => {
         <Route path={generalRoutes.HOME} element={<Home />} />
         <Route path={generalRoutes.COURSES} element={<Courses />} />
         <Route path={generalRoutes.COURSE_DETAILS} element={<Course />} />
+        <Route
+          path={generalRoutes.COURSE_CONTENT}
+          element={<CourseContent />}
+        />
         <Route path={generalRoutes.MY_COURSES} element={<MyCourses />} />
         <Route path={generalRoutes.MY_PROFILE} element={<MyProfile />} />
         <Route
