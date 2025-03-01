@@ -13,7 +13,7 @@ const MyCourses = () => {
       <div className="w-full flex flex-col justify-center items-center p-6 sm:p-10 mt-5 mb-5">
         <div className="w-full flex flex-col justify-center items-center">
           <span className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] [text-shadow:0px_4px_5.3px_#BB8F3259]">
-            {t("myCourses")}
+            {t("my_courses")}
           </span>
         </div>
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">

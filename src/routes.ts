@@ -16,4 +16,5 @@ export const generalRoutes = {
   COURSES: "/courses",
   COURSE_DETAILS: "/courses/:id",
   MY_COURSES: "/my-courses",
+  MY_PROFILE: "/my-profile",
 };

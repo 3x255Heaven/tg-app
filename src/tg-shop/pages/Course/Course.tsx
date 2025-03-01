@@ -92,14 +92,14 @@ const Course = () => {
             </span>
             <div className="flex flex-col pt-4 border-t border-gray-200">
               <span className="font-bold mb-2 text-lg sm:text-xl md:text-2xl">
-                {t("courseOverview")}
+                {t("course_overview")}
               </span>
               <span className="text-gray-600 text-sm sm:text-base md:text-lg font-extralight">
                 {course.description}
               </span>
             </div>
             <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] mt-6 sm:mt-10 h-[2.5rem] px-6 sm:px-8 py-2 rounded-full border-0 text-white font-poppins text-[14px] sm:text-[16px] cursor-pointer flex justify-center items-center text-center w-full sm:w-fit mx-auto lg:mx-0">
-              {t("addToCart")}
+              {t("add_to_cart")}
             </span>
           </div>
           <div className="flex justify-center w-full lg:w-1/2">

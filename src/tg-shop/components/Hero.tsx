@@ -19,7 +19,7 @@ const Hero = () => {
           “ {t("hero")}”
         </h2>
         <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[2.5rem] w-[12rem] mt-5 rounded-full border-0 text-white font-poppins text-sm sm:text-[16px] cursor-pointer flex justify-center items-center text-center transition-all hover:opacity-90">
-          {t("allCourses")}
+          {t("all_courses")}
         </span>
       </div>
     </div>

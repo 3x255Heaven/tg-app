@@ -13,10 +13,10 @@ const Courses = () => {
       <div className="w-full flex flex-col justify-center items-center p-6 sm:p-10 mt-5 mb-5">
         <div className="w-full flex flex-col justify-center items-center text-center">
           <span className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] [text-shadow:0px_4px_5.3px_#BB8F3259]">
-            {t("coursesTitle")}
+            {t("courses_title")}
           </span>
           <span className="mt-2 text-sm sm:text-base">
-            {t("coursesSubtitle")}
+            {t("courses_subtitle")}
           </span>
         </div>
         <div className="w-full flex flex-wrap justify-center gap-15 items-center mt-10">
@@ -43,7 +43,7 @@ const Courses = () => {
                   </span>
                 </div>
                 <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] mt-2 h-[2.5rem] w-fit px-8 py-2 rounded-full border-0 text-white font-poppins text-[14px] sm:text-[16px] cursor-pointer flex justify-center items-center text-center">
-                  {t("addToCart")}
+                  {t("add_to_cart")}
                 </span>
               </div>
             );

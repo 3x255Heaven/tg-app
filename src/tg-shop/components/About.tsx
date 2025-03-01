@@ -12,7 +12,7 @@ const About = () => {
       />
       <div className="flex flex-col w-full lg:w-1/2 xl:w-1/3 lg:mt-14 text-center lg:text-left">
         <span className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] [text-shadow:0px_4px_5.3px_#BB8F3259]">
-          {t("aboutMe")}
+          {t("about_me")}
         </span>
         <span className="mt-4 text-sm sm:text-base leading-relaxed text-left">
           {t("about")}
