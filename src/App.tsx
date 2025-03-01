@@ -50,12 +50,12 @@ const App = () => {
         <Route path={generalRoutes.HOME} element={<Home />} />
         <Route path={generalRoutes.COURSES} element={<Courses />} />
         <Route path={generalRoutes.COURSE_DETAILS} element={<Course />} />
+        <Route path={generalRoutes.MY_COURSES} element={<MyCourses />} />
+        <Route path={generalRoutes.MY_PROFILE} element={<MyProfile />} />
         <Route
           path={generalRoutes.COURSE_CONTENT}
           element={<CourseContent />}
         />
-        <Route path={generalRoutes.MY_COURSES} element={<MyCourses />} />
-        <Route path={generalRoutes.MY_PROFILE} element={<MyProfile />} />
         <Route
           path={generalRoutes.FORGOT_PASSWORD}
           element={<ForgotPassword />}
