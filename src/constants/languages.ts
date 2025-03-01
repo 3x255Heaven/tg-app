@@ -27,6 +27,7 @@ export const ENGLISH_TRANSLATION = {
   cart: "Cart",
   total: "Total",
   checkout: "Check Out",
+  myCourses: "My Courses",
 };
 
 export const SERBIAN_TRANSLATION = {
@@ -54,4 +55,5 @@ export const SERBIAN_TRANSLATION = {
   cart: "Korpa",
   total: "Ukupno",
   checkout: "Nastavi sa kupovinom",
+  myCourses: "Kursevi",
 };

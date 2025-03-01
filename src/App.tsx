@@ -13,6 +13,7 @@ import Overview from "@dashboard/pages/Overview/Overview";
 import CourseDetails from "@dashboard/pages/Courses/CourseDetails";
 import Course from "@shop/pages/Course/Course";
 import Home from "@shop/pages/Home/Home";
+import MyCourses from "@shop/pages/MyCourses/MyCourses";
 
 const App = () => {
   return (
@@ -47,6 +48,7 @@ const App = () => {
         <Route path={generalRoutes.HOME} element={<Home />} />
         <Route path={generalRoutes.COURSES} element={<Courses />} />
         <Route path={generalRoutes.COURSE_DETAILS} element={<Course />} />
+        <Route path={generalRoutes.MY_COURSES} element={<MyCourses />} />
         <Route
           path={generalRoutes.FORGOT_PASSWORD}
           element={<ForgotPassword />}
