@@ -24,6 +24,9 @@ export const ENGLISH_TRANSLATION = {
   coursesTitle: "Featured Courses",
   coursesSubtitle: "Explore what’s trending and take your picks",
   courseOverview: "Course Overview",
+  cart: "Cart",
+  total: "Total",
+  checkout: "Check Out",
 };
 
 export const SERBIAN_TRANSLATION = {
@@ -48,4 +51,7 @@ export const SERBIAN_TRANSLATION = {
   coursesTitle: "Svi kursevi",
   coursesSubtitle: "Pronađi svoje favorite i tehniku koju želiš da usavršiš",
   courseOverview: "Detalji kursa",
+  cart: "Korpa",
+  total: "Ukupno",
+  checkout: "Nastavi sa kupovinom",
 };

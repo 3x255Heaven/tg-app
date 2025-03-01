@@ -158,7 +158,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
               <div
                 className={`${
                   isCartActive ? "pointer-events-none" : ""
-                } border border-[#BB8F32] rounded-full p-1.5`}
+                } border border-[#BB8F32] rounded-full p-1.5 cursor-pointer`}
                 onClick={() => {
                   setIsCartActive(true);
                 }}
@@ -275,6 +275,16 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                     </ul>
                   </div>
                 )}
+              </div>
+              <div
+                className={`${
+                  isCartActive ? "pointer-events-none" : ""
+                } border border-[#BB8F32] rounded-full p-1.5`}
+                onClick={() => {
+                  setIsCartActive(true);
+                }}
+              >
+                <CartIcon />
               </div>
               <span
                 className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] px-5 py-1.5 rounded-full border-0 text-white font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center"
