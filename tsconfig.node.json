@@ -11,7 +11,9 @@
       "@shop/*": ["src/tg-shop/*"],
       "@constants/*": ["src/constants/*"],
       "@assets/*": ["src/assets/*"],
-      "@routes": ["src/routes.ts"],
+      "@store/*": ["src/store/*"],
+      "@libs/*": ["src/libs/*"],
+      "@routes": ["src/routes.ts"]
     },
 
     /* Bundler mode */
