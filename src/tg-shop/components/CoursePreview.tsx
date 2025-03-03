@@ -11,7 +11,12 @@ const CoursePreview = () => {
   return (
     <div className="w-full flex flex-col justify-center items-center p-6 sm:p-10 mt-5 mb-5">
       <div className="w-full flex flex-col justify-center items-center text-center">
-        <span className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] [text-shadow:0px_4px_5.3px_#BB8F3259]">
+        <span
+          className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] [text-shadow:0px_4px_5.3px_#BB8F3259]"
+          onClick={() => {
+            navigate(`${generalRoutes.MY_PROFILE}`);
+          }}
+        >
           {t("featured_courses")}
         </span>
         <span className="mt-2 text-sm sm:text-base">
@@ -25,7 +30,7 @@ const CoursePreview = () => {
               key={courseItem.id}
               className="flex flex-col justify-center items-center max-w-xs sm:max-w-sm cursor-pointer"
               onClick={() => {
-                navigate(`${generalRoutes.COURSES}/${courseItem.id}`);
+                navigate(`${generalRoutes.MY_COURSES}/${courseItem.id}`);
               }}
             >
               <img
