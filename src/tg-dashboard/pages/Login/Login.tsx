@@ -9,7 +9,7 @@ import AdminDashboardBackgroundLayer from "@dashboard/hoc/AdminDashboardBackgrou
 import Spinner from "@assets/svgs/Spinner";
 
 const Login = () => {
-  const { user, isLoading, error } = useSelector(
+  const { isLoading, error } = useSelector(
     (state: RootState) => state.authReducer
   );
   const navigate = useNavigate();
