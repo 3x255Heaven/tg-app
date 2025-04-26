@@ -1,5 +1,5 @@
 import { BASE_URL } from "@constants/api";
-import { logoutRequest, refreshToken } from "@store/slices/authSlice";
+import { logoutRequest } from "@store/slices/authSlice";
 import { store } from "@store/store";
 import axios from "axios";
 
@@ -17,7 +17,7 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        store.dispatch(refreshToken());
+        await axiosInstance.post("/auth/refresh-token");
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         store.dispatch(logoutRequest());

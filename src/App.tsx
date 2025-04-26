@@ -9,6 +9,7 @@ import Wallet from "@dashboard/pages/Wallet/Wallet";
 import TermsAndConditions from "@dashboard/pages/TermsAndConditions/TermsAndConditions";
 import PrivacyPolicy from "@dashboard/pages/PrivacyPolicy/PrivacyPolicy";
 import Courses from "@shop/pages/Courses/Courses";
+import DashboardCourses from "@dashboard/pages/Courses/Courses";
 import Overview from "@dashboard/pages/Overview/Overview";
 import CourseDetails from "@dashboard/pages/Courses/CourseDetails";
 import Course from "@shop/pages/Course/Course";
@@ -39,7 +40,7 @@ const App = () => {
         />
         <Route
           path={dashboardRoutes.DASHBOARD_MANAGE_COURSES}
-          element={<Courses />}
+          element={<DashboardCourses />}
         />
         <Route
           path={`${dashboardRoutes.DASHBOARD_COURSE}/:id`}

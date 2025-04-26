@@ -2,47 +2,37 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { generalRoutes } from "@routes";
+import { generalRoutes, dashboardRoutes } from "@routes";
 import { dispatch, RootState } from "@store/store";
 import { loginRequest } from "@store/slices/authSlice";
 import AdminDashboardBackgroundLayer from "@dashboard/hoc/AdminDashboardBackgroundLayer";
 import Spinner from "@assets/svgs/Spinner";
 
 const Login = () => {
-  const { isLoading, error } = useSelector(
-    (state: RootState) => state.authReducer
-  );
+  const { isLoading } = useSelector((state: RootState) => state.authReducer);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const handleLogin = async () => {
     if (!email || !password) {
-      toast.error("Both email and password are required.");
+      toast.error("Please enter both email and password");
       return;
     }
 
-    if (!emailRegex.test(email)) {
-      toast.error("Please enter a valid email address.");
-      return;
+    try {
+      await dispatch(
+        loginRequest({
+          email,
+          password,
+        })
+      ).unwrap();
+
+      navigate(dashboardRoutes.DASHBOARD_OVERVIEW);
+    } catch (error: any) {
+      const errorMessage = error || "Failed to log in";
+      toast.error(errorMessage);
     }
-
-    if (error) {
-      toast.error(error);
-      return;
-    }
-
-    await dispatch(
-      loginRequest({
-        email,
-        password,
-      })
-    );
-
-    // if (user && !isLoading) {
-    //   navigate(generalRoutes.HOME);
-    // }
   };
 
   return (
@@ -82,9 +72,11 @@ const Login = () => {
               </span>
               <span
                 onClick={() => {
-                  handleLogin();
+                  if (!isLoading) handleLogin();
                 }}
-                className="bg-gradient-to-r from-[#bb8f32] to-[#f6dc94] via-[#bb8f32] h-[45px] w-full rounded-full border-0 text-white font-poppins text-[18px] font-bold mt-6 cursor-pointer flex justify-center items-center text-center"
+                className={`${
+                  isLoading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+                } bg-gradient-to-r from-[#bb8f32] to-[#f6dc94] via-[#bb8f32] h-[45px] w-full rounded-full border-0 text-white font-poppins text-[18px] font-bold mt-6 flex justify-center items-center text-center`}
               >
                 Log In
               </span>

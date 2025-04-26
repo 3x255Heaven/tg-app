@@ -21,6 +21,9 @@ import ChangePassword from "@dashboard/components/modals/ChangePassword";
 import Logout from "@dashboard/components/modals/Logout";
 
 import { dashboardRoutes } from "@routes";
+import { useSelector } from "react-redux";
+import { RootState } from "@store/store";
+import { UserAvatar } from "@dashboard/components/UserAvatar";
 
 interface AdminDashboardLayoutProps {
   children?: ReactNode;
@@ -95,6 +98,8 @@ const sidebarNavigationItems: SidebarNavigationItem[] = [
 const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
   children,
 }) => {
+  const { user } = useSelector((state: RootState) => state.authReducer);
+
   const [userNavigation, setUserNavigation] = useState<boolean>(false);
   const [activeModal, setActiveModal] = useState<ModalType | null>(null);
   const navigate = useNavigate();
@@ -132,20 +137,18 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
               </span>
             </div>
             <button
-              className="flex items-center text-[1rem] pe-1 font-bold text-[#BB8F32] rounded-full me-0 focus:ring-4 focus:ring-gray-100 cursor-pointer"
+              className="flex items-center gap-1 text-[1rem] pe-1 font-bold text-[#BB8F32] rounded-full me-0 focus:ring-4 focus:ring-gray-100 cursor-pointer"
               type="button"
               onClick={() => {
                 setUserNavigation((prev) => !prev);
               }}
             >
-              <img
-                className="w-14 h-14 me-2 rounded-full object-cover"
-                src="https://s3-alpha-sig.figma.com/img/590c/5619/14379f2474bbc8a4787f2ade0777c52b?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=cAzHFgeqTo3j~u9sflBpztP7kuAtJgYu1KHjCT8SG5iXwrPJY0nLPfaa3b2Mqhi~D~8QAdcoc0fBVzqpUH3DAfzpsdnbmTvIt4VOlvHGlJGBAzaKUODnqfoy5zwBgCibCdXSQq7XfleoM4URfFE24l9j-wHgq0gEfi87f4W1NTQSv4zlw~FxEicW95CdZEvytnw~3h8IrANHB7-Egzv7ui-wZIeiqwqEcNxXEWULtS4b4AjLBfLw5SUeYe9c~mWOEPUywWPhaX3R3fw9nuE6ypScbsKHNApy3K38SkSY-kd3QtRH9sqFW5r-1UI-xBWdjCaBIXnn7z3v~Hkvlp2ejw__"
-                alt="user photo"
-              />
-              <div className="flex flex-col justify-center items-start">
-                Teodora Grubor
-                <span className="font-extralight text-black">Admin</span>
+              <UserAvatar name={user.name} />
+              <div className="flex flex-col ml-2 justify-center items-start">
+                {user.name}
+                <span className="font-extralight capitalize text-black">
+                  {user.role}
+                </span>
               </div>
               <div className="border flex justify-center items-center p-2 rounded-full ml-2">
                 <ArrowDownIcon />

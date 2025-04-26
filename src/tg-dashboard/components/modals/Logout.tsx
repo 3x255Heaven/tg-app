@@ -1,11 +1,26 @@
 import React from "react";
 import LogoutReverseIcon from "@assets/svgs/icons/LogoutReverseIcon";
+import { dispatch } from "@store/store";
+import { logoutRequest } from "@store/slices/authSlice";
+import { generalRoutes } from "@routes";
+import { useNavigate } from "react-router-dom";
 
 interface LogoutProps {
   closeModal: () => void;
 }
 
 const Logout: React.FC<LogoutProps> = ({ closeModal }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await dispatch(logoutRequest()).unwrap();
+      navigate(generalRoutes.LOGIN);
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center">
       <div
@@ -31,7 +46,12 @@ const Logout: React.FC<LogoutProps> = ({ closeModal }) => {
             >
               Cancel
             </span>
-            <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[32px] w-fit px-14 py-5 rounded-full border-0 text-white font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center">
+            <span
+              className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[32px] w-fit px-14 py-5 rounded-full border-0 text-white font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center"
+              onClick={() => {
+                handleLogout();
+              }}
+            >
               Logout
             </span>
           </div>
