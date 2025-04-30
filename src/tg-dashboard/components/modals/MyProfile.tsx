@@ -1,11 +1,16 @@
 import React from "react";
 import CloseIcon from "@assets/svgs/icons/CloseIcon";
+import { useSelector } from "react-redux";
+import { RootState } from "@store/store";
+import { UserAvatar } from "../UserAvatar";
 
 interface MyProfileProps {
   closeModal: () => void;
 }
 
 const MyProfile: React.FC<MyProfileProps> = ({ closeModal }) => {
+  const { user } = useSelector((state: RootState) => state.authReducer);
+
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center">
       <div
@@ -30,20 +35,16 @@ const MyProfile: React.FC<MyProfileProps> = ({ closeModal }) => {
         </div>
 
         <div className="pb-4 pr-4 pl-4 flex flex-col justify-center items-center">
-          <div className="mb-6">
-            <img
-              className="w-28 h-28 rounded-full object-cover"
-              src="https://s3-alpha-sig.figma.com/img/590c/5619/14379f2474bbc8a4787f2ade0777c52b?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=cAzHFgeqTo3j~u9sflBpztP7kuAtJgYu1KHjCT8SG5iXwrPJY0nLPfaa3b2Mqhi~D~8QAdcoc0fBVzqpUH3DAfzpsdnbmTvIt4VOlvHGlJGBAzaKUODnqfoy5zwBgCibCdXSQq7XfleoM4URfFE24l9j-wHgq0gEfi87f4W1NTQSv4zlw~FxEicW95CdZEvytnw~3h8IrANHB7-Egzv7ui-wZIeiqwqEcNxXEWULtS4b4AjLBfLw5SUeYe9c~mWOEPUywWPhaX3R3fw9nuE6ypScbsKHNApy3K38SkSY-kd3QtRH9sqFW5r-1UI-xBWdjCaBIXnn7z3v~Hkvlp2ejw__"
-              alt="user photo"
-            />
+          <div className="mb-6 text-[#BB8F32]">
+            <UserAvatar name={user.name} width={"w-30"} height={"h-30"} />
           </div>
           <div className="w-full flex justify-between mb-2">
             <span className="text-[#394B87]">Full Name</span>
-            <span>Teodora Grubor</span>
+            <span>{user.name}</span>
           </div>
           <div className="w-full flex justify-between">
             <span className="text-[#394B87]">Email Address</span>
-            <span>teodoragrubor@gmail.com</span>
+            <span>{user.email}</span>
           </div>
         </div>
       </div>

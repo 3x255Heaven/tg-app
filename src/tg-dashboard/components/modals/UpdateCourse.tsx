@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CloseIcon from "@assets/svgs/icons/CloseIcon";
+import { useDispatch } from "react-redux";
+import { updateCourse } from "@store/slices/courseSlice";
+import { AppDispatch } from "@store/store";
 
 interface UpdateCourseProps {
   closeModal: () => void;
@@ -7,6 +10,56 @@ interface UpdateCourseProps {
 }
 
 const UpdateCourse: React.FC<UpdateCourseProps> = ({ closeModal, course }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const [formData, setFormData] = useState({
+    imageUrl: course.imageUrl,
+    courseUrl: course.courseUrl,
+    name: course.name,
+    price: course.price,
+    discount: course.discount,
+    description: course.description,
+    isPublic: course.isPublic,
+    isFeatured: course.isFeatured,
+  });
+
+  const [isFormChanged, setIsFormChanged] = useState(false);
+
+  useEffect(() => {
+    const hasChanges = Object.keys(formData).some(
+      (key) =>
+        formData[key as keyof typeof formData] !==
+        course[key as keyof typeof course]
+    );
+
+    setIsFormChanged(hasChanges);
+  }, [formData, course]);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleUpdate = () => {
+    const updatedCourseData = {
+      name: formData.name,
+      imageUrl: formData.imageUrl,
+      courseUrl: formData.courseUrl,
+      price: formData.price,
+      discount: formData.discount,
+      description: formData.description,
+      isPublic: formData.isPublic,
+      isFeatured: formData.isFeatured,
+    };
+    dispatch(updateCourse({ courseId: course._id, updatedCourseData }));
+    closeModal();
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center">
       <div
@@ -30,39 +83,68 @@ const UpdateCourse: React.FC<UpdateCourseProps> = ({ closeModal, course }) => {
           </button>
         </div>
 
-        <div className="p-4 flex flex-col justify-center items-center">
-          <div className="w-full flex flex-col mb-2 justify-center items-center">
+        <div className="p-2 flex flex-col justify-center items-center">
+          <div className="w-full flex flex-col mb-1 justify-center items-center">
             <img
               className="rounded-2xl h-[200px] w-full object-cover"
-              src={course.image}
+              src={formData.imageUrl}
               alt="Course Image"
             />
-            <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[24px] w-[140px] rounded-full border-0 text-white font-poppins text-[14px] mt-6 cursor-pointer flex justify-center items-center text-center">
-              Change Image
-            </span>
           </div>
-          <div className="w-full flex flex-col mb-2 mt-6">
+          <div className="w-full gap-4 flex mb-1 mt-2">
+            <div className="w-full flex flex-col mb-1 mt-2">
+              <span className="text-[#BB8F32] font-[600] ml-2">
+                Course Image URL
+              </span>
+              <input
+                name="imageUrl"
+                type="text"
+                className="block w-full p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
+                placeholder="Course Image"
+                value={formData.imageUrl}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div className="w-full flex flex-col mb-1 mt-2">
+              <span className="text-[#BB8F32] font-[600] ml-2">
+                Course Video URL
+              </span>
+              <input
+                name="courseUrl"
+                type="text"
+                className="block w-full p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
+                placeholder="Course Video"
+                value={formData.courseUrl}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          </div>
+          <div className="w-full flex flex-col mb-1 mt-2">
             <span className="text-[#BB8F32] font-[600] ml-2">Course Title</span>
             <input
-              name="course-title"
+              name="name"
               type="text"
               className="block w-full p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
               placeholder="Course Title"
-              defaultValue={course.name}
+              value={formData.name}
+              onChange={handleInputChange}
               required
             />
           </div>
-          <div className="w-full flex mb-2 mt-2">
+          <div className="w-full flex mb-1 mt-2">
             <div className="flex flex-col">
               <span className="text-[#BB8F32] font-[600] ml-2">
                 Course Price
               </span>
               <input
-                name="course-price"
+                name="price"
                 type="text"
                 className="block w-3xs mr-2 p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
                 placeholder="Course Price"
-                defaultValue={course.price}
+                value={formData.price}
+                onChange={handleInputChange}
                 required
               />
             </div>
@@ -71,28 +153,69 @@ const UpdateCourse: React.FC<UpdateCourseProps> = ({ closeModal, course }) => {
                 Discount Price
               </span>
               <input
-                name="discount-price"
+                name="discount"
                 type="text"
                 className="block w-3xs ml-2 p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
                 placeholder="Discount Price"
-                defaultValue={course.price}
+                value={formData.discount}
+                onChange={handleInputChange}
                 required
               />
             </div>
           </div>
-          <div className="w-full flex flex-col mb-2 mt-2">
+          <div className="w-full flex flex-col mb-1 mt-2">
             <span className="text-[#BB8F32] font-[600] ml-2">
               Course Description
             </span>
             <textarea
-              name="course-description"
+              name="description"
               className="block w-full h-[160px] p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-[1rem] bg-[#F9F9F9]"
               placeholder="Course Description"
-              defaultValue={course.description}
+              value={formData.description}
+              onChange={handleInputChange}
               required
             />
           </div>
-          <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[40px] w-1/2 rounded-full border-0 text-white font-poppins text-[16px] font-bold mt-6 cursor-pointer flex justify-center items-center text-center">
+          <div className="flex w-full justify-start items-center mt-1 ml-2">
+            <div className="flex w-full justify-start items-center mt-1 ml-2">
+              <input
+                id="checkbox-item-2"
+                type="checkbox"
+                checked={formData.isPublic}
+                onChange={handleInputChange}
+                name="isPublic"
+                className="w-4 h-4 text-[#BB8F32] bg-[#BB8F32] rounded-sm"
+              />
+              <label
+                htmlFor="checkbox-item-2"
+                className="ms-2 text-sm font-medium text-gray-900"
+              >
+                Public Course
+              </label>
+            </div>
+            <div className="flex w-full justify-start items-center mt-1 ml-2">
+              <input
+                id="checkbox-item-3"
+                type="checkbox"
+                checked={formData.isFeatured}
+                onChange={handleInputChange}
+                name="isFeatured"
+                className="w-4 h-4 text-[#BB8F32] bg-[#BB8F32] rounded-sm"
+              />
+              <label
+                htmlFor="checkbox-item-3"
+                className="ms-2 text-sm font-medium text-gray-900"
+              >
+                Featured Course
+              </label>
+            </div>
+          </div>
+          <span
+            onClick={handleUpdate}
+            className={`bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[40px] w-1/2 rounded-full border-0 text-white font-poppins text-[16px] font-bold mt-6 cursor-pointer flex justify-center items-center text-center ${
+              !isFormChanged ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+          >
             Update Course
           </span>
         </div>

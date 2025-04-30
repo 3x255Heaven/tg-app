@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { coursesItems } from "../../../mock";
 
 import AdminDashboardLayout from "@dashboard/hoc/AdminDashboardLayout";
 import Course from "./Course";
 import CreateCourse from "@dashboard/components/modals/CreateCourse";
+import { useSelector } from "react-redux";
+import { RootState } from "@store/store";
 
 export type ModalType = "create" | "update" | "delete";
 
 const Courses = () => {
   const [activeModal, setActiveModal] = useState<ModalType | null>(null);
+
+  const { courses } = useSelector((state: RootState) => state.courseReducer);
 
   const toggleActiveModal = (modalType: ModalType | null) => {
     setActiveModal(modalType);
@@ -29,8 +32,8 @@ const Courses = () => {
           </span>
         </div>
         <div className="w-full grid grid-cols-4 grid-rows-4 gap-2 py-4">
-          {coursesItems.map((courseItem) => {
-            return <Course key={courseItem.id} course={courseItem} />;
+          {courses.map((courseItem) => {
+            return <Course key={courseItem._id} course={courseItem} />;
           })}
         </div>
       </div>

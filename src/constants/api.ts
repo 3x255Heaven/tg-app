@@ -6,4 +6,10 @@ export const apiRoutes = {
   logout: "/logout",
   register: "/register",
   refreshToken: "/refresh-token",
+  updateProfile: "/update-profile",
+  changePassword: "/change-password",
+  course: "/course",
+  courses: "/courses",
+  featuredCourses: "/featured-courses",
+  publicCourses: "/public-courses",
 };

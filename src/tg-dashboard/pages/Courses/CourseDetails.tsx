@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import AdminDashboardLayout from "@dashboard/hoc/AdminDashboardLayout";
 
 import { dashboardRoutes } from "@routes";
-import { coursesItems } from "../../../mock";
 import Spinner from "@assets/svgs/Spinner";
 import ArrowDownIcon from "@assets/svgs/icons/ArrowDownIcon";
 import PenIcon from "@assets/svgs/icons/PenIcon";
@@ -11,6 +10,8 @@ import DeleteIcon from "@assets/svgs/icons/DeleteIcon";
 import { ModalType } from "./Courses";
 import DeleteCourse from "@dashboard/components/modals/DeleteCourse";
 import UpdateCourse from "@dashboard/components/modals/UpdateCourse";
+import { useSelector } from "react-redux";
+import { RootState } from "@store/store";
 
 const CourseDetails = () => {
   const [course, setCourse] = useState<any>(null);
@@ -18,6 +19,8 @@ const CourseDetails = () => {
   const [activeModal, setActiveModal] = useState<ModalType | null>(null);
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const { courses } = useSelector((state: RootState) => state.courseReducer);
 
   useEffect(() => {
     if (id) {
@@ -34,7 +37,7 @@ const CourseDetails = () => {
   const getCourse = () => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(coursesItems.find((course) => course.id === Number(id)));
+        resolve(courses.find((course) => course._id === id));
       }, 2000);
     });
   };
@@ -90,7 +93,7 @@ const CourseDetails = () => {
               {course.name}
             </span>
             <span className="text-[#BB8F32] font-bold text-[28px] mb-2.5">
-              {course.price}
+              {course.price}.00 RSD
             </span>
             <div className="flex flex-col mr-6 pt-4 border-t border-gray-200">
               <span className="font-bold mb-2">Course Overview</span>
@@ -102,7 +105,7 @@ const CourseDetails = () => {
           <div className="flex h-full w-fit self-start justify-end">
             <img
               className="rounded-xs object-cover w-[588px] h-[476px]"
-              src={course.image}
+              src={course.imageUrl}
               alt={course.name}
             />
           </div>

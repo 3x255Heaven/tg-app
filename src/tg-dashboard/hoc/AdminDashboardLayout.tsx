@@ -12,8 +12,6 @@ import LockIcon from "@assets/svgs/icons/LockIcon";
 import PenIcon from "@assets/svgs/icons/PenIcon";
 import LogoutIcon from "@assets/svgs/icons/LogoutIcon";
 import NotificationIcon from "@assets/svgs/icons/NotificationIcon";
-import TermsAndConditionsIcon from "@assets/svgs/icons/TermsAndConditionsIcon";
-import PrivacyPolicyIcon from "@assets/svgs/icons/PrivacyPolicyIcon";
 
 import MyProfile from "@dashboard/components/modals/MyProfile";
 import UpdateProfile from "@dashboard/components/modals/UpdateProfile";
@@ -80,18 +78,6 @@ const sidebarNavigationItems: SidebarNavigationItem[] = [
     label: "Wallet",
     icon: WalletIcon,
     route: dashboardRoutes.DASHBOARD_WALLET,
-  },
-  {
-    id: "terms",
-    label: "Terms & Conditions",
-    icon: TermsAndConditionsIcon,
-    route: dashboardRoutes.DASHBOARD_TERMS_AND_CONDITIONS,
-  },
-  {
-    id: "privacy",
-    label: "Privacy Policy",
-    icon: PrivacyPolicyIcon,
-    route: dashboardRoutes.DASHBOARD_PRIVACY_POLICY,
   },
 ];
 

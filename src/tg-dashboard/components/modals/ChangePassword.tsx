@@ -1,11 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CloseIcon from "@assets/svgs/icons/CloseIcon";
+import { AppDispatch, RootState } from "@store/store";
+import { changePassword } from "@store/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 interface ChangePasswordProps {
   closeModal: () => void;
 }
 
 const ChangePassword: React.FC<ChangePasswordProps> = ({ closeModal }) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { user } = useSelector((state: RootState) => state.authReducer);
+
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isValid, setIsValid] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const valid =
+      !!oldPassword &&
+      !!newPassword &&
+      newPassword === confirmPassword &&
+      newPassword.length >= 6;
+
+    setIsValid(valid);
+  }, [oldPassword, newPassword, confirmPassword]);
+
+  const handleSubmit = async () => {
+    if (!isValid) return;
+
+    setIsLoading(true);
+    await dispatch(
+      changePassword({ userId: user._id, oldPassword, newPassword })
+    );
+    setIsLoading(false);
+    closeModal();
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center">
       <div
@@ -38,6 +71,8 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ closeModal }) => {
               type="password"
               className="block w-full p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
               placeholder="Old Password"
+              value={oldPassword}
+              onChange={(e) => setOldPassword(e.target.value)}
               required
             />
           </div>
@@ -47,6 +82,8 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ closeModal }) => {
               type="password"
               className="block w-full p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
               placeholder="New Password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
               required
             />
           </div>
@@ -56,12 +93,23 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ closeModal }) => {
               type="password"
               className="block w-full p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
               placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
           </div>
-          <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[40px] w-full rounded-full border-0 text-white font-poppins text-[16px] font-bold mt-6 cursor-pointer flex justify-center items-center text-center">
-            Change Password
-          </span>
+
+          <button
+            onClick={handleSubmit}
+            disabled={!isValid || isLoading}
+            className={`h-[40px] w-full rounded-full text-white font-poppins text-[16px] font-bold mt-6 flex justify-center items-center text-center ${
+              isValid
+                ? "bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] cursor-pointer"
+                : "bg-gray-300 cursor-not-allowed"
+            }`}
+          >
+            {isLoading ? "Changing..." : "Change Password"}
+          </button>
         </div>
       </div>
     </div>

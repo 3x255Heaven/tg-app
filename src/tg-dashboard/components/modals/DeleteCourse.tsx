@@ -1,12 +1,21 @@
 import React from "react";
 import DeleteIcon from "@assets/svgs/icons/DeleteIcon";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@store/store";
+import { deleteCourse } from "@store/slices/courseSlice";
 
 interface DeleteCourseProps {
   closeModal: () => void;
   course: any;
 }
 
-const DeleteCourse: React.FC<DeleteCourseProps> = ({ closeModal }) => {
+const DeleteCourse: React.FC<DeleteCourseProps> = ({ closeModal, course }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleDelete = () => {
+    dispatch(deleteCourse(course._id));
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center">
       <div
@@ -34,7 +43,12 @@ const DeleteCourse: React.FC<DeleteCourseProps> = ({ closeModal }) => {
             >
               Cancel
             </span>
-            <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[32px] w-fit px-14 py-5 rounded-full border-0 text-white font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center">
+            <span
+              className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[32px] w-fit px-14 py-5 rounded-full border-0 text-white font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center"
+              onClick={() => {
+                handleDelete();
+              }}
+            >
               Delete
             </span>
           </div>

@@ -1,11 +1,68 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import CloseIcon from "@assets/svgs/icons/CloseIcon";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@store/store";
+import { createCourse } from "@store/slices/courseSlice";
 
 interface CreateCourseProps {
   closeModal: () => void;
 }
 
 const CreateCourse: React.FC<CreateCourseProps> = ({ closeModal }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const [form, setForm] = useState({
+    imageUrl: "",
+    courseUrl: "",
+    name: "",
+    price: "",
+    discount: "",
+    description: "",
+    isPublic: false,
+    isFeatured: false,
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, type, checked } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const isValid = useMemo(() => {
+    return (
+      form.imageUrl.trim() !== "" &&
+      form.courseUrl.trim() !== "" &&
+      form.name.trim() !== "" &&
+      form.description.trim() !== "" &&
+      form.price.trim() !== "" &&
+      !isNaN(Number(form.price)) &&
+      form.discount.trim() !== "" &&
+      !isNaN(Number(form.discount))
+    );
+  }, [form]);
+
+  const handleCreateCourse = () => {
+    if (!isValid) return;
+
+    const newCourse = {
+      imageUrl: form.imageUrl,
+      videoUrl: form.courseUrl,
+      name: form.name,
+      price: Number(form.price),
+      discountPrice: Number(form.discount),
+      description: form.description,
+      isPublic: form.isPublic,
+      isFeatured: form.isFeatured,
+    };
+
+    dispatch(createCourse(newCourse));
+    closeModal();
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex justify-center items-center">
       <div
@@ -32,63 +89,106 @@ const CreateCourse: React.FC<CreateCourseProps> = ({ closeModal }) => {
         <div className="p-4 flex flex-col justify-center items-center">
           <div className="w-full flex flex-col mb-2">
             <input
-              name="course-url"
+              name="imageUrl"
               type="text"
+              value={form.imageUrl}
+              onChange={handleChange}
               className="block w-full p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
               placeholder="Course Image URL"
-              required
             />
           </div>
           <div className="w-full flex flex-col mb-2">
             <input
-              name="course-title"
+              name="courseUrl"
               type="text"
+              value={form.courseUrl}
+              onChange={handleChange}
+              className="block w-full p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
+              placeholder="Course Video URL"
+            />
+          </div>
+          <div className="w-full flex flex-col mb-2">
+            <input
+              name="name"
+              type="text"
+              value={form.name}
+              onChange={handleChange}
               className="block w-full p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
               placeholder="Course Title"
-              required
             />
           </div>
           <div className="w-full flex mb-2">
             <input
-              name="course-price"
+              name="price"
               type="text"
+              value={form.price}
+              onChange={handleChange}
               className="block w-3xs mr-2 p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
               placeholder="Course Price"
-              required
             />
             <input
-              name="discount-price"
+              name="discount"
               type="text"
+              value={form.discount}
+              onChange={handleChange}
               className="block w-3xs ml-2 p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-full bg-[#F9F9F9]"
               placeholder="Discount Price"
-              required
             />
           </div>
           <div className="w-full flex flex-col mb-2">
             <textarea
-              name="course-description"
+              name="description"
+              value={form.description}
+              onChange={handleChange}
               className="block w-full h-[160px] p-3 my-1 ps-10 text-sm text-gray-900 border border-[#E1E1E1] rounded-[1rem] bg-[#F9F9F9]"
               placeholder="Course Description"
-              required
             />
           </div>
-          <div className="flex w-full justify-start items-center mt-6 ml-2">
-            <input
-              id="checkbox-item-2"
-              type="checkbox"
-              value=""
-              className="w-4 h-4 text-[#BB8F32] bg-[#BB8F32] rounded-sm"
-            />
-            <label
-              htmlFor="checkbox-item-2"
-              className="ms-2 text-sm font-medium text-gray-900"
-            >
-              Publish Course
-            </label>
+          <div className="flex w-full justify-center gap-10 items-center mt-1 ml-2">
+            <div className="flex items-center mr-4">
+              <input
+                id="isPublic"
+                type="checkbox"
+                name="isPublic"
+                checked={form.isPublic}
+                onChange={handleChange}
+                className="w-4 h-4 text-[#BB8F32] bg-[#BB8F32] rounded-sm"
+              />
+              <label
+                htmlFor="isPublic"
+                className="ms-2 text-sm font-medium text-gray-900"
+              >
+                Public Course
+              </label>
+            </div>
+            <div className="flex items-center">
+              <input
+                id="isFeatured"
+                type="checkbox"
+                name="isFeatured"
+                checked={form.isFeatured}
+                onChange={handleChange}
+                className="w-4 h-4 text-[#BB8F32] bg-[#BB8F32] rounded-sm"
+              />
+              <label
+                htmlFor="isFeatured"
+                className="ms-2 text-sm font-medium text-gray-900"
+              >
+                Featured Course
+              </label>
+            </div>
           </div>
-          <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[40px] w-1/2 rounded-full border-0 text-white font-poppins text-[16px] font-bold mt-6 cursor-pointer flex justify-center items-center text-center">
+          <button
+            disabled={!isValid}
+            onClick={handleCreateCourse}
+            className={`${
+              isValid
+                ? "cursor-pointer opacity-100"
+                : "cursor-not-allowed opacity-50"
+            } bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[40px] w-1/2 rounded-full border-0 text-white font-poppins text-[16px] font-bold mt-6 flex justify-center items-center text-center`}
+          >
             Add Course
-          </span>
+          </button>
         </div>
       </div>
     </div>

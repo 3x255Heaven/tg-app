@@ -38,7 +38,7 @@ const Course: React.FC<CourseProps> = ({ course }) => {
               <div
                 className="px-4 py-2 hover:bg-gray-100 flex items-center cursor-pointer"
                 onClick={() => {
-                  navigate(`${dashboardRoutes.DASHBOARD_COURSE}/${course.id}`);
+                  navigate(`${dashboardRoutes.DASHBOARD_COURSE}/${course._id}`);
                 }}
               >
                 <EyeIcon />
@@ -75,7 +75,7 @@ const Course: React.FC<CourseProps> = ({ course }) => {
 
       <img
         className="rounded-t-lg h-[140px] w-full object-cover"
-        src={course.image}
+        src={course.imageUrl}
         alt={course.name}
       />
       <div className="px-4 py-2 flex flex-col">
@@ -83,7 +83,7 @@ const Course: React.FC<CourseProps> = ({ course }) => {
           {course.name}
         </span>
         <span className="text-[#BB8F32] font-bold text-[18px]">
-          {course.price}
+          {course.price}.00 RSD
         </span>
       </div>
 

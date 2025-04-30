@@ -4,13 +4,16 @@ import { WistiaPlayer } from "@wistia/wistia-player-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-import { coursesItems } from "../../../mock";
+import { useSelector } from "react-redux";
+import { RootState } from "@store/store";
 
 const CourseContent = () => {
   const [course, setCourse] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { id } = useParams();
   const { t } = useTranslation();
+
+  const { courses } = useSelector((state: RootState) => state.courseReducer);
 
   useEffect(() => {
     if (id) {
@@ -27,7 +30,7 @@ const CourseContent = () => {
   const getCourse = () => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve(coursesItems.find((course) => course.id === Number(id)));
+        resolve(courses.find((course) => course._id === id));
       }, 2000);
     });
   };
@@ -48,7 +51,7 @@ const CourseContent = () => {
         <div className="w-full flex justify-center">
           <div className="w-full max-w-4xl aspect-video">
             <WistiaPlayer
-              mediaId="gagamip5hh"
+              mediaId={course.courseUrl}
               controlsVisibleOnLoad={false}
               copyLinkAndThumbnail={false}
               doNotTrack={true}
@@ -73,7 +76,7 @@ const CourseContent = () => {
           <div className="flex justify-center w-full lg:w-1/2">
             <img
               className="rounded-md object-cover w-full max-w-[300px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] h-auto"
-              src={course.image}
+              src={course.imageUrl}
               alt={course.name}
             />
           </div>
