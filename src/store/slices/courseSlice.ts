@@ -233,6 +233,7 @@ const coursesSlice = createSlice({
       .addCase(updateCourse.fulfilled, (state, action) => {
         state.isLoading = false;
         const updatedCourse = action.payload;
+        state.course = updatedCourse;
         state.courses = state.courses.map((course) =>
           course._id === updatedCourse._id ? updatedCourse : course
         );
