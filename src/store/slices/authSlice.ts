@@ -13,7 +13,7 @@ export type UpdateProfilePayload = {
 };
 
 const initialState: any = {
-  user: null,
+  user: JSON.parse(localStorage.getItem("user") || "null"),
   isLoading: false,
   error: null,
 };
@@ -95,6 +95,7 @@ const authSlice = createSlice({
       .addCase(loginRequest.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload;
+        localStorage.setItem("user", JSON.stringify(action.payload));
       })
       .addCase(loginRequest.rejected, (state, action) => {
         state.isLoading = false;
@@ -103,6 +104,7 @@ const authSlice = createSlice({
       .addCase(logoutRequest.fulfilled, (state) => {
         state.user = null;
         state.isLoading = false;
+        localStorage.removeItem("user");
       })
       .addCase(updateProfile.pending, (state) => {
         state.isLoading = true;
