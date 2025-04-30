@@ -13,6 +13,7 @@ import UpdateCourse from "@dashboard/components/modals/UpdateCourse";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@store/store";
 import { getCourse } from "@store/slices/courseSlice";
+import { WistiaPlayer } from "@wistia/wistia-player-react";
 
 const CourseDetails = () => {
   const [activeModal, setActiveModal] = useState<ModalType | null>(null);
@@ -72,6 +73,18 @@ const CourseDetails = () => {
             >
               <DeleteIcon />
             </div>
+          </div>
+        </div>
+
+        <div className="w-full flex justify-center">
+          <div className="w-full max-w-4xl aspect-video">
+            <WistiaPlayer
+              mediaId={course.courseUrl}
+              controlsVisibleOnLoad={false}
+              copyLinkAndThumbnail={false}
+              doNotTrack={true}
+              autoplay={true}
+            />
           </div>
         </div>
 
