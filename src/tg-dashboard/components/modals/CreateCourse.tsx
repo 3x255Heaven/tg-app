@@ -25,6 +25,7 @@ const CreateCourse: React.FC<CreateCourseProps> = ({ closeModal }) => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    //@ts-ignore
     const { name, value, type, checked } = e.target;
     setForm((prev) => ({
       ...prev,

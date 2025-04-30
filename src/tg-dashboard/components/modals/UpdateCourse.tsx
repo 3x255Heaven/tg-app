@@ -38,6 +38,7 @@ const UpdateCourse: React.FC<UpdateCourseProps> = ({ closeModal, course }) => {
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    //@ts-ignore
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
