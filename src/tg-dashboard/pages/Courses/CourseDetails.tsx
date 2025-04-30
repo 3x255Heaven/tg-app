@@ -93,8 +93,14 @@ const CourseDetails = () => {
             <span className="text-gray-600 font-bold text-[28px]">
               {course.name}
             </span>
+            {course.discount > 0 && (
+              <span className="text-[#bebebc] text-[18px] line-through">
+                {course.price}.00 RSD
+              </span>
+            )}
             <span className="text-[#BB8F32] font-bold text-[28px] mb-2.5">
-              {course.price}.00 RSD
+              {course.discount ? course.price - course.discount : course.price}
+              .00 RSD
             </span>
             <div className="flex flex-col mr-6 pt-4 border-t border-gray-200">
               <span className="font-bold mb-2">Course Overview</span>

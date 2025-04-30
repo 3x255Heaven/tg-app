@@ -82,8 +82,14 @@ const Course: React.FC<CourseProps> = ({ course }) => {
         <span className="mb-1 font-bold tracking-tight text-black text-md">
           {course.name}
         </span>
-        <span className="text-[#BB8F32] font-bold text-[18px]">
-          {course.price}.00 RSD
+        {course.discount > 0 && (
+          <span className="text-[#bebebc] text-[14px] line-through">
+            {course.price}.00 RSD
+          </span>
+        )}
+        <span className="text-[#BB8F32] font-bold text-[22px]">
+          {course.discount ? course.price - course.discount : course.price}.00
+          RSD
         </span>
       </div>
 
