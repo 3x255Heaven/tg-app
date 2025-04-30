@@ -87,7 +87,7 @@ const CourseDetails = () => {
           </div>
         </div>
 
-        <div className="flex justify-between items-center mt-6">
+        <div className="flex justify-center items-center mt-6">
           <div className="w-1/2 flex flex-col">
             <span className="text-gray-600 font-bold text-[28px]">
               {course.name}
