@@ -18,6 +18,7 @@ export type Course = {
 };
 
 type CourseState = {
+  course: Course | null;
   courses: Course[];
   publicCourses: Course[];
   featuredCourses: Course[];
@@ -26,6 +27,7 @@ type CourseState = {
 };
 
 const initialState: CourseState = {
+  course: null,
   courses: [],
   publicCourses: [],
   featuredCourses: [],
@@ -77,6 +79,22 @@ export const getPublicCourses = createAsyncThunk<
     );
   }
 });
+
+export const getCourse = createAsyncThunk(
+  "course/getCourse",
+  async (courseId: string, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get(
+        `${apiRoutes.course}/${courseId}`
+      );
+      return response.data.result.course;
+    } catch (error: any) {
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to get course"
+      );
+    }
+  }
+);
 
 export const deleteCourse = createAsyncThunk(
   "course/deleteCourse",
@@ -155,6 +173,20 @@ const coursesSlice = createSlice({
         state.error = action.payload || "Unknown error";
       })
 
+      // Get Course
+      .addCase(getCourse.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getCourse.fulfilled, (state, action: PayloadAction<Course>) => {
+        state.isLoading = false;
+        state.course = action.payload;
+      })
+      .addCase(getCourse.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = (action.payload as string) || "Unknown error";
+      })
+
       // Delete Course
       .addCase(deleteCourse.pending, (state) => {
         state.isLoading = true;
@@ -177,6 +209,7 @@ const coursesSlice = createSlice({
         state.error = action.payload as string;
       })
 
+      // Create Course
       .addCase(createCourse.pending, (state) => {
         state.isLoading = true;
       })

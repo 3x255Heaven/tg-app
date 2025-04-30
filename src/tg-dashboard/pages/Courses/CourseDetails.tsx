@@ -10,39 +10,27 @@ import DeleteIcon from "@assets/svgs/icons/DeleteIcon";
 import { ModalType } from "./Courses";
 import DeleteCourse from "@dashboard/components/modals/DeleteCourse";
 import UpdateCourse from "@dashboard/components/modals/UpdateCourse";
-import { useSelector } from "react-redux";
-import { RootState } from "@store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@store/store";
+import { getCourse } from "@store/slices/courseSlice";
 
 const CourseDetails = () => {
-  const [course, setCourse] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [activeModal, setActiveModal] = useState<ModalType | null>(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const { courses } = useSelector((state: RootState) => state.courseReducer);
+  const { course, isLoading } = useSelector(
+    (state: RootState) => state.courseReducer
+  );
 
   useEffect(() => {
     if (id) {
-      const fetchCourse = async () => {
-        const courseData = await getCourse();
-        setCourse(courseData);
-        setIsLoading(false);
-      };
-
-      fetchCourse();
+      dispatch(getCourse(id));
     }
   }, [id]);
 
-  const getCourse = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(courses.find((course) => course._id === id));
-      }, 2000);
-    });
-  };
-
-  if (isLoading) {
+  if (isLoading || course === null) {
     return (
       <AdminDashboardLayout>
         <div className="w-full min-h-[calc(100vh-120px)] p-4  flex flex-col justify-center items-center">
