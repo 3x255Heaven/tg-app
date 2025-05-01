@@ -22,6 +22,7 @@ type CourseState = {
   courses: Course[];
   publicCourses: Course[];
   featuredCourses: Course[];
+  userCourses: Course[];
   isLoading: boolean;
   error: string | null;
 };
@@ -31,6 +32,7 @@ const initialState: CourseState = {
   courses: [],
   publicCourses: [],
   featuredCourses: [],
+  userCourses: [],
   isLoading: false,
   error: null,
 };
@@ -91,6 +93,20 @@ export const getCourse = createAsyncThunk(
     } catch (error: any) {
       return rejectWithValue(
         error.response?.data?.message || "Failed to get course"
+      );
+    }
+  }
+);
+
+export const getUserCourses = createAsyncThunk(
+  "course/getUserCourses",
+  async (userId: string, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get(`${apiRoutes.courses}/${userId}`);
+      return response.data.result.courses;
+    } catch (error: any) {
+      return rejectWithValue(
+        error.response?.data?.message || "Failed to get courses"
       );
     }
   }
@@ -171,6 +187,23 @@ const coursesSlice = createSlice({
       .addCase(getCourses.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || "Unknown error";
+      })
+
+      // Get User Courses
+      .addCase(getUserCourses.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(
+        getUserCourses.fulfilled,
+        (state, action: PayloadAction<Course[]>) => {
+          state.isLoading = false;
+          state.userCourses = action.payload;
+        }
+      )
+      .addCase(getUserCourses.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = (action.payload as string) || "Unknown error";
       })
 
       // Get Course

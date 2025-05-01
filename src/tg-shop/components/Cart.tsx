@@ -12,6 +12,11 @@ const Cart = ({ isActive, closeCart }: any) => {
   const { t } = useTranslation();
   const cartRef = useRef<HTMLDivElement>(null);
 
+  const cartTotal = cart.reduce(
+    (total: number, course: any) => total + (course.price - course.discount),
+    0
+  );
+
   useEffect(() => {
     if (!isActive) return;
 
@@ -87,7 +92,7 @@ const Cart = ({ isActive, closeCart }: any) => {
       <div className="absolute bottom-0 left-0 w-full bg-white p-4 border-t border-[#BB8F32] shadow-md">
         <div className="flex justify-between font-semibold text-lg">
           <span>{t("total")}</span>
-          <span className="text-[#BB8F32]">$ 13500</span>
+          <span className="text-[#BB8F32]">{cartTotal}.00 RSD</span>
         </div>
         <button className="mt-3 w-full bg-[#BB8F32] text-white py-2 text-lg font-bold rounded-md hover:bg-[#a3792a] transition cursor-pointer">
           {t("checkout")}

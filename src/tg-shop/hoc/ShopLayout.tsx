@@ -14,12 +14,13 @@ import Cart from "@shop/components/Cart";
 import CartIcon from "@assets/svgs/icons/CartIcon";
 import { languages } from "@constants/languages";
 
-import { generalRoutes } from "@routes";
+import { dashboardRoutes, generalRoutes } from "@routes";
 import { AppDispatch, RootState } from "@store/store";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getFeaturedCourses,
   getPublicCourses,
+  getUserCourses,
 } from "@store/slices/courseSlice";
 import { logoutRequest } from "@store/slices/authSlice";
 
@@ -53,9 +54,13 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
     dispatch(getPublicCourses());
     dispatch(getFeaturedCourses());
 
+    if (user) {
+      dispatch(getUserCourses(user._id));
+    }
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [user]);
 
   const handleLogout = async () => {
     try {
@@ -237,6 +242,17 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                     >
                       {t("change_password")}
                     </li>
+                    {user.role === "admin" && (
+                      <li
+                        key={3}
+                        className="px-4 py-2 cursor-pointer text-[#BB8F32] hover:bg-[#BB8F32] hover:text-white"
+                        onClick={() => {
+                          navigate(dashboardRoutes.DASHBOARD_OVERVIEW);
+                        }}
+                      >
+                        {t("dashboard")}
+                      </li>
+                    )}
                     <li
                       key={4}
                       className="px-4 py-2 cursor-pointer text-[#BB8F32] hover:bg-[#BB8F32] hover:text-white"
@@ -378,6 +394,17 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                       >
                         {t("change_password")}
                       </li>
+                      {user.role === "admin" && (
+                        <li
+                          key={3}
+                          className="px-4 py-2 cursor-pointer"
+                          onClick={() => {
+                            navigate(dashboardRoutes.DASHBOARD_OVERVIEW);
+                          }}
+                        >
+                          {t("dashboard")}
+                        </li>
+                      )}
                       <li
                         key={4}
                         className="px-4 py-2 cursor-pointer"

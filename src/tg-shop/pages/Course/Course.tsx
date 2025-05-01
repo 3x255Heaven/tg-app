@@ -1,44 +1,32 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import ShopLayout from "@shop/hoc/ShopLayout";
-import { coursesItems } from "../../../mock";
 import Spinner from "@assets/svgs/Spinner";
 import { generalRoutes } from "@routes";
 import ArrowDownIcon from "@assets/svgs/icons/ArrowDownIcon";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@store/store";
 import { addToCart } from "@store/slices/authSlice";
+import { getCourse } from "@store/slices/courseSlice";
 
 const Course = () => {
-  const [course, setCourse] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { id } = useParams();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
+  const { course, isLoading } = useSelector(
+    (state: RootState) => state.courseReducer
+  );
+
   useEffect(() => {
     if (id) {
-      const fetchCourse = async () => {
-        const courseData = await getCourse();
-        setCourse(courseData);
-        setIsLoading(false);
-      };
-
-      fetchCourse();
+      dispatch(getCourse(id));
     }
   }, [id]);
 
-  const getCourse = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(coursesItems.find((course) => course.id === Number(id)));
-      }, 2000);
-    });
-  };
-
-  if (isLoading) {
+  if (isLoading || !course) {
     return (
       <ShopLayout>
         <div className="w-full min-h-[calc(100vh-120px)] p-4 flex flex-col justify-center items-center">

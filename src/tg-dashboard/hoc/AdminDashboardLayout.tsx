@@ -18,10 +18,11 @@ import UpdateProfile from "@dashboard/components/modals/UpdateProfile";
 import ChangePassword from "@dashboard/components/modals/ChangePassword";
 import Logout from "@dashboard/components/modals/Logout";
 
-import { dashboardRoutes } from "@routes";
+import { dashboardRoutes, generalRoutes } from "@routes";
 import { useSelector } from "react-redux";
 import { RootState } from "@store/store";
 import { UserAvatar } from "@dashboard/components/UserAvatar";
+import EyeIcon from "@assets/svgs/icons/EyeIcon";
 
 interface AdminDashboardLayoutProps {
   children?: ReactNode;
@@ -178,6 +179,17 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
                     );
                   })}
                 </ul>
+                <div
+                  className="flex justify-start items-center py-2 pl-2.5 hover:bg-gray-100"
+                  onClick={() => {
+                    navigate(generalRoutes.HOME);
+                  }}
+                >
+                  <EyeIcon customStyle="w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" />
+                  <span className="block px-4 py-2 text-sm text-gray-700 cursor-pointer">
+                    Shop
+                  </span>
+                </div>
                 <div
                   className="flex justify-start items-center py-2 pl-2.5 hover:bg-gray-100"
                   onClick={() => {

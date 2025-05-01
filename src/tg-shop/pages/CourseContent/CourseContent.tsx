@@ -1,41 +1,29 @@
 import Spinner from "@assets/svgs/Spinner";
 import ShopLayout from "@shop/hoc/ShopLayout";
 import { WistiaPlayer } from "@wistia/wistia-player-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "@store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@store/store";
+import { getCourse } from "@store/slices/courseSlice";
 
 const CourseContent = () => {
-  const [course, setCourse] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const { id } = useParams();
   const { t } = useTranslation();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const { courses } = useSelector((state: RootState) => state.courseReducer);
+  const { course, isLoading } = useSelector(
+    (state: RootState) => state.courseReducer
+  );
 
   useEffect(() => {
     if (id) {
-      const fetchCourse = async () => {
-        const courseData = await getCourse();
-        setCourse(courseData);
-        setIsLoading(false);
-      };
-
-      fetchCourse();
+      dispatch(getCourse(id));
     }
   }, [id]);
 
-  const getCourse = () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(courses.find((course) => course._id === id));
-      }, 2000);
-    });
-  };
-
-  if (isLoading) {
+  if (isLoading || !course) {
     return (
       <ShopLayout>
         <div className="w-full min-h-[calc(100vh-120px)] p-4 flex flex-col justify-center items-center">
