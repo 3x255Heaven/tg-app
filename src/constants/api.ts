@@ -8,6 +8,7 @@ export const apiRoutes = {
   refreshToken: "/refresh-token",
   updateProfile: "/update-profile",
   changePassword: "/change-password",
+  forgotPassword: "/forgot-password",
   course: "/course",
   courses: "/courses",
   featuredCourses: "/featured-courses",

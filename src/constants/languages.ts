@@ -37,6 +37,7 @@ export const ENGLISH_TRANSLATION = {
   last_name: "Last Name",
   email: "Email",
   update: "Update",
+  logout: "Logout",
 };
 
 export const SERBIAN_TRANSLATION = {
@@ -74,4 +75,5 @@ export const SERBIAN_TRANSLATION = {
   last_name: "Prezime",
   email: "Email",
   update: "Izmeni",
+  logout: "Odjavi se",
 };

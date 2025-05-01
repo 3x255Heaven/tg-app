@@ -1,10 +1,14 @@
 import CloseIcon from "@assets/svgs/icons/CloseIcon";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { coursesOverviewItems } from "../../mock";
 import DeleteIcon from "@assets/svgs/icons/DeleteIcon";
+import { dispatch, RootState } from "@store/store";
+import { useSelector } from "react-redux";
+import { removeFromCart } from "@store/slices/authSlice";
 
 const Cart = ({ isActive, closeCart }: any) => {
+  const cart = useSelector((state: RootState) => state.authReducer.cart);
+
   const { t } = useTranslation();
   const cartRef = useRef<HTMLDivElement>(null);
 
@@ -42,25 +46,38 @@ const Cart = ({ isActive, closeCart }: any) => {
       </div>
 
       <div className="flex flex-col gap-4 mt-4">
-        {coursesOverviewItems.map((course) => (
+        {cart.map((course: any) => (
           <div
-            key={course.id}
+            key={course._id}
             className="flex justify-between items-center w-full"
           >
             <img
               className="rounded-lg h-[100px] sm:h-[120px] w-[100px] sm:w-[120px] object-cover"
-              src={course.image}
+              src={course.imageUrl}
               alt={course.name}
             />
             <div className="px-4 flex flex-col justify-center gap-2 flex-grow">
               <span className="font-bold text-black text-sm sm:text-md">
                 {course.name}
               </span>
+              {course.discount > 0 && (
+                <span className="text-[#bebebc] text-[14px] line-through">
+                  {course.price}.00 RSD
+                </span>
+              )}
               <span className="text-[#BB8F32] font-bold text-[16px] sm:text-[18px]">
-                {course.price}
+                {course.discount
+                  ? course.price - course.discount
+                  : course.price}
+                .00 RSD
               </span>
             </div>
-            <button className="text-red-500 hover:text-red-600 cursor-pointer border border-b-red-500 bg-red-100 p-4 rounded-md">
+            <button
+              className="text-red-500 hover:text-red-600 cursor-pointer border border-b-red-500 bg-red-100 p-4 rounded-md"
+              onClick={() => {
+                dispatch(removeFromCart(course._id));
+              }}
+            >
               <DeleteIcon />
             </button>
           </div>

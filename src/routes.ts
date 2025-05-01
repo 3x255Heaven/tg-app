@@ -11,6 +11,7 @@ export const generalRoutes = {
   LOGIN: "/login",
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password",
+  CHANGE_PASSWORD: "/change-password",
   COURSES: "/courses",
   COURSE_DETAILS: "/courses/:id",
   COURSE_CONTENT: "/my-courses/:id",

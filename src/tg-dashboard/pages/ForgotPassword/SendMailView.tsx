@@ -4,14 +4,24 @@ import { useNavigate } from "react-router";
 import KeyIcon from "@assets/svgs/icons/KeyIcon";
 import { generalRoutes } from "@routes";
 import { useForgotPassword } from "./ForgotPasswordContext";
+import { AppDispatch } from "@store/store";
+import { useDispatch } from "react-redux";
+import { forgotPassword } from "@store/slices/authSlice";
 
 const SendMailView = () => {
   const [emailValue, setEmailValue] = useState<string>("");
   const { setCurrentView, setEmail } = useForgotPassword();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmailValue(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (emailValue) {
+      dispatch(forgotPassword({ email: emailValue }));
+    }
   };
 
   return (
@@ -33,10 +43,15 @@ const SendMailView = () => {
           className="w-full border border-[#e1e1e1] rounded-[2rem] h-[3rem] p-2 px-4 text-[#000] font-poppins leading-[22.5px]"
         />
         <span
-          className="bg-gradient-to-r from-[#bb8f32] to-[#f6dc94] h-[45px] w-full rounded-full border-0 text-white font-poppins text-[18px] font-bold mt-6 cursor-pointer flex justify-center items-center text-center"
+          className={`${
+            emailValue.length > 0
+              ? "cursor-pointer opacity-100"
+              : "cursor-not-allowed opacity-50"
+          } bg-gradient-to-r from-[#bb8f32] to-[#f6dc94] h-[45px] w-full rounded-full border-0 text-white font-poppins text-[18px] font-bold mt-6 cursor-pointer flex justify-center items-center text-center`}
           onClick={() => {
             setCurrentView("submitted");
             setEmail(emailValue);
+            handleSubmit();
           }}
         >
           Submit

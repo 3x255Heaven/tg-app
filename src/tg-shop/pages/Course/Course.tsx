@@ -6,6 +6,9 @@ import { coursesItems } from "../../../mock";
 import Spinner from "@assets/svgs/Spinner";
 import { generalRoutes } from "@routes";
 import ArrowDownIcon from "@assets/svgs/icons/ArrowDownIcon";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@store/store";
+import { addToCart } from "@store/slices/authSlice";
 
 const Course = () => {
   const [course, setCourse] = useState<any>(null);
@@ -13,6 +16,7 @@ const Course = () => {
   const { id } = useParams();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     if (id) {
@@ -87,8 +91,14 @@ const Course = () => {
             <span className="text-gray-600 font-bold text-lg sm:text-xl md:text-2xl">
               {course.name}
             </span>
+            {course.discount > 0 && (
+              <span className="text-[#bebebc] text-[14px] line-through">
+                {course.price}.00 RSD
+              </span>
+            )}
             <span className="text-[#BB8F32] font-bold text-[22px] sm:text-[26px] md:text-[28px] mb-2.5">
-              {course.price}
+              {course.discount ? course.price - course.discount : course.price}
+              .00 RSD
             </span>
             <div className="flex flex-col pt-4 border-t border-gray-200">
               <span className="font-bold mb-2 text-lg sm:text-xl md:text-2xl">
@@ -98,14 +108,19 @@ const Course = () => {
                 {course.description}
               </span>
             </div>
-            <span className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] mt-6 sm:mt-10 h-[2.5rem] px-6 sm:px-8 py-2 rounded-full border-0 text-white font-poppins text-[14px] sm:text-[16px] cursor-pointer flex justify-center items-center text-center w-full sm:w-fit mx-auto lg:mx-0">
+            <span
+              className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] mt-6 sm:mt-10 h-[2.5rem] px-6 sm:px-8 py-2 rounded-full border-0 text-white font-poppins text-[14px] sm:text-[16px] cursor-pointer flex justify-center items-center text-center w-full sm:w-fit mx-auto lg:mx-0"
+              onClick={() => {
+                dispatch(addToCart(course));
+              }}
+            >
               {t("add_to_cart")}
             </span>
           </div>
           <div className="flex justify-center w-full lg:w-1/2">
             <img
               className="rounded-xs object-cover w-full max-w-[400px] sm:max-w-[500px] md:max-w-[588px] h-auto"
-              src={course.image}
+              src={course.imageUrl}
               alt={course.name}
             />
           </div>

@@ -14,6 +14,7 @@ export type UpdateProfilePayload = {
 
 const initialState: any = {
   user: JSON.parse(localStorage.getItem("user") || "null"),
+  cart: JSON.parse(localStorage.getItem("cart") || "[]"),
   isLoading: false,
   error: null,
 };
@@ -61,7 +62,7 @@ export const updateProfile = createAsyncThunk(
 );
 
 export const changePassword = createAsyncThunk(
-  "auth/updateProfile",
+  "auth/changePassword",
   async (
     {
       userId,
@@ -82,10 +83,45 @@ export const changePassword = createAsyncThunk(
   }
 );
 
+export const forgotPassword = createAsyncThunk(
+  "auth/forgotPassword",
+  async ({ email }: { email: string }, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.post(apiRoutes.forgotPassword, {
+        email,
+      });
+      return response.data.result.user;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    addToCart: (state, action) => {
+      const course = action.payload;
+      if (!state.cart) {
+        state.cart = [];
+      }
+
+      const exists = state.cart.find((item: any) => item._id === course._id);
+      if (!exists) {
+        state.cart.push(course);
+        localStorage.setItem("cart", JSON.stringify(state.cart));
+      }
+    },
+    removeFromCart: (state, action) => {
+      const courseId = action.payload;
+
+      if (!courseId) return;
+
+      state.cart = state.cart.filter((item: any) => item._id !== courseId);
+      localStorage.setItem("cart", JSON.stringify(state.cart));
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginRequest.pending, (state) => {
@@ -121,4 +157,5 @@ const authSlice = createSlice({
   },
 });
 
+export const { addToCart, removeFromCart } = authSlice.actions;
 export default authSlice.reducer;

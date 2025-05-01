@@ -3,10 +3,21 @@ import { useNavigate } from "react-router";
 import MailIcon from "@assets/svgs/icons/MailIcon";
 import { generalRoutes } from "@routes";
 import { useForgotPassword } from "./ForgotPasswordContext";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@store/store";
+import { forgotPassword } from "@store/slices/authSlice";
 
 const CheckMailView = () => {
   const { email } = useForgotPassword();
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleSubmit = () => {
+    if (email) {
+      dispatch(forgotPassword({ email: email }));
+      navigate(generalRoutes.LOGIN);
+    }
+  };
 
   return (
     <>
@@ -29,7 +40,12 @@ const CheckMailView = () => {
         </span>
         <div className="mt-6 flex justify-center items-center gap-2">
           <span className="font-poppins">Didn’t receive the email?</span>
-          <span className="font-poppins text-[#bb8f32] cursor-pointer">
+          <span
+            className="font-poppins text-[#bb8f32] cursor-pointer"
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
             Resend
           </span>
         </div>

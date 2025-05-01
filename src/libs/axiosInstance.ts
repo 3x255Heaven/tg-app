@@ -17,7 +17,7 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        await axiosInstance.post("/auth/refresh-token");
+        await axiosInstance.post("/refresh-token");
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         store.dispatch(logoutRequest());
