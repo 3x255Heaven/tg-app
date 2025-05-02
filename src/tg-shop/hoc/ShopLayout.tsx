@@ -110,6 +110,14 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
               <span
                 className="cursor-pointer font-bold text-[#BB8F32] rounded-sm p-1.5"
                 onClick={() => {
+                  navigate(generalRoutes.CONTACT);
+                }}
+              >
+                {t("contact")}
+              </span>
+              <span
+                className="cursor-pointer font-bold text-[#BB8F32] rounded-sm p-1.5"
+                onClick={() => {
                   navigate(generalRoutes.COURSES);
                 }}
               >
@@ -297,6 +305,14 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                 }}
               >
                 {t("home")}
+              </span>
+              <span
+                className="cursor-pointer font-bold text-[#BB8F32] rounded-sm p-1.5"
+                onClick={() => {
+                  navigate(generalRoutes.CONTACT);
+                }}
+              >
+                {t("contact")}
               </span>
               <span
                 className="cursor-pointer"

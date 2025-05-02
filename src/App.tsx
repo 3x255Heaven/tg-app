@@ -18,6 +18,8 @@ import CourseContent from "@shop/pages/CourseContent/CourseContent";
 import ProtectedRoute from "@dashboard/components/ProtectedRoute";
 import ChangePassword from "@shop/pages/ChangePassword/ChangePassword";
 import Register from "@dashboard/pages/Register/Register";
+import ResetPassword from "@dashboard/pages/ForgotPassword/ResetPassword";
+import Contact from "@shop/pages/Contact/Contact";
 
 const App = () => {
   return (
@@ -66,6 +68,7 @@ const App = () => {
         <Route path={generalRoutes.LOGIN} element={<Login />} />
         <Route path={generalRoutes.REGISTER} element={<Register />} />
         <Route path={generalRoutes.HOME} element={<Home />} />
+        <Route path={generalRoutes.CONTACT} element={<Contact />} />
         <Route path={generalRoutes.COURSES} element={<Courses />} />
         <Route path={generalRoutes.COURSE_DETAILS} element={<Course />} />
         <Route
@@ -103,6 +106,10 @@ const App = () => {
         <Route
           path={generalRoutes.FORGOT_PASSWORD}
           element={<ForgotPassword />}
+        />
+        <Route
+          path={generalRoutes.RESET_PASSWORD}
+          element={<ResetPassword />}
         />
         <Route path={generalRoutes.RESET_PASSWORD} element={<Login />} />
       </Routes>

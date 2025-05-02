@@ -39,6 +39,7 @@ export const ENGLISH_TRANSLATION = {
   update: "Update",
   logout: "Logout",
   dashboard: "Dashboard",
+  where_to_find_me: "Where to find me?",
 };
 
 export const SERBIAN_TRANSLATION = {
@@ -78,4 +79,5 @@ export const SERBIAN_TRANSLATION = {
   update: "Izmeni",
   logout: "Odjavi se",
   dashboard: "Admin Panel",
+  where_to_find_me: "Gde me možete naći?",
 };

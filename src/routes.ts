@@ -9,6 +9,7 @@ export const dashboardRoutes = {
 export const generalRoutes = {
   HOME: "/",
   LOGIN: "/login",
+  CONTACT: "/contact",
   REGISTER: "/register",
   FORGOT_PASSWORD: "/forgot-password",
   RESET_PASSWORD: "/reset-password",
