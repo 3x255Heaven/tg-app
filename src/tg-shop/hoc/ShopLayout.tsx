@@ -198,7 +198,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                   <span
                     className="bg-white px-5 py-1.5 rounded-full border border-[#BB8F32] text-[#BB8F32] font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center"
                     onClick={() => {
-                      navigate(generalRoutes.LOGIN);
+                      navigate(generalRoutes.REGISTER);
                     }}
                   >
                     {t("register")}
@@ -242,7 +242,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                     >
                       {t("change_password")}
                     </li>
-                    {user.role === "admin" && (
+                    {user?.role === "admin" && (
                       <li
                         key={3}
                         className="px-4 py-2 cursor-pointer text-[#BB8F32] hover:bg-[#BB8F32] hover:text-white"
@@ -394,7 +394,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                       >
                         {t("change_password")}
                       </li>
-                      {user.role === "admin" && (
+                      {user?.role === "admin" && (
                         <li
                           key={3}
                           className="px-4 py-2 cursor-pointer"
@@ -431,7 +431,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                   <span
                     className="bg-white px-5 py-1.5 rounded-full border border-[#BB8F32] text-[#BB8F32] font-poppins text-[16px] cursor-pointer flex justify-center items-center text-center"
                     onClick={() => {
-                      navigate(generalRoutes.LOGIN);
+                      navigate(generalRoutes.REGISTER);
                     }}
                   >
                     {t("register")}

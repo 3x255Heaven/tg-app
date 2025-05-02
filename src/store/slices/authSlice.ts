@@ -32,6 +32,19 @@ export const loginRequest = createAsyncThunk(
   }
 );
 
+export const registerRequest = createAsyncThunk(
+  "auth/login",
+  async (credentials: any, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.post(apiRoutes.register, credentials);
+
+      return response.data.result.user;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
 export const logoutRequest = createAsyncThunk(
   "auth/logout",
   async (_, { rejectWithValue }) => {

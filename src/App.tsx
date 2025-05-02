@@ -17,6 +17,7 @@ import MyProfile from "@shop/pages/MyProfile/MyProfile";
 import CourseContent from "@shop/pages/CourseContent/CourseContent";
 import ProtectedRoute from "@dashboard/components/ProtectedRoute";
 import ChangePassword from "@shop/pages/ChangePassword/ChangePassword";
+import Register from "@dashboard/pages/Register/Register";
 
 const App = () => {
   return (
@@ -63,6 +64,7 @@ const App = () => {
           }
         />
         <Route path={generalRoutes.LOGIN} element={<Login />} />
+        <Route path={generalRoutes.REGISTER} element={<Register />} />
         <Route path={generalRoutes.HOME} element={<Home />} />
         <Route path={generalRoutes.COURSES} element={<Courses />} />
         <Route path={generalRoutes.COURSE_DETAILS} element={<Course />} />
