@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@store/store";
+// import { useDispatch } from "react-redux";
+// import { AppDispatch } from "@store/store";
 // import { resetPassword } from "@store/slices/authSlice";
 import { toast } from "react-toastify";
 import { generalRoutes } from "@routes";
@@ -16,7 +16,7 @@ const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const dispatch = useDispatch<AppDispatch>();
+  // const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
