@@ -16,6 +16,7 @@ import MyCourses from "@shop/pages/MyCourses/MyCourses";
 import MyProfile from "@shop/pages/MyProfile/MyProfile";
 import CourseContent from "@shop/pages/CourseContent/CourseContent";
 import ProtectedRoute from "@dashboard/components/ProtectedRoute";
+import ChangePassword from "@shop/pages/ChangePassword/ChangePassword";
 
 const App = () => {
   return (
@@ -78,6 +79,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <MyProfile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={generalRoutes.CHANGE_PASSWORD}
+          element={
+            <ProtectedRoute>
+              <ChangePassword />
             </ProtectedRoute>
           }
         />
