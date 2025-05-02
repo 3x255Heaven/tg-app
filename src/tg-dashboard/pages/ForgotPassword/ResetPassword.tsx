@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
-// import { useDispatch } from "react-redux";
-// import { AppDispatch } from "@store/store";
-// import { resetPassword } from "@store/slices/authSlice";
+import { useNavigate, useSearchParams } from "react-router";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@store/store";
+import { resetPassword } from "@store/slices/authSlice";
 import { toast } from "react-toastify";
 import { generalRoutes } from "@routes";
 
@@ -16,7 +16,11 @@ const ResetPassword = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // const dispatch = useDispatch<AppDispatch>();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token");
+  const userId = searchParams.get("userId");
+
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
@@ -30,8 +34,15 @@ const ResetPassword = () => {
       return;
     }
 
+    if (!userId || !token) {
+      toast.error("Something went wrong. Please try again!");
+      return;
+    }
+
     try {
-      //   await dispatch(resetPassword({ password, newPassword })).unwrap();
+      await dispatch(
+        resetPassword({ userId, token, password: newPassword })
+      ).unwrap();
       toast.success("Password reset successful!");
       navigate(generalRoutes.LOGIN);
     } catch (error: any) {

@@ -9,6 +9,7 @@ export const apiRoutes = {
   updateProfile: "/update-profile",
   changePassword: "/change-password",
   forgotPassword: "/forgot-password",
+  resetPassword: '/reset-password',
   course: "/course",
   courses: "/courses",
   featuredCourses: "/featured-courses",

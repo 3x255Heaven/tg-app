@@ -36,7 +36,10 @@ export const registerRequest = createAsyncThunk(
   "auth/login",
   async (credentials: any, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.post(apiRoutes.register, credentials);
+      const response = await axiosInstance.post(
+        apiRoutes.register,
+        credentials
+      );
 
       return response.data.result.user;
     } catch (error: any) {
@@ -90,6 +93,29 @@ export const changePassword = createAsyncThunk(
         { oldPassword, newPassword }
       );
       return response.data.result.user;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "auth/resetPassword",
+  async (
+    {
+      userId,
+      token,
+      password,
+    }: { userId: string; token: string; password: string },
+    { rejectWithValue }
+  ) => {
+    try {
+      const response = await axiosInstance.post(apiRoutes.resetPassword, {
+        userId,
+        token,
+        password,
+      });
+      return response;
     } catch (error: any) {
       return rejectWithValue(error.response.data.message);
     }
