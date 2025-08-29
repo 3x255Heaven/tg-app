@@ -4,9 +4,54 @@ import "swiper/css";
 import ReviewItem from "./ReviewItem";
 import ArrowDownIcon from "@assets/svgs/icons/ArrowDownIcon";
 
-import { reivewItems } from "../../mock";
+import nikolinaImage from "@assets/brand/reviews/NikolinaVrekic.jpg";
+import kikaImage from "@assets/brand/reviews/KikaRajic.jpg";
+import lavImage from "@assets/brand/reviews/LavBoka.jpeg";
+import ivaImage from "@assets/brand/reviews/IvaMiletic.jpg";
+import bokaImage from "@assets/brand/reviews/BokaMakeupStudio.jpg";
+import { useTranslation } from "react-i18next";
 
 const ReviewSlider = () => {
+  const { t } = useTranslation();
+
+  const reivewItems = [
+    {
+      id: 1,
+      name: "Nikolina Vrekic",
+      image: nikolinaImage,
+      content: t("nikolina_review"),
+      social: "https://www.instagram.com/nikolina.vrekic/?hl=en",
+    },
+    {
+      id: 2,
+      name: "Kika Rajic",
+      image: kikaImage,
+      content: t("kika_review"),
+      social: "https://www.instagram.com/kikarajic/?hl=en",
+    },
+    {
+      id: 3,
+      name: "Lav Boka",
+      image: lavImage,
+      content: t("lav_review"),
+      social: "https://www.instagram.com/lavlovestories/",
+    },
+    {
+      id: 4,
+      name: "Iva Miletic",
+      image: ivaImage,
+      content: t("iva_review"),
+      social: "https://www.instagram.com/makeup_boka/?hl=en",
+    },
+    {
+      id: 5,
+      name: "Boka Makeup Studio",
+      image: bokaImage,
+      content: t("boka_review"),
+      social: "https://www.instagram.com/makeup_boka/?hl=en",
+    },
+  ];
+
   const sliderRef = useRef<SwiperRef | null>(null);
 
   const handlePrev = useCallback(() => {
@@ -30,7 +75,7 @@ const ReviewSlider = () => {
                   image={reivewItem.image}
                   details={reivewItem.content}
                   name={reivewItem.name}
-                  position="Chief Executive Officer."
+                  social={reivewItem.social}
                 />
               </SwiperSlide>
             );

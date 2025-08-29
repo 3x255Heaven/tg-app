@@ -20,10 +20,10 @@ const Hero = () => {
       </video>
       <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center px-4 text-center">
         <h2 className="text-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold italic max-w-4xl">
-          “ {t("hero")}”
+          {t("hero")}
         </h2>
         <span
-          className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[2.5rem] w-[12rem] mt-5 rounded-full border-0 text-white font-poppins text-sm sm:text-[16px] cursor-pointer flex justify-center items-center text-center transition-all hover:opacity-90"
+          className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] h-[2.5rem] w-[12rem] mt-12 rounded-full border-0 text-white font-poppins text-sm sm:text-[16px] cursor-pointer flex justify-center items-center text-center transition-all hover:opacity-90"
           onClick={() => {
             navigate(generalRoutes.COURSES);
           }}

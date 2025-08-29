@@ -38,7 +38,7 @@ const Course = () => {
 
   return (
     <ShopLayout>
-      <div className="w-full p-6 sm:p-10 md:p-14 flex flex-col">
+      <div className="w-full p-6 sm:p-10 md:p-14 flex flex-col mt-[6rem]">
         <nav className="flex" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
             <li
@@ -76,7 +76,7 @@ const Course = () => {
         </nav>
         <div className="flex flex-col-reverse lg:flex-row justify-center gap-10 lg:gap-2 items-center mt-6">
           <div className="w-full lg:w-1/2 flex flex-col text-center lg:text-left">
-            <span className="text-gray-600 font-bold text-lg sm:text-xl md:text-2xl">
+            <span className="text-gray-600 font-bold text-[36px] sm:text-xl md:text-[36px]">
               {course.name}
             </span>
             {course.discount > 0 && (

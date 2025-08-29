@@ -17,7 +17,7 @@ const Courses = () => {
 
   return (
     <ShopLayout>
-      <div className="w-full flex flex-col justify-center items-center p-6 sm:p-10 mt-18 mb-5">
+      <div className="w-full flex flex-col justify-center items-center p-6 sm:p-10 mt-28 mb-5">
         <div className="w-full flex flex-col justify-center items-center text-center">
           <span className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] [text-shadow:0px_4px_5.3px_#BB8F3259]">
             {t("courses_title")}

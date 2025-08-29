@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "@libs/axiosInstance";
 import { apiRoutes } from "@constants/api";
+import { toast } from "react-toastify";
+import i18n from "../../i18n";
 
 export type Credentials = {
   email: string;
@@ -150,11 +152,18 @@ const authSlice = createSlice({
       if (!exists) {
         state.cart.push(course);
         localStorage.setItem("cart", JSON.stringify(state.cart));
+
+        toast.success(
+          i18n.t("cart_actions.added", { item: course.name || "Item" })
+        );
+      } else {
+        toast.info(
+          i18n.t("cart_actions.alreadyIn", { item: course.name || "Item" })
+        );
       }
     },
     removeFromCart: (state, action) => {
       const courseId = action.payload;
-
       if (!courseId) return;
 
       state.cart = state.cart.filter((item: any) => item._id !== courseId);

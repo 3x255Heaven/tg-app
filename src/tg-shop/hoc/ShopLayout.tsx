@@ -6,9 +6,7 @@ import MailIcon from "@assets/svgs/icons/MailIcon";
 import PhoneIcon from "@assets/svgs/icons/PhoneIcon";
 import PrimaryLogo from "@assets/svgs/PrimaryLogo";
 import TikTokIcon from "@assets/svgs/icons/TikTokIcon";
-import YoutubeIcon from "@assets/svgs/icons/YoutubeIcon";
 import brandImage from "@assets/brand/tg.png";
-import LocationIcon from "@assets/svgs/icons/LocationIcon";
 import MenuIcon from "@assets/svgs/icons/MenuIcon";
 import Cart from "@shop/components/Cart";
 import CartIcon from "@assets/svgs/icons/CartIcon";
@@ -24,12 +22,28 @@ import {
 } from "@store/slices/courseSlice";
 import { logoutRequest } from "@store/slices/authSlice";
 
+import aikBank from "@assets/banks/aikbank.png";
+import intesaBank from "@assets/banks/intesabank.png";
+import nlbBank from "@assets/banks/nlbbank.png";
+import otbBank from "@assets/banks/otpbank.svg";
+import raiBank from "@assets/banks/raifaisenbank.svg";
+import unicreditBank from "@assets/banks/unicreditbank.png";
+import ipsBank from "@assets/banks/ips.svg";
+
+import siq from "@assets/banks/siq.png";
+import mcCheck from "@assets/banks/mccheck.png";
+import visaSecure from "@assets/banks/visasecure.png";
+import amEx from "@assets/banks/amex.png";
+import visaAmEx from "@assets/banks/visaemex.png";
+import mastercard1 from "@assets/banks/mc1.png";
+import mastercard2 from "@assets/banks/mc2.png";
+
 interface ShopLayoutProps {
   children?: ReactNode;
 }
 
 const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
-  const { user } = useSelector((state: RootState) => state.authReducer);
+  const { user, cart } = useSelector((state: RootState) => state.authReducer);
 
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -72,14 +86,20 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
   };
 
   return (
-    <div className="flex flex-col items-center font-montserrat">
+    <div className="flex flex-col items-center font-montserrat relative">
       <Cart
         isActive={isCartActive}
         closeCart={() => {
           setIsCartActive(false);
         }}
       />
-      <div className="w-full">
+      {isCartActive && (
+        <div
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
+          onClick={() => setIsCartActive(false)}
+        />
+      )}
+      <div className="w-full relative z-30">
         <div className="hidden xl:flex flex-col items-center">
           <div
             className={`${
@@ -88,11 +108,16 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                 : "bg-white"
             } flex justify-between items-center py-4 px-20 w-full bg-transparent absolute z-10 shadow-[0px_4px_21.9px_0px_#00000012]`}
           >
-            <div className="flex items-center gap-5">
+            <div
+              className="flex flex-col items-center gap-5 cursor-pointer"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               <PrimaryLogo width={38} height={50} />
               <div>
                 <img
-                  className="w-[316px] h-[20px]"
+                  className="w-[216px] h-[10px] object-contain"
                   src={brandImage}
                   alt="Description"
                 />
@@ -110,18 +135,18 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
               <span
                 className="cursor-pointer font-bold text-[#BB8F32] rounded-sm p-1.5"
                 onClick={() => {
-                  navigate(generalRoutes.CONTACT);
-                }}
-              >
-                {t("contact")}
-              </span>
-              <span
-                className="cursor-pointer font-bold text-[#BB8F32] rounded-sm p-1.5"
-                onClick={() => {
                   navigate(generalRoutes.COURSES);
                 }}
               >
                 {t("courses")}
+              </span>
+              <span
+                className="cursor-pointer font-bold text-[#BB8F32] rounded-sm p-1.5"
+                onClick={() => {
+                  navigate(generalRoutes.CONTACT);
+                }}
+              >
+                {t("contact")}
               </span>
               <div className="relative inline-block" ref={dropdownRef}>
                 <button
@@ -175,12 +200,17 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                   <div
                     className={`${
                       isCartActive ? "pointer-events-none" : ""
-                    } border border-[#BB8F32] rounded-full p-1.5 cursor-pointer`}
+                    } relative border border-[#BB8F32] rounded-full p-1.5 cursor-pointer`}
                     onClick={() => {
                       setIsCartActive(true);
                     }}
                   >
                     <CartIcon />
+                    {cart?.length > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-[#BB8F32] text-white text-xs font-bold rounded-full pt-0.5 w-6 h-6 flex items-center justify-center">
+                        {cart.length}
+                      </span>
+                    )}
                   </div>
                   <div
                     className="rotate-180"
@@ -220,7 +250,7 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                     location.pathname === generalRoutes.HOME
                       ? "bg-transparent border border-[#BB8F32]"
                       : "bg-white"
-                  } absolute top-[60px] right-[78px] mt-2 w-40 rounded-lg shadow-lg z-50`}
+                  } absolute top-[80px] right-[78px] mt-2 w-40 rounded-lg shadow-lg z-50`}
                 >
                   <ul className="py-1">
                     <li
@@ -282,7 +312,12 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
             <button onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}>
               <MenuIcon />
             </button>
-            <div className="flex items-center gap-4 mr-4">
+            <div
+              className="flex items-center gap-4 mr-4 cursor-pointer"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               <PrimaryLogo width={38} height={50} />
               <div>
                 <img
@@ -374,12 +409,17 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
                   <div
                     className={`${
                       isCartActive ? "pointer-events-none" : ""
-                    } border border-[#BB8F32] rounded-full p-1.5`}
+                    } relative border border-[#BB8F32] rounded-full p-1.5 cursor-pointer`}
                     onClick={() => {
                       setIsCartActive(true);
                     }}
                   >
                     <CartIcon />
+                    {cart?.length > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-[#BB8F32] text-white text-xs font-bold rounded-full pt-0.5 w-6 h-6 flex items-center justify-center">
+                        {cart.length}
+                      </span>
+                    )}
                   </div>
                   <div className="bg-white flex flex-col text-center items-center mt-2 w-40 rounded-lg text-black">
                     <ul className="py-1">
@@ -459,28 +499,72 @@ const ShopLayout: React.FC<ShopLayoutProps> = ({ children }) => {
         )}
       </div>
       {children}
-      <div className="flex flex-col justify-between items-center px-5 sm:px-10 lg:px-20 py-12 w-full bg-[#231F20]">
+      <div className="flex flex-col justify-between items-center px-5 sm:px-10 lg:px-20 py-12 w-full bg-[#231F20] relative z-30">
         <div className="flex w-full justify-between items-center pb-10 border-b border-white flex-col-reverse lg:flex-row">
-          <div className="flex flex-col gap-6 w-full sm:w-auto">
-            <div className="flex items-center gap-6">
-              <LocationIcon color="#FFF" />
-              <span className="text-white">Bate Brkica 11, Novi Sad</span>
-            </div>
+          <div className="flex flex-col gap-6 w-full sm:w-auto text-white">
+            <span className="text-xl font-semibold">PR TG Beauty</span>
             <div className="flex items-center gap-6">
               <MailIcon color="#FFF" />
-              <span className="text-white">teodora.grubor@gmail.com</span>
+              <span>teodora.grubor@gmail.com</span>
+            </div>
+            <div className="flex items-center gap-6">
+              <InstagramIcon color="#FFF" />
+              <span>teodora.makeup</span>
+            </div>
+            <div className="flex items-center gap-6">
+              <TikTokIcon color="#FFF" />
+              <span>Teodora Grubor</span>
             </div>
             <div className="flex items-center gap-6">
               <PhoneIcon color="#FFF" />
-              <span className="text-white">+381649843948</span>
+              <span>+381659805580</span>
             </div>
           </div>
-          <PrimaryLogo width={100} height={120} customStyle="lg:mb-0 mb-10" />
+          <div
+            className="cursor-pointer"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            <div className="flex flex-col items-center gap-5 cursor-pointer">
+              <PrimaryLogo
+                width={100}
+                height={120}
+                customStyle="lg:mb-0 mb-10"
+              />
+              <div>
+                <img
+                  className="w-[216px] h-[10px] object-contain"
+                  src={brandImage}
+                  alt="Description"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="flex justify-center items-center gap-10 mt-10 flex-wrap sm:justify-start">
-          <TikTokIcon color="#FFF" customStyle="cursor-pointer" />
-          <InstagramIcon color="#FFF" customStyle="cursor-pointer" />
-          <YoutubeIcon color="#FFF" customStyle="cursor-pointer" />
+        <div className="flex flex-col justify-center items-center gap-4 mt-10 sm:justify-start">
+          <div className="flex justify-center items-center gap-10 flex-wrap">
+            <img src={aikBank} alt="AIK" className="h-12" />
+            <img src={intesaBank} alt="Intesa" className="h-12" />
+            <img src={ipsBank} alt="IPS" className="h-12" />
+            <img src={nlbBank} alt="NLB" className="h-12" />
+            <img src={otbBank} alt="OTP" className="h-12" />
+          </div>
+
+          <div className="flex justify-center items-center gap-10 flex-wrap mt-10">
+            <img src={raiBank} alt="RAi" className="h-12" />
+            <img src={unicreditBank} alt="Unicredit" className="h-32" />
+          </div>
+
+          <div className="flex justify-center items-center gap-10 flex-wrap mt-10">
+            <img src={siq} alt="RAi" className="h-12" />
+            <img src={mcCheck} alt="Unicredit" className="h-12" />
+            <img src={visaSecure} alt="RAi" className="h-12" />
+            <img src={amEx} alt="Unicredit" className="h-12" />
+            <img src={visaAmEx} alt="Unicredit" className="h-12" />
+            <img src={mastercard1} alt="RAi" className="h-12" />
+            <img src={mastercard2} alt="Unicredit" className="h-12" />
+          </div>
         </div>
       </div>
     </div>

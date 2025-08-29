@@ -15,7 +15,7 @@ const MyCourses = () => {
 
   return (
     <ShopLayout>
-      <div className="w-full flex flex-col justify-center items-center p-6 sm:p-10 mt-18 mb-5">
+      <div className="w-full flex flex-col justify-center items-center p-6 sm:p-10 mt-35 mb-5">
         <div className="w-full flex flex-col justify-center items-center">
           <span className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] [text-shadow:0px_4px_5.3px_#BB8F3259]">
             {t("my_courses")}
@@ -27,7 +27,7 @@ const MyCourses = () => {
               key={courseItem._id}
               className="flex flex-col justify-center items-center max-w-md lg:max-w-lg cursor-pointer"
               onClick={() =>
-                navigate(`${generalRoutes.COURSES}/${courseItem._id}`)
+                navigate(`${generalRoutes.MY_COURSES}/${courseItem._id}`)
               }
             >
               <img

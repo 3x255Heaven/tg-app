@@ -1,28 +1,126 @@
 import ShopLayout from "@shop/hoc/ShopLayout";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import InstagramIcon from "@assets/svgs/icons/InstagramIcon";
+import MailIcon from "@assets/svgs/icons/MailIcon";
+import PhoneIcon from "@assets/svgs/icons/PhoneIcon";
+import TiktokIcon from "@assets/svgs/icons/TikTokIcon";
+import contactMe from "@assets/brand/contactme.png";
 
 const Contact = () => {
   const { t } = useTranslation();
 
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    // TODO: connect to backend/email
+  };
+
   return (
     <ShopLayout>
-      <div className="w-full flex flex-col justify-center items-center p-6 sm:p-10 mt-18 mb-5">
-        <div className="w-full flex flex-col justify-center items-center">
-          <span className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] [text-shadow:0px_4px_5.3px_#BB8F3259]">
-            {t("where_to_find_me")}
-          </span>
+      <div className="w-full flex flex-col sm:flex-row justify-center items-start p-6 sm:p-10 mt-36 mb-10 gap-10">
+        <div className="w-full sm:w-1/2 flex justify-center">
+          <img
+            src={contactMe}
+            alt="Teodora Grubor"
+            className="max-w-md rounded-2xl shadow-lg"
+          />
         </div>
-        <div className="w-full h-96 mt-10">
-          <iframe
-            title="Shop Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2808.8427370016225!2d19.80802515017481!3d45.25097278141263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b11cbeb462577%3A0xce4b2cacbe9f03e3!2sDom%20Zdravlja%20Novi%20Sad!5e0!3m2!1sen!2srs!4v1746147470768!5m2!1sen!2srs"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen={true}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+
+        <div className="w-full sm:w-1/2 flex flex-col items-start gap-6">
+          <div>
+            <h1 className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] mb-6">
+              {t("contact_title")}
+            </h1>
+            <p className="text-lg mb-4">{t("contact_social")}</p>
+
+            <div className="flex flex-col gap-3 text-lg mb-6">
+              <div className="flex items-center gap-2">
+                <InstagramIcon />
+                <span>@teodora.makeup</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <TiktokIcon />
+                <span>Teodora Grubor</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MailIcon />
+                <span>teodora.grubor@gmail.com</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <PhoneIcon />
+                <span>+381 65 980 5580</span>
+              </div>
+            </div>
+
+            <p className="text-lg mb-4">{t("contact_content")}</p>
+          </div>
+
+          <form
+            onSubmit={handleSubmit}
+            className="w-full bg-white rounded-2xl shadow-md p-6 space-y-4"
+          >
+            <div className="flex flex-col sm:flex-row gap-4">
+              <input
+                type="text"
+                name="name"
+                placeholder={t("first_name")}
+                value={formData.firstName}
+                onChange={handleChange}
+                className="w-full border-b border-gray-300 rounded-lg px-4 py-2"
+                required
+              />
+              <input
+                type="text"
+                name="lastName"
+                placeholder={t("last_name")}
+                value={formData.lastName}
+                onChange={handleChange}
+                className="w-full border-b border-gray-300 rounded-lg px-4 py-2"
+                required
+              />
+            </div>
+
+            <input
+              type="email"
+              name="email"
+              placeholder={t("email")}
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full border-b border-gray-300 rounded-lg px-4 py-2"
+              required
+            />
+
+            <textarea
+              name="message"
+              placeholder={t("message")}
+              value={formData.message}
+              onChange={handleChange}
+              className="w-full border-b border-gray-300 rounded-lg px-4 py-2 h-32 resize-none"
+              required
+            />
+
+            <button
+              type="submit"
+              className="w-full bg-[#cb4139] text-white font-semibold py-2 px-4 rounded-lg hover:bg-black transition cursor-pointer"
+            >
+              {t("send")}
+            </button>
+          </form>
         </div>
       </div>
     </ShopLayout>

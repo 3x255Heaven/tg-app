@@ -37,7 +37,7 @@ const ChangePassword = () => {
 
   return (
     <ShopLayout>
-      <div className="w-full min-h-[60vh] flex flex-col justify-center items-center p-4 sm:p-6 md:p-10 mt-15 mb-5">
+      <div className="w-full min-h-[80vh] flex flex-col justify-center items-center p-4 sm:p-6 md:p-10 mt-15 mb-5">
         <div className="w-full flex flex-col justify-center items-center">
           <span className="font-malayalam text-2xl sm:text-3xl md:text-5xl text-[#251D18] [text-shadow:0px_4px_5.3px_#BB8F3259]">
             {t("change_password")}
