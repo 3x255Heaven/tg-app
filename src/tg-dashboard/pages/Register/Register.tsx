@@ -63,6 +63,7 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="First Name"
+                required
                 className="w-full border border-[#e1e1e1] rounded-[2rem] h-[3rem] mb-6 p-2 px-4 text-[#000] font-poppins leading-[22.5px]"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
@@ -70,13 +71,15 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="Last Name"
+                required
                 className="w-full border border-[#e1e1e1] rounded-[2rem] h-[3rem] mb-6 p-2 px-4 text-[#000] font-poppins leading-[22.5px]"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
               <input
-                type="text"
+                type="email"
                 placeholder="Email Address"
+                required
                 className="w-full border border-[#e1e1e1] rounded-[2rem] h-[3rem] mb-6 p-2 px-4 text-[#000] font-poppins leading-[22.5px]"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -85,6 +88,7 @@ const Register = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
+                  required
                   className="w-full border border-[#e1e1e1] rounded-[2rem] h-[3rem] p-2 px-4 text-[#000] font-poppins leading-[22.5px] pr-12"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -106,6 +110,7 @@ const Register = () => {
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirm Password"
+                  required
                   className="w-full border border-[#e1e1e1] rounded-[2rem] h-[3rem] p-2 px-4 text-[#000] font-poppins leading-[22.5px] pr-12"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}

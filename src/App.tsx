@@ -20,6 +20,8 @@ import ChangePassword from "@shop/pages/ChangePassword/ChangePassword";
 import Register from "@dashboard/pages/Register/Register";
 import ResetPassword from "@dashboard/pages/ForgotPassword/ResetPassword";
 import Contact from "@shop/pages/Contact/Contact";
+import CheckoutSuccess from "@shop/pages/Checkout/CheckoutSuccess";
+import CheckoutError from "@shop/pages/Checkout/CheckoutError";
 
 const App = () => {
   return (
@@ -100,6 +102,22 @@ const App = () => {
           element={
             <ProtectedRoute>
               <CourseContent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={generalRoutes.CHECKOUT_ERROR}
+          element={
+            <ProtectedRoute>
+              <CheckoutError />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={generalRoutes.CHECKOUT_SUCCESS}
+          element={
+            <ProtectedRoute>
+              <CheckoutSuccess />
             </ProtectedRoute>
           }
         />

@@ -19,4 +19,7 @@ export const generalRoutes = {
   COURSE_CONTENT: "/my-courses/:id",
   MY_COURSES: "/my-courses",
   MY_PROFILE: "/my-profile",
+  CHECKOUT: "/checkout",
+  CHECKOUT_ERROR: "/checkout-error",
+  CHECKOUT_SUCCESS: "/checkout-success",
 };

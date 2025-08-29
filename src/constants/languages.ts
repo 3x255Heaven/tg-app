@@ -65,6 +65,12 @@ export const ENGLISH_TRANSLATION = {
   contact_footer: "Thank you for your trust!",
   send: "Send",
   message: "Message",
+  oops: "Oops!",
+  thank_you: "Thank You!",
+  checkout_error: "Something went wrong during checkout. Please try again.",
+  checkout_success: "Your purchase was successful. Enjoy your course!",
+  retry_checkout: "Retry Checkout",
+  go_to_courses: "Go to Courses",
 };
 
 export const SERBIAN_TRANSLATION = {
@@ -92,8 +98,8 @@ export const SERBIAN_TRANSLATION = {
   cart: "Korpa",
   total: "Ukupno",
   checkout: "Nastavi sa kupovinom",
-  my_courses: "Kursevi",
-  my_profile: "Profil",
+  my_courses: "Moji kursevi",
+  my_profile: "Moj profil",
   change_password: "Promeni lozinku",
   old_password: "Stara lozinka",
   new_password: "Nova lozinka",
@@ -130,4 +136,10 @@ export const SERBIAN_TRANSLATION = {
   contact_footer: "Hvala ti na poverenju! ",
   send: "Pošalji",
   message: "Poruka",
+  oops: "Oops!",
+  thank_you: "Thank You!",
+  checkout_error: "Something went wrong during checkout. Please try again.",
+  checkout_success: "Your purchase was successful. Enjoy your course!",
+  retry_checkout: "Retry Checkout",
+  go_to_courses: "Go to Courses",
 };
