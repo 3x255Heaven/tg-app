@@ -1,11 +1,19 @@
 import AdminDashboardBackgroundLayer from "@dashboard/hoc/AdminDashboardBackgroundLayer";
-import React from "react";
+import { clearCart } from "@store/slices/authSlice";
+import { AppDispatch } from "@store/store";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const CheckoutSuccess: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(clearCart());
+  }, []);
 
   return (
     <AdminDashboardBackgroundLayer>
