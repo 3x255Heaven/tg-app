@@ -169,6 +169,14 @@ const authSlice = createSlice({
       state.cart = state.cart.filter((item: any) => item._id !== courseId);
       localStorage.setItem("cart", JSON.stringify(state.cart));
     },
+    clearCart: (state) => {
+      state.cart = [];
+      localStorage.removeItem("cart");
+    },
+    clearUser: (state) => {
+      state.user = null;
+      localStorage.removeItem("user");
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -205,5 +213,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart } = authSlice.actions;
+export const { addToCart, removeFromCart, clearCart, clearUser } =
+  authSlice.actions;
 export default authSlice.reducer;
