@@ -22,6 +22,7 @@ import ResetPassword from "@dashboard/pages/ForgotPassword/ResetPassword";
 import Contact from "@shop/pages/Contact/Contact";
 import CheckoutSuccess from "@shop/pages/Checkout/CheckoutSuccess";
 import CheckoutError from "@shop/pages/Checkout/CheckoutError";
+import Checkout from "@shop/pages/Checkout/Checkout";
 
 const App = () => {
   return (
@@ -102,6 +103,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <CourseContent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={generalRoutes.CHECKOUT}
+          element={
+            <ProtectedRoute>
+              <Checkout />
             </ProtectedRoute>
           }
         />

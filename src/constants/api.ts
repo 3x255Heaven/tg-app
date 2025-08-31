@@ -13,4 +13,6 @@ export const apiRoutes = {
   courses: "/api/courses",
   featuredCourses: "/api/featured-courses",
   publicCourses: "/api/public-courses",
+  checkoutData: "/api/payment/data",
+  contactSubmit: "/api/contact/submit",
 };

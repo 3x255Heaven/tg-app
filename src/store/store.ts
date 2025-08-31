@@ -1,11 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "@store/slices/authSlice";
 import courseReducer from "@store/slices/courseSlice";
+import checkoutSlice from "@store/slices/checkoutSlice";
+import contactSlice from "@store/slices/contactSlice";
 
 export const store = configureStore({
   reducer: {
     authReducer,
     courseReducer,
+    checkoutSlice,
+    contactSlice,
   },
 });
 

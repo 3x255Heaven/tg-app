@@ -71,6 +71,12 @@ export const ENGLISH_TRANSLATION = {
   checkout_success: "Your purchase was successful. Enjoy your course!",
   retry_checkout: "Retry Checkout",
   go_to_courses: "Go to Courses",
+  go_back: "Go Back",
+  no_courses_title: "No courses yet",
+  no_courses_description:
+    "You haven't enrolled in any courses yet. Start exploring and learning today!",
+  browse_courses: "Browse Courses",
+  message_sent: "Message sent successfully!",
 };
 
 export const SERBIAN_TRANSLATION = {
@@ -142,4 +148,10 @@ export const SERBIAN_TRANSLATION = {
   checkout_success: "Your purchase was successful. Enjoy your course!",
   retry_checkout: "Retry Checkout",
   go_to_courses: "Go to Courses",
+  go_back: "Vrati se",
+  no_courses_title: "Još uvek nema kurseva",
+  no_courses_description:
+    "Niste se još prijavili ni na jedan kurs. Počnite da istražujete i učite već danas!",
+  browse_courses: "Pregledaj kurseve",
+  message_sent: "Poruka je poslata!",
 };

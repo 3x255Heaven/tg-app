@@ -1,11 +1,15 @@
 import ShopLayout from "@shop/hoc/ShopLayout";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InstagramIcon from "@assets/svgs/icons/InstagramIcon";
 import MailIcon from "@assets/svgs/icons/MailIcon";
 import PhoneIcon from "@assets/svgs/icons/PhoneIcon";
 import TiktokIcon from "@assets/svgs/icons/TikTokIcon";
 import contactMe from "@assets/brand/contactme.png";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@store/store";
+import { resetContactState, sendContactForm } from "@store/slices/contactSlice";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -24,11 +28,26 @@ const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const dispatch = useDispatch<AppDispatch>();
+  const { success, error } = useSelector(
+    (state: RootState) => state.contactSlice
+  );
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // TODO: connect to backend/email
+    dispatch(sendContactForm(formData));
   };
+
+  useEffect(() => {
+    if (success) {
+      toast.success(t("message_sent"));
+      dispatch(resetContactState());
+      setFormData({ firstName: "", lastName: "", email: "", message: "" });
+    }
+    if (error) {
+      toast.error(error);
+    }
+  }, [success, error, dispatch]);
 
   return (
     <ShopLayout>
@@ -77,7 +96,7 @@ const Contact = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="text"
-                name="name"
+                name="firstName"
                 placeholder={t("first_name")}
                 value={formData.firstName}
                 onChange={handleChange}

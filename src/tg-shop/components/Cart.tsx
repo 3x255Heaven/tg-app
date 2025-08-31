@@ -5,8 +5,10 @@ import DeleteIcon from "@assets/svgs/icons/DeleteIcon";
 import { dispatch, RootState } from "@store/store";
 import { useSelector } from "react-redux";
 import { removeFromCart } from "@store/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Cart = ({ isActive, closeCart }: any) => {
+  const navigate = useNavigate();
   const cart = useSelector((state: RootState) => state.authReducer.cart);
 
   const { t } = useTranslation();
@@ -102,7 +104,12 @@ const Cart = ({ isActive, closeCart }: any) => {
             <span>{t("total")}</span>
             <span className="text-[#BB8F32]">{cartTotal}.00 RSD</span>
           </div>
-          <button className="mt-3 w-full bg-[#BB8F32] text-white py-2 text-lg font-bold rounded-md hover:bg-[#a3792a] transition cursor-pointer">
+          <button
+            className="mt-3 w-full bg-[#BB8F32] text-white py-2 text-lg font-bold rounded-md hover:bg-[#a3792a] transition cursor-pointer"
+            onClick={() => {
+              navigate("/checkout");
+            }}
+          >
             {t("checkout")}
           </button>
         </div>

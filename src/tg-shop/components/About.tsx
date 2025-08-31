@@ -6,7 +6,7 @@ const About = () => {
   return (
     <div className="w-full flex flex-col lg:flex-row justify-center items-center gap-8 px-6 lg:px-10 pb-10">
       <img
-        className="w-full max-w-[590px] h-auto lg:h-[680px] object-contain"
+        className="w-full max-w-[590px] h-auto lg:h-[720px] object-contain"
         src={aboutImage}
         alt="about"
       />
