@@ -77,6 +77,7 @@ export const ENGLISH_TRANSLATION = {
     "You haven't enrolled in any courses yet. Start exploring and learning today!",
   browse_courses: "Browse Courses",
   message_sent: "Message sent successfully!",
+  go_to_course: "Go to Course",
 };
 
 export const SERBIAN_TRANSLATION = {
@@ -154,4 +155,5 @@ export const SERBIAN_TRANSLATION = {
     "Niste se još prijavili ni na jedan kurs. Počnite da istražujete i učite već danas!",
   browse_courses: "Pregledaj kurseve",
   message_sent: "Poruka je poslata!",
+  go_to_course: "Idi na kurs",
 };

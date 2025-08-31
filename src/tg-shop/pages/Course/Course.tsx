@@ -16,9 +16,14 @@ const Course = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { course, isLoading } = useSelector(
+  const { user } = useSelector((state: RootState) => state.authReducer);
+  const { course, userCourses, isLoading } = useSelector(
     (state: RootState) => state.courseReducer
   );
+
+  const isCourseOwnedByUser = (courseId: string) => {
+    return userCourses.some((userCourse) => userCourse._id === courseId);
+  };
 
   useEffect(() => {
     if (id) {
@@ -96,14 +101,26 @@ const Course = () => {
                 {course.description}
               </span>
             </div>
-            <span
-              className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] mt-6 sm:mt-10 h-[2.5rem] px-6 sm:px-8 py-2 rounded-full border-0 text-white font-poppins text-[14px] sm:text-[16px] cursor-pointer flex justify-center items-center text-center w-full sm:w-fit mx-auto lg:mx-0"
-              onClick={() => {
-                dispatch(addToCart(course));
-              }}
-            >
-              {t("add_to_cart")}
-            </span>
+            {user && (
+              <span
+                className={`mt-6 cursor-pointer h-[2.5rem] w-fit px-8 py-2 rounded-full border-0 font-poppins text-[14px] sm:text-[16px] flex justify-center items-center text-center ${
+                  isCourseOwnedByUser(course._id)
+                    ? "bg-[#251D18] text-white font-medium shadow-md hover:bg-[#3a2e26] transition"
+                    : "bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] text-white cursor-pointer"
+                }`}
+                onClick={() => {
+                  if (!isCourseOwnedByUser(course._id)) {
+                    dispatch(addToCart(course));
+                  } else {
+                    navigate(`${generalRoutes.MY_COURSES}/${course._id}`);
+                  }
+                }}
+              >
+                {isCourseOwnedByUser(course._id)
+                  ? t("go_to_course")
+                  : t("add_to_cart")}
+              </span>
+            )}
           </div>
           <div className="flex justify-center w-full lg:w-1/2">
             <img

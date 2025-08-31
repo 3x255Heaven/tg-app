@@ -11,9 +11,14 @@ const Courses = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  const { publicCourses } = useSelector(
+  const { user } = useSelector((state: RootState) => state.authReducer);
+  const { publicCourses, userCourses } = useSelector(
     (state: RootState) => state.courseReducer
   );
+
+  const isCourseOwnedByUser = (courseId: string) => {
+    return userCourses.some((userCourse) => userCourse._id === courseId);
+  };
 
   return (
     <ShopLayout>
@@ -62,14 +67,28 @@ const Courses = () => {
                     .00 RSD
                   </span>
                 </div>
-                <span
-                  className="bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] mt-2 h-[2.5rem] w-fit px-8 py-2 rounded-full border-0 text-white font-poppins text-[14px] sm:text-[16px] cursor-pointer flex justify-center items-center text-center"
-                  onClick={() => {
-                    dispatch(addToCart(courseItem));
-                  }}
-                >
-                  {t("add_to_cart")}
-                </span>
+                {user && (
+                  <span
+                    className={`mt-2 h-[2.5rem] w-fit px-8 py-2 rounded-full border-0 font-poppins text-[14px] sm:text-[16px] flex justify-center items-center text-center ${
+                      isCourseOwnedByUser(courseItem._id)
+                        ? "bg-[#251D18] text-white font-medium shadow-md hover:bg-[#3a2e26] transition"
+                        : "bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] text-white cursor-pointer"
+                    }`}
+                    onClick={() => {
+                      if (!isCourseOwnedByUser(courseItem._id)) {
+                        dispatch(addToCart(courseItem));
+                      } else {
+                        navigate(
+                          `${generalRoutes.MY_COURSES}/${courseItem._id}`
+                        );
+                      }
+                    }}
+                  >
+                    {isCourseOwnedByUser(courseItem._id)
+                      ? t("go_to_course")
+                      : t("add_to_cart")}
+                  </span>
+                )}
               </div>
             );
           })}
