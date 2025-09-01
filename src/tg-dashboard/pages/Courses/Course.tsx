@@ -10,9 +10,10 @@ import { ModalType } from "./Courses";
 import DeleteCourse from "@dashboard/components/modals/DeleteCourse";
 import UpdateCourse from "@dashboard/components/modals/UpdateCourse";
 import { dashboardRoutes } from "@routes";
+import { Course as CourseModel } from "@store/slices/courseSlice";
 
 interface CourseProps {
-  course: any;
+  course: CourseModel;
 }
 
 const Course: React.FC<CourseProps> = ({ course }) => {

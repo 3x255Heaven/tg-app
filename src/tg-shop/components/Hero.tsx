@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
-import heroVideo from "@assets/brand/Hero.mp4";
 import { useNavigate } from "react-router-dom";
+
 import { generalRoutes } from "@routes";
+
+import heroVideo from "@assets/brand/Hero.mp4";
 
 const Hero = () => {
   const { t } = useTranslation();

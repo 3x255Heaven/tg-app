@@ -1,6 +1,19 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import { AppDispatch, RootState } from "@store/store";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getFeaturedCourses,
+  getPublicCourses,
+  getUserCourses,
+} from "@store/slices/courseSlice";
+import { logoutRequest } from "@store/slices/authSlice";
+
+import { languages } from "@constants/languages";
+import { dashboardRoutes, generalRoutes } from "@routes";
+
 import InstagramIcon from "@assets/svgs/icons/InstagramIcon";
 import MailIcon from "@assets/svgs/icons/MailIcon";
 import PhoneIcon from "@assets/svgs/icons/PhoneIcon";
@@ -10,17 +23,6 @@ import brandImage from "@assets/brand/tg.png";
 import MenuIcon from "@assets/svgs/icons/MenuIcon";
 import Cart from "@shop/components/Cart";
 import CartIcon from "@assets/svgs/icons/CartIcon";
-import { languages } from "@constants/languages";
-
-import { dashboardRoutes, generalRoutes } from "@routes";
-import { AppDispatch, RootState } from "@store/store";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getFeaturedCourses,
-  getPublicCourses,
-  getUserCourses,
-} from "@store/slices/courseSlice";
-import { logoutRequest } from "@store/slices/authSlice";
 
 import aikBank from "@assets/banks/aikbank.png";
 import intesaBank from "@assets/banks/intesabank.png";

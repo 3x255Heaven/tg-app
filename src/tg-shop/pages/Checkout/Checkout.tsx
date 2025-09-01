@@ -1,6 +1,7 @@
 import Spinner from "@assets/svgs/Spinner";
 import AdminDashboardBackgroundLayer from "@dashboard/hoc/AdminDashboardBackgroundLayer";
 import { getCheckoutData } from "@store/slices/checkoutSlice";
+import { Course } from "@store/slices/courseSlice";
 import { AppDispatch, RootState } from "@store/store";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -20,7 +21,7 @@ const Checkout = () => {
   );
 
   const cartTotal = cart.reduce(
-    (total: number, course: any) => total + (course.price - course.discount),
+    (total: number, course: Course) => total + (course.price - course.discount),
     0
   );
 
@@ -48,7 +49,7 @@ const Checkout = () => {
         </div>
       ) : (
         <div className="flex flex-col gap-8 max-h-[76vh] w-[50vw] overflow-y-auto items-center justify-start p-10 rounded-[12px] shadow-[0px_4px_30px_0px_#00000026] bg-white">
-          {cart.map((course: any) => (
+          {cart.map((course: Course) => (
             <div
               key={course._id}
               className="flex justify-between items-center w-full"

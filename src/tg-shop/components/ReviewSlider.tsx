@@ -1,9 +1,10 @@
 import { useCallback, useRef } from "react";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import "swiper/css";
-import ReviewItem from "./ReviewItem";
-import ArrowDownIcon from "@assets/svgs/icons/ArrowDownIcon";
 
+import ReviewItem from "./ReviewItem";
+
+import ArrowDownIcon from "@assets/svgs/icons/ArrowDownIcon";
 import nikolinaImage from "@assets/brand/reviews/NikolinaVrekic.jpg";
 import kikaImage from "@assets/brand/reviews/KikaRajic.jpg";
 import lavImage from "@assets/brand/reviews/LavBoka.jpeg";
@@ -14,7 +15,7 @@ import { useTranslation } from "react-i18next";
 const ReviewSlider = () => {
   const { t } = useTranslation();
 
-  const reivewItems = [
+  const reviewItems = [
     {
       id: 1,
       name: "Nikolina Vrekic",
@@ -66,33 +67,44 @@ const ReviewSlider = () => {
 
   return (
     <section className="pt-10">
-      <div className="container mx-auto px-6 sm:px-10 md:px-20">
-        <Swiper slidesPerView={1} spaceBetween={10} ref={sliderRef}>
-          {reivewItems.map((reivewItem) => {
-            return (
-              <SwiperSlide key={reivewItem.id}>
-                <ReviewItem
-                  image={reivewItem.image}
-                  details={reivewItem.content}
-                  name={reivewItem.name}
-                  social={reivewItem.social}
-                />
-              </SwiperSlide>
-            );
-          })}
-          <div className="absolute top-1/3 left-0 right-0 z-10 flex items-center justify-between px-4">
-            <div className="cursor-pointer" onClick={handlePrev}>
-              <div className="border rounded-full p-4 rotate-90">
-                <ArrowDownIcon />
-              </div>
-            </div>
-            <div className="cursor-pointer" onClick={handleNext}>
-              <div className="border rounded-full p-4 rotate-270">
-                <ArrowDownIcon />
-              </div>
-            </div>
-          </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative">
+        <Swiper
+          ref={sliderRef}
+          spaceBetween={16}
+          slidesPerView={1}
+          breakpoints={{
+            640: { slidesPerView: 1, spaceBetween: 20 },
+            768: { slidesPerView: 1, spaceBetween: 24 },
+            1024: { slidesPerView: 1, spaceBetween: 32 },
+            1280: { slidesPerView: 1, spaceBetween: 40 },
+          }}
+        >
+          {reviewItems.map((reviewItem) => (
+            <SwiperSlide key={reviewItem.id}>
+              <ReviewItem
+                image={reviewItem.image}
+                details={reviewItem.content}
+                name={reviewItem.name}
+                social={reviewItem.social}
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
+
+        <div className="hidden md:flex absolute inset-y-0 left-0 right-0 items-center justify-between px-2 sm:px-4 pointer-events-none">
+          <div
+            className="cursor-pointer pointer-events-auto bg-white shadow-md border rounded-full p-3 lg:p-4 rotate-90 ml-[-3rem]"
+            onClick={handlePrev}
+          >
+            <ArrowDownIcon />
+          </div>
+          <div
+            className="cursor-pointer pointer-events-auto bg-white shadow-md border rounded-full p-3 lg:p-4 -rotate-90 mr-[-3rem]"
+            onClick={handleNext}
+          >
+            <ArrowDownIcon />
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -2,11 +2,11 @@ import React from "react";
 import DeleteIcon from "@assets/svgs/icons/DeleteIcon";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@store/store";
-import { deleteCourse } from "@store/slices/courseSlice";
+import { Course, deleteCourse } from "@store/slices/courseSlice";
 
 interface DeleteCourseProps {
   closeModal: () => void;
-  course: any;
+  course: Course;
 }
 
 const DeleteCourse: React.FC<DeleteCourseProps> = ({ closeModal, course }) => {

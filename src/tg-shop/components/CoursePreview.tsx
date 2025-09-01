@@ -1,10 +1,13 @@
-import { useTranslation } from "react-i18next";
-import Line from "@assets/svgs/Line";
 import { useNavigate } from "react-router-dom";
-import { generalRoutes } from "@routes";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
+
 import { AppDispatch, RootState } from "@store/store";
 import { addToCart } from "@store/slices/authSlice";
+
+import { generalRoutes } from "@routes";
+
+import Line from "@assets/svgs/Line";
 
 const CoursePreview = () => {
   const { t } = useTranslation();

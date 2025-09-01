@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import CloseIcon from "@assets/svgs/icons/CloseIcon";
 import { useDispatch } from "react-redux";
-import { updateCourse } from "@store/slices/courseSlice";
+import { Course, updateCourse } from "@store/slices/courseSlice";
 import { AppDispatch } from "@store/store";
 
 interface UpdateCourseProps {
   closeModal: () => void;
-  course: any;
+  course: Course;
 }
 
 const UpdateCourse: React.FC<UpdateCourseProps> = ({ closeModal, course }) => {
