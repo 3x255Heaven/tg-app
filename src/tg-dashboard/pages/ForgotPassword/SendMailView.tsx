@@ -14,10 +14,6 @@ const SendMailView = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  const handleEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmailValue(event.target.value);
-  };
-
   const handleSubmit = () => {
     if (emailValue) {
       dispatch(forgotPassword({ email: emailValue }));
@@ -25,48 +21,51 @@ const SendMailView = () => {
   };
 
   return (
-    <>
-      <div className="w-[50px] h-[50px] bg-[#bb8f324d] rounded-full flex justify-center items-center mb-4">
+    <div className="flex flex-col items-center w-full gap-4">
+      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#bb8f324d] rounded-full flex justify-center items-center mb-2">
         <KeyIcon />
       </div>
-      <span className="font-montserrat text-[30px] font-bold leading-[43px] tracking-[0.04em]">
+      <h1 className="text-2xl sm:text-3xl font-bold font-montserrat text-center">
         Forgot password
-      </span>
-      <span className="font-poppins">
+      </h1>
+      <p className="text-center font-poppins">
         No worries, we'll send you reset instructions.
-      </span>
-      <div className="flex flex-col items-center justify-center mt-4 w-full p-4 pt-0 pb-0">
+      </p>
+
+      <div className="flex flex-col w-full gap-4 mt-2">
         <input
           type="text"
           placeholder="Email Address"
-          onChange={handleEmail}
-          className="w-full border border-[#e1e1e1] rounded-[2rem] h-[3rem] p-2 px-4 text-[#000] font-poppins leading-[22.5px]"
+          value={emailValue}
+          onChange={(e) => setEmailValue(e.target.value)}
+          className="w-full border border-gray-300 rounded-2xl h-12 px-4 font-poppins focus:outline-none focus:ring-2 focus:ring-[#bb8f32]"
         />
-        <span
-          className={`${
-            emailValue.length > 0
-              ? "cursor-pointer opacity-100"
-              : "cursor-not-allowed opacity-50"
-          } bg-gradient-to-r from-[#bb8f32] to-[#f6dc94] h-[45px] w-full rounded-full border-0 text-white font-poppins text-[18px] font-bold mt-6 cursor-pointer flex justify-center items-center text-center`}
+
+        <button
+          disabled={!emailValue}
           onClick={() => {
             setCurrentView("submitted");
             setEmail(emailValue);
             handleSubmit();
           }}
+          className={`${
+            emailValue
+              ? "cursor-pointer opacity-100"
+              : "cursor-not-allowed opacity-50"
+          } bg-gradient-to-r from-[#bb8f32] via-[#bb8f32] to-[#f6dc94] h-12 w-full rounded-full text-white font-poppins font-bold flex justify-center items-center mt-2`}
         >
           Submit
-        </span>
+        </button>
+
         <div
-          className="text-[#bb8f32] font-bold font-poppins self-center text-[18px] cursor-pointer flex justify-center items-center mt-6"
-          onClick={() => {
-            navigate(generalRoutes.LOGIN);
-          }}
+          className="text-[#bb8f32] font-bold font-poppins text-center text-lg cursor-pointer flex justify-center items-center gap-2 mt-4"
+          onClick={() => navigate(generalRoutes.LOGIN)}
         >
-          <span className="text-[32px] h-[53px] mr-2">&#8592;</span>
+          <span className="text-2xl sm:text-3xl">&#8592;</span>
           <span>Back to Log In</span>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import ShopLayout from "@shop/hoc/ShopLayout";
 import Hero from "@shop/components/Hero";
 import CoursePreview from "@shop/components/CoursePreview";
 import About from "@shop/components/About";
-import Reviews from "@shop/components/Reviews";
+import Reviews from "@shop/components/reviews/Reviews";
 
 const Home = () => {
   return (

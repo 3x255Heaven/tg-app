@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -9,6 +9,7 @@ import { Course } from "@store/slices/courseSlice";
 
 import DeleteIcon from "@assets/svgs/icons/DeleteIcon";
 import CloseIcon from "@assets/svgs/icons/CloseIcon";
+import CartIcon from "@assets/svgs/icons/CartIcon";
 
 interface CartProps {
   isActive: boolean;
@@ -121,4 +122,42 @@ const Cart = ({ isActive, closeCart }: CartProps) => {
   );
 };
 
-export default Cart;
+const CartWrapper = () => {
+  const [isCartActive, setIsCartActive] = useState(false);
+  const { cart } = useSelector((state: RootState) => state.authReducer);
+
+  return (
+    <>
+      <div
+        className={`${
+          isCartActive ? "pointer-events-none" : ""
+        } relative border border-[#BB8F32] rounded-full p-1.5 cursor-pointer`}
+        onClick={() => {
+          setIsCartActive(true);
+        }}
+      >
+        <CartIcon />
+        {cart?.length > 0 && (
+          <span className="absolute -top-1 -right-1 bg-[#BB8F32] text-white text-xs font-bold rounded-full pt-0.5 w-6 h-6 flex items-center justify-center">
+            {cart.length}
+          </span>
+        )}
+      </div>
+
+      <Cart
+        isActive={isCartActive}
+        closeCart={() => {
+          setIsCartActive(false);
+        }}
+      />
+      {isCartActive && (
+        <div
+          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
+          onClick={() => setIsCartActive(false)}
+        />
+      )}
+    </>
+  );
+};
+
+export { CartWrapper as Cart };

@@ -36,16 +36,21 @@ const Courses = () => {
             return (
               <div
                 key={courseItem._id}
-                className="flex flex-col justify-center items-center max-w-xs sm:max-w-sm cursor-pointer"
+                className="flex flex-col justify-center items-center w-[220px] sm:w-[260px] cursor-pointer"
               >
-                <img
-                  className="rounded-lg h-[200px] sm:h-[240px] w-full object-cover"
-                  src={courseItem.imageUrl}
-                  alt={courseItem.name}
+                <div
+                  className="w-full h-[200px] sm:h-[240px] overflow-hidden rounded-lg"
                   onClick={() => {
                     navigate(`${generalRoutes.COURSES}/${courseItem._id}`);
                   }}
-                />
+                >
+                  <img
+                    className="w-full h-full object-cover"
+                    src={courseItem.imageUrl}
+                    alt={courseItem.name}
+                  />
+                </div>
+
                 <div
                   className="px-4 py-2 flex flex-col justify-center items-center"
                   onClick={() => {

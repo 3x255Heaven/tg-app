@@ -93,7 +93,7 @@ const CoursePreview = () => {
           );
         })}
       </div>
-      <div className="w-full flex justify-center gap-4 items-center mt-10 flex-wrap">
+      <div className="w-full flex justify-center gap-4 items-center mt-14 flex-wrap">
         <Line customStyle="w-1/5 bg-[#BB8F32] lg:bg-none lg:w-auto " />
 
         <span

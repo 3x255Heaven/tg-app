@@ -14,52 +14,53 @@ const CheckMailView = () => {
 
   const handleSubmit = () => {
     if (email) {
-      dispatch(forgotPassword({ email: email }));
+      dispatch(forgotPassword({ email }));
       navigate(generalRoutes.LOGIN);
     }
   };
 
   return (
-    <>
-      <div className="w-[50px] h-[50px] bg-[#bb8f324d] rounded-full flex justify-center items-center mb-4">
+    <div className="flex flex-col items-center w-full gap-4">
+      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#bb8f324d] rounded-full flex justify-center items-center mb-2">
         <MailIcon />
       </div>
-      <span className="font-montserrat text-[30px] font-bold leading-[43px] tracking-[0.04em]">
+      <h1 className="text-2xl sm:text-3xl font-bold font-montserrat text-center">
         Check your email
-      </span>
-      <span className="font-poppins text-[14px] mt-2">
+      </h1>
+      <p className="text-center font-poppins text-sm sm:text-base">
         We sent a password reset link to
+      </p>
+      <span className="font-poppins text-[#bb8f32] text-sm sm:text-base">
+        {email}
       </span>
-      <span className="font-poppins text-[#bb8f32] text-[14px]">{email}</span>
-      <div className="flex flex-col items-center justify-center mt-2 w-full p-4 pt-0 pb-0">
-        <span
-          className="bg-gradient-to-r from-[#bb8f32] to-[#f6dc94] h-[45px] w-full rounded-full border-0 text-white font-poppins text-[18px] font-bold cursor-pointer flex justify-center items-center text-center mt-4"
+
+      <div className="flex flex-col w-full gap-4 mt-2">
+        <button
           onClick={() => window.open("https://mail.google.com", "_blank")}
+          className="cursor-pointer bg-gradient-to-r from-[#bb8f32] via-[#bb8f32] to-[#f6dc94] h-12 w-full rounded-full text-white font-poppins font-bold flex justify-center items-center mt-2"
         >
           Open Email
-        </span>
-        <div className="mt-6 flex justify-center items-center gap-2">
+        </button>
+
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-2 mt-2 text-sm sm:text-base">
           <span className="font-poppins">Didn’t receive the email?</span>
           <span
             className="font-poppins text-[#bb8f32] cursor-pointer"
-            onClick={() => {
-              handleSubmit();
-            }}
+            onClick={handleSubmit}
           >
             Resend
           </span>
         </div>
+
         <div
-          className="text-[#bb8f32] font-[600] font-poppins self-center text-[18px] cursor-pointer flex justify-center items-center mt-6"
-          onClick={() => {
-            navigate(generalRoutes.LOGIN);
-          }}
+          className="text-[#bb8f32] font-bold font-poppins text-center text-lg cursor-pointer flex justify-center items-center gap-2 mt-4"
+          onClick={() => navigate(generalRoutes.LOGIN)}
         >
-          <span className="text-[32px] h-[53px] mr-2">&#8592;</span>
+          <span className="text-2xl sm:text-3xl">&#8592;</span>
           <span>Back to Log In</span>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

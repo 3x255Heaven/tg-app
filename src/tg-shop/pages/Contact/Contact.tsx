@@ -51,16 +51,16 @@ const Contact = () => {
 
   return (
     <ShopLayout>
-      <div className="w-full flex flex-col sm:flex-row justify-center items-start p-6 sm:p-10 mt-36 mb-10 gap-10">
-        <div className="w-full sm:w-1/2 flex justify-center">
+      <div className="w-full flex flex-col lg:flex-row justify-center items-stretch p-6 sm:p-10 lg:mt-36 mb-10 gap-10">
+        <div className="w-full lg:w-1/3 flex justify-center items-center">
           <img
             src={contactMe}
             alt="Teodora Grubor"
-            className="max-w-md rounded-2xl shadow-lg"
+            className="w-full h-full object-cover rounded-2xl shadow-lg"
           />
         </div>
 
-        <div className="w-full sm:w-1/2 flex flex-col items-start gap-6">
+        <div className="w-full lg:w-1/3 flex flex-col justify-center gap-6">
           <div>
             <h1 className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] mb-6">
               {t("contact_title")}

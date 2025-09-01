@@ -18,30 +18,31 @@ const MyCourses = () => {
 
   return (
     <ShopLayout>
-      <div className="w-full flex flex-col justify-center items-center p-6 sm:p-10 mt-35 mb-5">
+      <div className="w-full flex flex-col justify-center items-center p-6 sm:p-10 mt-30 mb-10">
         {hasCourses ? (
           <>
             <div className="w-full flex flex-col justify-center items-center">
-              <span className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] [text-shadow:0px_4px_5.3px_#BB8F3259]">
+              <h1 className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] [text-shadow:0px_4px_5.3px_#BB8F3259]">
                 {t("my_courses")}
-              </span>
+              </h1>
             </div>
-            <div className="w-full min-h-[40vh] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-14">
+
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full max-w-7xl">
               {userCourses.map((courseItem) => (
                 <div
                   key={courseItem._id}
-                  className="flex flex-col justify-center items-center max-w-md lg:max-w-lg cursor-pointer"
+                  className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:scale-[1.03] cursor-pointer overflow-hidden"
                   onClick={() =>
-                    navigate(`${generalRoutes.MY_COURSES}/${courseItem._id}`)
+                    navigate(`${generalRoutes.COURSES}/${courseItem._id}`)
                   }
                 >
                   <img
-                    className="rounded-lg h-[300px] sm:h-[350px] w-full object-cover"
+                    className="w-full h-56 object-cover"
                     src={courseItem.imageUrl}
                     alt={courseItem.name}
                   />
-                  <div className="px-4 py-3 flex flex-col justify-center items-center text-center">
-                    <span className="mb-1 font-bold tracking-tight text-black text-md sm:text-lg">
+                  <div className="p-4 flex flex-col justify-center items-center">
+                    <span className="mb-1 font-semibold tracking-tight text-black text-base sm:text-lg text-center">
                       {courseItem.name}
                     </span>
                   </div>
@@ -50,12 +51,12 @@ const MyCourses = () => {
             </div>
           </>
         ) : (
-          <div className="flex flex-col items-center justify-center text-center min-h-[40vh]">
-            <EmptyIcon />
-            <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-2">
+          <div className="flex flex-col items-center justify-center text-center min-h-[50vh] px-4">
+            <EmptyIcon customStyle="w-20 h-20 mb-6 text-gray-400" />
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">
               {t("no_courses_title", "No courses yet")}
             </h2>
-            <p className="text-gray-500 mb-6 max-w-md">
+            <p className="text-gray-500 mb-8 max-w-lg leading-relaxed">
               {t(
                 "no_courses_description",
                 "You haven't enrolled in any courses yet. Start exploring and learning today!"
@@ -63,7 +64,7 @@ const MyCourses = () => {
             </p>
             <button
               onClick={() => navigate(generalRoutes.COURSES)}
-              className="px-6 py-3 rounded-2xl bg-[#251D18] text-white font-medium shadow-md hover:bg-[#3a2e26] transition"
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#BB8F32] to-[#F6DC94] text-[#251D18] font-semibold shadow-lg hover:opacity-90 transition"
             >
               {t("browse_courses", "Browse Courses")}
             </button>

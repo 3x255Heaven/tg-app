@@ -18,89 +18,80 @@ const Login = () => {
 
   const handleLogin = async (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) e.preventDefault();
-
     if (!email || !password) {
       toast.error("Please enter both email and password");
       return;
     }
-
     try {
       await dispatch(loginRequest({ email, password })).unwrap();
       navigate(generalRoutes.HOME);
     } catch (error: any) {
-      const errorMessage = error || "Failed to log in";
-      toast.error(errorMessage);
+      toast.error(error || "Failed to log in");
     }
   };
 
   return (
     <AdminDashboardBackgroundLayer>
-      <div className="relative w-[488px] min-h-[420px] rounded-[12px] shadow-[0px_4px_30px_0px_#00000026] bg-white p-[2.5rem]">
-        {isLoading ? (
-          <div className="w-full h-[340px] flex justify-center items-center">
-            <Spinner />
+      <div className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-lg bg-white p-6 sm:p-10 rounded-xl shadow-lg relative">
+        {isLoading && (
+          <div className="absolute inset-0 bg-white bg-opacity-75 flex justify-center items-center rounded-xl z-10">
+            <Spinner customStyle="w-16 h-16 animate-spin" />
           </div>
-        ) : (
-          <>
-            <span className="font-montserrat text-[30px] font-bold leading-[43px] tracking-[0.04em]">
-              Login
-            </span>
-            <form
-              onSubmit={handleLogin}
-              className="flex flex-col items-center justify-center mt-8 w-full p-[1rem] pt-0 pb-0"
-            >
-              <input
-                type="text"
-                placeholder="Email Address"
-                className="w-full border border-[#e1e1e1] rounded-[2rem] h-[3rem] mb-6 p-2 px-4 text-[#000] font-poppins leading-[22.5px]"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <div className="relative w-full mb-6">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Password"
-                  className="w-full border border-[#e1e1e1] rounded-[2rem] h-[3rem] p-2 px-4 text-[#000] font-poppins leading-[22.5px] pr-12"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword((prev) => !prev)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                >
-                  {showPassword ? (
-                    <EyeIcon width={22} height={22} />
-                  ) : (
-                    <EyeIcon color="#99a1af" width={22} height={22} />
-                  )}
-                </button>
-              </div>
-              <span
-                className="text-[#bb8f32] font-bold font-poppins self-end text-[14px] cursor-pointer"
-                onClick={() => navigate(generalRoutes.FORGOT_PASSWORD)}
-              >
-                Forgot your password?
-              </span>
-              <button
-                type="submit"
-                disabled={isLoading}
-                className={`${
-                  isLoading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
-                } bg-gradient-to-r from-[#bb8f32] to-[#f6dc94] via-[#bb8f32] h-[45px] w-full rounded-full border-0 text-white font-poppins text-[18px] font-bold mt-6 flex justify-center items-center text-center`}
-              >
-                Log In
-              </button>
-              <span
-                className="text-[#bb8f32] font-bold font-poppins text-[14px] cursor-pointer mt-4"
-                onClick={() => navigate(generalRoutes.REGISTER)}
-              >
-                Don't have an account?
-              </span>
-            </form>
-          </>
         )}
+        <h1 className="text-2xl sm:text-3xl font-bold font-montserrat text-center mb-8">
+          Login
+        </h1>
+        <form onSubmit={handleLogin} className="flex flex-col gap-4 w-full">
+          <input
+            type="text"
+            placeholder="Email Address"
+            className="w-full border border-gray-300 rounded-2xl h-12 px-4 text-gray-900 font-poppins focus:outline-none focus:ring-2 focus:ring-[#bb8f32]"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <div className="relative w-full">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className="w-full border border-gray-300 rounded-2xl h-12 px-4 pr-12 text-gray-900 font-poppins focus:outline-none focus:ring-2 focus:ring-[#bb8f32]"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              <EyeIcon
+                width={22}
+                height={22}
+                color={showPassword ? "#000" : "#99a1af"}
+              />
+            </button>
+          </div>
+          <span
+            className="text-[#bb8f32] font-bold font-poppins text-sm self-end cursor-pointer"
+            onClick={() => navigate(generalRoutes.FORGOT_PASSWORD)}
+          >
+            Forgot your password?
+          </span>
+          <button
+            type="submit"
+            disabled={isLoading}
+            className={`${
+              isLoading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
+            } bg-gradient-to-r from-[#bb8f32] via-[#bb8f32] to-[#f6dc94] h-12 w-full rounded-full text-white font-poppins font-bold text-lg flex justify-center items-center mt-4`}
+          >
+            Log In
+          </button>
+          <span
+            className="text-[#bb8f32] font-bold font-poppins text-sm text-center mt-4 cursor-pointer"
+            onClick={() => navigate(generalRoutes.REGISTER)}
+          >
+            Don't have an account?
+          </span>
+        </form>
       </div>
     </AdminDashboardBackgroundLayer>
   );
