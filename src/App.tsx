@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { dashboardRoutes, generalRoutes } from "./routes";
 import Login from "@dashboard/pages/Login/Login";
 import ForgotPassword from "@dashboard/pages/ForgotPassword/ForgotPassword";
-import Notifications from "@dashboard/pages/Notifications/Notifications";
-import Wallet from "@dashboard/pages/Wallet/Wallet";
 import Courses from "@shop/pages/Courses/Courses";
 import DashboardCourses from "@dashboard/pages/Courses/Courses";
 import Overview from "@dashboard/pages/Overview/Overview";
@@ -29,14 +27,6 @@ const App = () => {
     <Router>
       <Routes>
         <Route
-          path={dashboardRoutes.DASHBOARD_NOTIFICATIONS}
-          element={
-            <ProtectedRoute>
-              <Notifications />
-            </ProtectedRoute>
-          }
-        />
-        <Route
           path={dashboardRoutes.DASHBOARD_OVERVIEW}
           element={
             <ProtectedRoute>
@@ -57,14 +47,6 @@ const App = () => {
           element={
             <ProtectedRoute>
               <CourseDetails />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={dashboardRoutes.DASHBOARD_WALLET}
-          element={
-            <ProtectedRoute>
-              <Wallet />
             </ProtectedRoute>
           }
         />

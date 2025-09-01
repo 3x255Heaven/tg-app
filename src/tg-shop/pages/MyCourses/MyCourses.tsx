@@ -33,7 +33,7 @@ const MyCourses = () => {
                   key={courseItem._id}
                   className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-transform transform hover:scale-[1.03] cursor-pointer overflow-hidden"
                   onClick={() =>
-                    navigate(`${generalRoutes.COURSES}/${courseItem._id}`)
+                    navigate(`${generalRoutes.MY_COURSES}/${courseItem._id}`)
                   }
                 >
                   <img
@@ -64,7 +64,7 @@ const MyCourses = () => {
             </p>
             <button
               onClick={() => navigate(generalRoutes.COURSES)}
-              className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#BB8F32] to-[#F6DC94] text-[#251D18] font-semibold shadow-lg hover:opacity-90 transition"
+              className="cursor-pointer px-6 py-3 rounded-xl bg-gradient-to-r from-[#BB8F32] to-[#F6DC94] text-[#251D18] font-semibold shadow-lg hover:opacity-90 transition"
             >
               {t("browse_courses", "Browse Courses")}
             </button>

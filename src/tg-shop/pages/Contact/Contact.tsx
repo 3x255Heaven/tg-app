@@ -69,11 +69,25 @@ const Contact = () => {
 
             <div className="flex flex-col gap-3 text-lg mb-6">
               <div className="flex items-center gap-2">
-                <InstagramIcon />
+                <a
+                  className="cursor-pointer"
+                  href={"https://instagram.com/teodora.makeup"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <InstagramIcon />
+                </a>
                 <span>@teodora.makeup</span>
               </div>
               <div className="flex items-center gap-2">
-                <TiktokIcon />
+                <a
+                  className="cursor-pointer"
+                  href={"https://tiktok.com/@teodoragrubor"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <TiktokIcon />
+                </a>
                 <span>Teodora Grubor</span>
               </div>
               <div className="flex items-center gap-2">

@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import DashboardIcon from "@assets/svgs/icons/DashboardIcon";
 import ManageCoursesIcon from "@assets/svgs/icons/ManageCoursesIcon";
-import WalletIcon from "@assets/svgs/icons/WalletIcon";
 import PrimaryLogo from "@assets/svgs/PrimaryLogo";
 import SearchIcon from "@assets/svgs/icons/SearchIcon";
 import ArrowDownIcon from "@assets/svgs/icons/ArrowDownIcon";
@@ -11,7 +10,6 @@ import MyProfileIcon from "@assets/svgs/icons/MyProfileIcon";
 import LockIcon from "@assets/svgs/icons/LockIcon";
 import PenIcon from "@assets/svgs/icons/PenIcon";
 import LogoutIcon from "@assets/svgs/icons/LogoutIcon";
-import NotificationIcon from "@assets/svgs/icons/NotificationIcon";
 
 import MyProfile from "@dashboard/components/modals/MyProfile";
 import UpdateProfile from "@dashboard/components/modals/UpdateProfile";
@@ -61,12 +59,6 @@ const sidebarNavigationItems: SidebarNavigationItem[] = [
     label: "Manage Courses",
     icon: ManageCoursesIcon,
     route: dashboardRoutes.DASHBOARD_MANAGE_COURSES,
-  },
-  {
-    id: "wallet",
-    label: "Wallet",
-    icon: WalletIcon,
-    route: dashboardRoutes.DASHBOARD_WALLET,
   },
 ];
 
@@ -128,17 +120,6 @@ const AdminDashboardLayout: React.FC<AdminDashboardLayoutProps> = ({
           </form>
 
           <div className="flex justify-center items-center pr-10">
-            <div
-              className="relative"
-              onClick={() => {
-                navigate(dashboardRoutes.DASHBOARD_NOTIFICATIONS);
-              }}
-            >
-              <NotificationIcon customStyle="mr-8 cursor-pointer" />
-              <span className="absolute -top-1 right-6 bg-[#F93C65] text-white text-[10px] font-bold w-4 h-4 rounded-full flex justify-center items-center">
-                2
-              </span>
-            </div>
             <button
               className="flex items-center gap-1 text-[1rem] pe-1 font-bold text-[#BB8F32] rounded-full me-0 focus:ring-4 focus:ring-gray-100 cursor-pointer"
               type="button"

@@ -35,7 +35,7 @@ const CourseContent = () => {
 
   return (
     <ShopLayout>
-      <div className="w-full max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center py-10">
+      <div className="w-full max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center py-10 mt-24">
         <div className="w-full flex justify-center">
           <div className="w-full max-w-4xl aspect-video">
             <WistiaPlayer
