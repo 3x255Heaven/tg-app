@@ -1,15 +1,17 @@
 import { useCallback, useRef } from "react";
 import { Swiper, SwiperSlide, SwiperRef } from "swiper/react";
 import "swiper/css";
+import { motion, Variants, easeOut } from "framer-motion";
 
 import ReviewItem from "./ReviewItem";
-
 import ArrowDownIcon from "@assets/svgs/icons/ArrowDownIcon";
+
 import nikolinaImage from "@assets/brand/reviews/NikolinaVrekic.jpg";
 import kikaImage from "@assets/brand/reviews/KikaRajic.jpg";
 import lavImage from "@assets/brand/reviews/LavBoka.jpeg";
 import ivaImage from "@assets/brand/reviews/IvaMiletic.jpg";
 import bokaImage from "@assets/brand/reviews/BokaMakeupStudio.jpg";
+
 import { useTranslation } from "react-i18next";
 
 const ReviewSlider = () => {
@@ -42,7 +44,7 @@ const ReviewSlider = () => {
       name: "Iva Miletic",
       image: ivaImage,
       content: t("iva_review"),
-      social: "https://www.instagram.com/makeup_boka/?hl=en",
+      social: "https://www.instagram.com",
     },
     {
       id: 5,
@@ -65,6 +67,15 @@ const ReviewSlider = () => {
     sliderRef.current.swiper.slideNext();
   }, []);
 
+  const reviewVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: easeOut },
+    },
+  };
+
   return (
     <section className="pt-10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative">
@@ -81,12 +92,19 @@ const ReviewSlider = () => {
         >
           {reviewItems.map((reviewItem) => (
             <SwiperSlide key={reviewItem.id}>
-              <ReviewItem
-                image={reviewItem.image}
-                details={reviewItem.content}
-                name={reviewItem.name}
-                social={reviewItem.social}
-              />
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                variants={reviewVariants}
+              >
+                <ReviewItem
+                  image={reviewItem.image}
+                  details={reviewItem.content}
+                  name={reviewItem.name}
+                  social={reviewItem.social}
+                />
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>

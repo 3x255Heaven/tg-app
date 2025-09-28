@@ -11,16 +11,28 @@ export const ENGLISH_TRANSLATION = {
   register: "Register",
   hero: "Brush your path",
   all_courses: "All courses",
-  featured_courses: "In the spotlight",
-  featured_courses_description: "Explore what’s trending and take your picks",
+  featured_courses: "All you need",
+  featured_courses_description: "No need to wonder. The top starts here.",
   add_to_cart: "Add to cart",
   see_all_courses: "See all courses",
   about_me: "About Me",
-  about:
-    "I am Teodora Grubor. \n\nNine years ago, when I first picked up a brush, I realized that makeup was not just a hobby – it was my life’s calling. \n\nMy idea was to create a place where knowledge is accessible to everyone who wants to learn and contribute to the growth of the beauty community. So far, makeup artists from Serbia, Croatia, Bosnia and Herzegovina, Montenegro, North Macedonia, Slovenia, Switzerland, Germany, and even Thailand have completed training with me. \n\nOnline courses allow an even wider audience to develop their creativity, improve their skills, and achieve their goals, whether they see makeup as a hobby or a career. \n\nIf you haven’t learned from me yet, now is the perfect time for us to spark creativity and build confidence together. And if you already know my work, thank you for being here again! 💕",
-  reviews_title: "Words that inspire me",
+  about1:
+    "From Serbia, Croatia, Bosnia and Herzegovina, Montenegro, Macedonia, Hungary, Slovenia, Austria, Switzerland, Germany, and all the way to Thailand. Here we are.",
+  about2: "Ten years later. One name. I am ",
+  about3: "Teodora Grubor",
+  about4:
+    "What I hold in my hands is more than just a brush. It is a signature, a vision, and a name you recognize.",
+  about5:
+    "My education is more than courses. They are a gateway into a world where knowledge transforms into art, and art into perfection. Here, vision and authenticity are built.",
+  about6:
+    "Now, my knowledge and techniques are available to you too. Wherever you are. Whenever you want.",
+  about7:
+    "If this is your first time here – welcome to a world where creativity knows no bounds.",
+  about8:
+    "If you’re already part of this journey – you know you belong. And thank you.”",
+  reviews_title: "You. About me.",
   reviews_subtitle:
-    "Real stories from students who turned their passion into success.",
+    "Stories from those who have witnessed my passion for the artistry of makeup.",
   courses_title: "Featured Courses",
   courses_subtitle: "Explore what’s trending and take your picks",
   course_overview: "Course Overview",
@@ -61,7 +73,10 @@ export const ENGLISH_TRANSLATION = {
   contact_social:
     "I’d love to get to know you better. You can follow my work on social media:",
   contact_content:
-    "If you have any questions, proposals, or simply want to reach out, feel free to fill out the form below. I’ll do my best to respond as quickly as possible.",
+    "If you want to experience makeup on a whole new level, <bold>book your 1-on-1 session</bold> and witness my work firsthand.",
+  contact_content2:
+    "Or, have a question, suggestion, or idea? Fill out the form below and <bold>I’ll get back to you as soon as possible.</bold>",
+  contact_wa: "Book 1:1 Session",
   contact_footer: "Thank you for your trust!",
   send: "Send",
   message: "Message",
@@ -78,6 +93,11 @@ export const ENGLISH_TRANSLATION = {
   browse_courses: "Browse Courses",
   message_sent: "Message sent successfully!",
   go_to_course: "Go to Course",
+  conversion_statement: "Conversion Statement",
+  data_privacy: "Data Privacy Policy",
+  data_protection: "Confidential Transaction Data Protection",
+  refund_policy: "Refund Policy",
+  terms_of_use: "Terms of Use",
 };
 
 export const SERBIAN_TRANSLATION = {
@@ -88,17 +108,28 @@ export const SERBIAN_TRANSLATION = {
   register: "Registruj se",
   hero: "Brush your path",
   all_courses: "Svi kursevi",
-  featured_courses: "Popularni kursevi",
+  featured_courses: "Sve što ti treba",
   featured_courses_description:
-    "Pronađi svoje favorite i tehniku koju želiš da usavršiš",
+    "Ne traži dalje. Sve što ti treba da stigneš na vrh je ovde.",
   add_to_cart: "Dodaj u korpu",
   see_all_courses: "Vidi sve kurseve",
   about_me: "O meni",
-  about:
-    "Ja sam Teodora Grubor. \n\nPre 9 godina, kada sam prvi put uzela četkicu u ruke, shvatila sam da šminka nije samo hobi – to je moj životni poziv. \n\nMoja ideja bila je da stvorim mesto gde znanje postaje dostupno svima koji žele da uče i doprinesu rastu beauty zajednice. Do sada su edukacije kod mene završili šminkeri iz Srbije, Hrvatske, Bosne i Hercegovine, Crne Gore, Makedonije, Slovenije, Švajcarske, Nemačke, pa čak i sa Tajlanda. \n\nOnline kursevi omogućavaju još širem krugu ljudi da razvijaju svoju kreativnost, usavrše veštine i ostvare ciljeve, bilo da šminkanje vide kao hobi ili karijeru. \n\nAko još nisi učila/o od mene, sada je savršen trenutak da zajedno podstaknemo kreativnost i izgradimo samopouzdanje. A ako već poznaješ moj rad, hvala ti što si ponovo ovde! 💕",
-  reviews_title: "Reči koje me pokreću",
+  about1:
+    "Od Srbije, Hrvatske, Bosne i Hercegovine, Crne Gore, Makedonije, Madjarske, Slovenije, Austrije, Švajcarske, Nemačke, pa sve do Tajlanda i onda, evo nas ovde.",
+  about2: "Deset godina kasnije. Jedno ime. Ja sam",
+  about3: "Teodora Grubor",
+  about4:
+    "Ono što držim u rukama nije samo četkica. Ona je potpis, vizija i ime koje prepoznajete.",
+  about5:
+    "Moje edukacije nisu samo kursevi. To je ulaz u svet gde se znanje pretvara u umetnost, a umetnost u perfekciju. Ovde se gradi vizija i autentičnost.",
+  about6:
+    "Sada su moja znanja i tehnike dostupni i tebi. Gde god da si.\n Koliko god vremena da ti treba.",
+  about7:
+    "Ako si ovde prvi put – dobrodošla u svet gde kreativnost nema granice.",
+  about8: "Ako si već deo mog puta – znaš da ovde pripadaš. I hvala ti!”",
+  reviews_title: "Vi. O meni.",
   reviews_subtitle:
-    "Real stories from students who turned their passion into success.",
+    "Priče onih koji su doživeli moju ljubav prema umetnosti šminkanja.",
   courses_title: "Svi kursevi",
   courses_subtitle: "Pronađi svoje favorite i tehniku koju želiš da usavršiš",
   course_overview: "Detalji kursa",
@@ -139,7 +170,10 @@ export const SERBIAN_TRANSLATION = {
   contact_social:
     "Volela bih da se bolje upoznamo. Moj rad možeš pratiti i na društvenim mrežama:",
   contact_content:
-    "Ukoliko imaš neko pitanje, predlog ili želiš da mi pišeš, slobodno popuni formu ispod. Potrudiću se da ti odgovorim u najkraćem mogućem roku.",
+    "Ako želiš iskustvo na potpuno novom nivou – <bold>rezerviši svoj 1 na 1 termin</bold> i doživi moj rad iz prve ruke.",
+  contact_content2:
+    "Ili, imaš pitanje, predlog ili ideju? Popuni formu ispod i <bold>odgovoriću ti u najkraćem roku</bold>.",
+  contact_wa: "Rezerviši termin",
   contact_footer: "Hvala ti na poverenju! ",
   send: "Pošalji",
   message: "Poruka",
@@ -156,4 +190,9 @@ export const SERBIAN_TRANSLATION = {
   browse_courses: "Pregledaj kurseve",
   message_sent: "Poruka je poslata!",
   go_to_course: "Idi na kurs",
+  conversion_statement: "Izjava o konverziji",
+  data_privacy: "Zaštita privatnosti podataka",
+  data_protection: "Zaštita poverljivih podataka o transakciji",
+  refund_policy: "Povraćaj sredstava",
+  terms_of_use: "Uslovi korišćenja",
 };

@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import { generalRoutes } from "@routes";
 
-import heroVideo from "@assets/brand/Hero.mp4";
-
 const Hero = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -18,9 +16,12 @@ const Hero = () => {
         autoPlay
         playsInline
       >
-        <source src={heroVideo} type="video/mp4" />
+        <source
+          src="https://res.cloudinary.com/dlxgsnyid/video/upload/v1758987302/Home_edvcjd.mp4"
+          type="video/mp4"
+        />
       </video>
-      <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center px-4 text-center">
+      <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center px-4 text-center">
         <h2 className="text-white text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold italic max-w-4xl">
           {t("hero")}
         </h2>

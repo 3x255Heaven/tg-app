@@ -1,5 +1,5 @@
 import ShopLayout from "@shop/hoc/ShopLayout";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import InstagramIcon from "@assets/svgs/icons/InstagramIcon";
 import MailIcon from "@assets/svgs/icons/MailIcon";
@@ -70,37 +70,62 @@ const Contact = () => {
             <div className="flex flex-col gap-3 text-lg mb-6">
               <div className="flex items-center gap-2">
                 <a
-                  className="cursor-pointer"
+                  className="cursor-pointer flex justify-center items-center gap-3"
                   href={"https://instagram.com/teodora.makeup"}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <InstagramIcon />
+                  <span>@teodora.makeup</span>
                 </a>
-                <span>@teodora.makeup</span>
               </div>
               <div className="flex items-center gap-2">
                 <a
-                  className="cursor-pointer"
+                  className="cursor-pointer flex justify-center items-center gap-3"
                   href={"https://tiktok.com/@teodoragrubor"}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <TiktokIcon />
+                  <span>Teodora Grubor</span>
                 </a>
-                <span>Teodora Grubor</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <MailIcon />
                 <span>teodora.grubor@gmail.com</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <PhoneIcon />
                 <span>+381 65 980 5580</span>
               </div>
             </div>
 
-            <p className="text-lg mb-4">{t("contact_content")}</p>
+            <p className="text-lg mb-4">
+              <Trans
+                i18nKey="contact_content"
+                components={{ bold: <strong /> }}
+              />
+            </p>
+
+            <button
+              onClick={() =>
+                window.open(
+                  "https://wa.me/+381659805580?text=" +
+                    encodeURIComponent("Hello 👋"),
+                  "_blank"
+                )
+              }
+              className="w-full font-semibold bg-black hover:bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] rounded-lg py-2 text-white cursor-pointer transition"
+            >
+              {t("contact_wa")}
+            </button>
+
+            <p className="text-lg mb-4 mt-4">
+              <Trans
+                i18nKey="contact_content2"
+                components={{ bold: <strong /> }}
+              />
+            </p>
           </div>
 
           <form
@@ -149,7 +174,7 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="w-full bg-[#cb4139] text-white font-semibold py-2 px-4 rounded-lg hover:bg-black transition cursor-pointer"
+              className="w-full bg-black text-white font-semibold py-2 px-4 rounded-lg hover:bg-[linear-gradient(274.47deg,#BB8F32_1.53%,#F6DC94_167.81%)] transition cursor-pointer"
             >
               {t("send")}
             </button>

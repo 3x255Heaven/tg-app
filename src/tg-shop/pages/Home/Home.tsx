@@ -3,6 +3,7 @@ import Hero from "@shop/components/Hero";
 import CoursePreview from "@shop/components/CoursePreview";
 import About from "@shop/components/About";
 import Reviews from "@shop/components/reviews/Reviews";
+import Preview from "@shop/components/Preview";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
         <Hero />
         <CoursePreview />
         <About />
+        <Preview />
         <Reviews />
       </div>
     </ShopLayout>

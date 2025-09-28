@@ -2,7 +2,6 @@ import Spinner from "@assets/svgs/Spinner";
 import ShopLayout from "@shop/hoc/ShopLayout";
 import { WistiaPlayer } from "@wistia/wistia-player-react";
 import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@store/store";
@@ -10,7 +9,6 @@ import { getCourse } from "@store/slices/courseSlice";
 
 const CourseContent = () => {
   const { id } = useParams();
-  const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
 
   const { course, isLoading } = useSelector(
@@ -53,9 +51,6 @@ const CourseContent = () => {
               {course.name}
             </h1>
             <div className="flex flex-col pt-4 border-t border-gray-200">
-              <h2 className="font-bold mb-2 text-lg sm:text-xl md:text-2xl">
-                {t("course_overview")}
-              </h2>
               <p className="text-gray-600 text-sm sm:text-base md:text-lg lg:text-sm font-extralight">
                 {course.description}
               </p>

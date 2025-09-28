@@ -31,17 +31,17 @@ const LanguagePicker = () => {
         className="cursor-pointer flex justify-center items-center text-center"
       >
         {i18n.language === "sr" ? (
-          <div className="border border-[#BB8F32] text-[#BB8F32] rounded-full p-1.5">
+          <div className="border border-[#BB8F32] text-[#BB8F32] rounded-full px-2 py-1.5 text-center">
             SR
           </div>
         ) : (
-          <div className="border border-[#BB8F32] text-[#BB8F32] rounded-full p-1.5">
+          <div className="border border-[#BB8F32] text-[#BB8F32] rounded-full p-1.5 text-center">
             EN
           </div>
         )}
       </button>
       {isLanguagePickerOpen && (
-        <div className="absolute top-[40px] left-[-14px] mt-2 w-18 border border-[#BB8F32] rounded-lg shadow-lg z-50">
+        <div className="absolute top-[40px] left-[-14px] mt-2 w-18 bg-white rounded-lg shadow-lg z-50">
           <ul className="py-2 text-gray-700">
             {Object.keys(languages).map((language: any) => {
               return (
@@ -54,11 +54,11 @@ const LanguagePicker = () => {
                   }}
                 >
                   {language === "sr" ? (
-                    <div className="border hover:bg-[#BB8F32] hover:text-white border-[#BB8F32] text-[#BB8F32] rounded-full p-1.5">
+                    <div className="border hover:bg-[#BB8F32] hover:text-white border-[#BB8F32] text-[#BB8F32] rounded-full p-1.5 text-center">
                       SR
                     </div>
                   ) : (
-                    <div className="border hover:bg-[#BB8F32] hover:text-white border-[#BB8F32] text-[#BB8F32] rounded-full p-1.5">
+                    <div className="border hover:bg-[#BB8F32] hover:text-white border-[#BB8F32] text-[#BB8F32] rounded-full p-1.5 text-center">
                       EN
                     </div>
                   )}

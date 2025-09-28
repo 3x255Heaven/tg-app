@@ -90,13 +90,13 @@ const Course = () => {
               </span>
             )}
             <span className="text-[#BB8F32] font-bold text-[22px] sm:text-[26px] md:text-[28px] mb-2.5">
-              {course.discount ? course.price - course.discount : course.price}
+              {course.discount
+                ? Number(course.price.toString().replace(".", "")) -
+                  course.discount
+                : course.price}
               .00 RSD
             </span>
             <div className="flex flex-col pt-4 border-t border-gray-200">
-              <span className="font-bold mb-2 text-lg sm:text-xl md:text-2xl">
-                {t("course_overview")}
-              </span>
               <span className="text-gray-600 text-sm sm:text-base md:text-lg font-extralight">
                 {course.description}
               </span>

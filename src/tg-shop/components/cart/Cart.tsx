@@ -104,20 +104,29 @@ const Cart = ({ isActive, closeCart }: CartProps) => {
           ))
         )}
       </div>
-      {cart.length > 0 && (
-        <div className="border-t border-[#BB8F32] shadow-md p-4">
-          <div className="flex justify-between font-semibold text-lg">
-            <span>{t("total")}</span>
-            <span className="text-[#BB8F32]">{cartTotal}.00 RSD</span>
-          </div>
+      <div className="border-t border-[#BB8F32] shadow-md p-4">
+        {cart.length > 0 ? (
+          <>
+            <div className="flex justify-between font-semibold text-lg">
+              <span>{t("total")}</span>
+              <span className="text-[#BB8F32]">{cartTotal}.00 RSD</span>
+            </div>
+            <button
+              className="mt-3 w-full bg-[#BB8F32] text-white py-2 text-lg font-bold rounded-md hover:bg-[#a3792a] transition"
+              onClick={() => navigate("/checkout")}
+            >
+              {t("checkout")}
+            </button>
+          </>
+        ) : (
           <button
             className="mt-3 w-full bg-[#BB8F32] text-white py-2 text-lg font-bold rounded-md hover:bg-[#a3792a] transition"
-            onClick={() => navigate("/checkout")}
+            onClick={() => navigate("/courses")}
           >
-            {t("checkout")}
+            {t("browse_courses")}
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
