@@ -5,11 +5,11 @@ import InstagramIcon from "@assets/svgs/icons/InstagramIcon";
 import MailIcon from "@assets/svgs/icons/MailIcon";
 import PhoneIcon from "@assets/svgs/icons/PhoneIcon";
 import TiktokIcon from "@assets/svgs/icons/TikTokIcon";
-import contactMe from "@assets/brand/contactme.png";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@store/store";
 import { resetContactState, sendContactForm } from "@store/slices/contactSlice";
 import { toast } from "react-toastify";
+import { motion, easeOut } from "framer-motion";
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -49,18 +49,46 @@ const Contact = () => {
     }
   }, [success, error, dispatch]);
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.2 },
+    },
+  };
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: easeOut },
+    },
+  };
+
   return (
     <ShopLayout>
-      <div className="w-full flex flex-col lg:flex-row justify-center items-stretch p-6 sm:p-10 lg:mt-36 mb-10 gap-10">
-        <div className="w-full lg:w-1/3 flex justify-center items-center">
+      <motion.div
+        className="w-full flex flex-col lg:flex-row justify-center items-stretch p-6 sm:p-10 lg:mt-36 mb-10 gap-10"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        <motion.div
+          className="w-full lg:w-1/3 flex justify-center items-center"
+          variants={fadeInUp}
+        >
           <img
-            src={contactMe}
+            src="https://res.cloudinary.com/dlxgsnyid/image/upload/v1759018740/Contact_me_1_tiafsc.png"
             alt="Teodora Grubor"
             className="w-full h-full object-cover rounded-2xl shadow-lg"
           />
-        </div>
+        </motion.div>
 
-        <div className="w-full lg:w-1/3 flex flex-col justify-center gap-6">
+        <motion.div
+          className="w-full lg:w-1/3 flex flex-col justify-center gap-6"
+          variants={fadeInUp}
+        >
           <div>
             <h1 className="font-malayalam text-3xl sm:text-4xl md:text-5xl text-[#251D18] mb-6">
               {t("contact_title")}
@@ -128,9 +156,10 @@ const Contact = () => {
             </p>
           </div>
 
-          <form
+          <motion.form
             onSubmit={handleSubmit}
             className="w-full bg-white rounded-2xl shadow-md p-6 space-y-4"
+            variants={fadeInUp}
           >
             <div className="flex flex-col sm:flex-row gap-4">
               <input
@@ -178,9 +207,9 @@ const Contact = () => {
             >
               {t("send")}
             </button>
-          </form>
-        </div>
-      </div>
+          </motion.form>
+        </motion.div>
+      </motion.div>
     </ShopLayout>
   );
 };
