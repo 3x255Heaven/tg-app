@@ -1,14 +1,13 @@
-import { API_KEY, BASE_URL } from "@constants/api";
 import { clearUser, clearCart } from "@store/slices/authSlice";
 import { store } from "@store/store";
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
-    "X-API-Key": API_KEY,
+    "X-API-Key": import.meta.env.VITE_API_KEY,
   },
 });
 

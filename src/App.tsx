@@ -21,108 +21,111 @@ import Contact from "@shop/pages/Contact/Contact";
 import CheckoutSuccess from "@shop/pages/Checkout/CheckoutSuccess";
 import CheckoutError from "@shop/pages/Checkout/CheckoutError";
 import Checkout from "@shop/pages/Checkout/Checkout";
+import AppInitializer from "@shop/hoc/AppInitializer";
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route
-          path={dashboardRoutes.DASHBOARD_OVERVIEW}
-          element={
-            <ProtectedRoute>
-              <Overview />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={dashboardRoutes.DASHBOARD_MANAGE_COURSES}
-          element={
-            <ProtectedRoute>
-              <DashboardCourses />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={`${dashboardRoutes.DASHBOARD_COURSE}/:id`}
-          element={
-            <ProtectedRoute>
-              <CourseDetails />
-            </ProtectedRoute>
-          }
-        />
-        <Route path={generalRoutes.LOGIN} element={<Login />} />
-        <Route path={generalRoutes.REGISTER} element={<Register />} />
-        <Route path={generalRoutes.HOME} element={<Home />} />
-        <Route path={generalRoutes.CONTACT} element={<Contact />} />
-        <Route path={generalRoutes.COURSES} element={<Courses />} />
-        <Route path={generalRoutes.COURSE_DETAILS} element={<Course />} />
-        <Route
-          path={generalRoutes.MY_COURSES}
-          element={
-            <ProtectedRoute>
-              <MyCourses />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={generalRoutes.MY_PROFILE}
-          element={
-            <ProtectedRoute>
-              <MyProfile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={generalRoutes.CHANGE_PASSWORD}
-          element={
-            <ProtectedRoute>
-              <ChangePassword />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={generalRoutes.COURSE_CONTENT}
-          element={
-            <ProtectedRoute>
-              <CourseContent />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={generalRoutes.CHECKOUT}
-          element={
-            <ProtectedRoute>
-              <Checkout />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={generalRoutes.CHECKOUT_ERROR}
-          element={
-            <ProtectedRoute>
-              <CheckoutError />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={generalRoutes.CHECKOUT_SUCCESS}
-          element={
-            <ProtectedRoute>
-              <CheckoutSuccess />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path={generalRoutes.FORGOT_PASSWORD}
-          element={<ForgotPassword />}
-        />
-        <Route
-          path={generalRoutes.RESET_PASSWORD}
-          element={<ResetPassword />}
-        />
-        <Route path={generalRoutes.RESET_PASSWORD} element={<Login />} />
-      </Routes>
-    </Router>
+    <AppInitializer>
+      <Router>
+        <Routes>
+          <Route
+            path={dashboardRoutes.DASHBOARD_OVERVIEW}
+            element={
+              <ProtectedRoute>
+                <Overview />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={dashboardRoutes.DASHBOARD_MANAGE_COURSES}
+            element={
+              <ProtectedRoute>
+                <DashboardCourses />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={`${dashboardRoutes.DASHBOARD_COURSE}/:id`}
+            element={
+              <ProtectedRoute>
+                <CourseDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route path={generalRoutes.LOGIN} element={<Login />} />
+          <Route path={generalRoutes.REGISTER} element={<Register />} />
+          <Route path={generalRoutes.HOME} element={<Home />} />
+          <Route path={generalRoutes.CONTACT} element={<Contact />} />
+          <Route path={generalRoutes.COURSES} element={<Courses />} />
+          <Route path={generalRoutes.COURSE_DETAILS} element={<Course />} />
+          <Route
+            path={generalRoutes.MY_COURSES}
+            element={
+              <ProtectedRoute>
+                <MyCourses />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={generalRoutes.MY_PROFILE}
+            element={
+              <ProtectedRoute>
+                <MyProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={generalRoutes.CHANGE_PASSWORD}
+            element={
+              <ProtectedRoute>
+                <ChangePassword />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={generalRoutes.COURSE_CONTENT}
+            element={
+              <ProtectedRoute>
+                <CourseContent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={generalRoutes.CHECKOUT}
+            element={
+              <ProtectedRoute>
+                <Checkout />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={generalRoutes.CHECKOUT_ERROR}
+            element={
+              <ProtectedRoute>
+                <CheckoutError />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={generalRoutes.CHECKOUT_SUCCESS}
+            element={
+              <ProtectedRoute>
+                <CheckoutSuccess />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={generalRoutes.FORGOT_PASSWORD}
+            element={<ForgotPassword />}
+          />
+          <Route
+            path={generalRoutes.RESET_PASSWORD}
+            element={<ResetPassword />}
+          />
+          <Route path={generalRoutes.RESET_PASSWORD} element={<Login />} />
+        </Routes>
+      </Router>
+    </AppInitializer>
   );
 };
 

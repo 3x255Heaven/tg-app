@@ -1,6 +1,3 @@
-export const BASE_URL = "https://development-teodoragrubormakeup.onrender.com";
-export const API_KEY = "CdglUSFa0B9QlWYujnXplNabuzLdGApR";
-
 export const apiRoutes = {
   login: "/api/login",
   logout: "/api/logout",
